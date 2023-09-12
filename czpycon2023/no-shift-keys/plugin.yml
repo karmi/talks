@@ -1,0 +1,2 @@
+name: RevealNoshiftkeys
+script: _extensions/no-shift-keys/no-shift-keys.js
