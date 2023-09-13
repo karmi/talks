@@ -33,6 +33,10 @@
   border-radius: 5px;
 }
 
+.slide img.radius {
+  border-radius: 5px;
+}
+
 .reveal.overview .slides section.present,
 .reveal.overview .slides section.present:hover {
   outline-width: 40px;
