@@ -410,14 +410,14 @@ Karel Minařík
 <section class="slide level2">
 <h2>This Talk is a Jupyter Notebook</h2>
 <div class="columns">
-<div class="column" style="width:45%;">
-<p><img data-src="assets/qr-talk-source.png"></p>
+<div class="column" style="width:50%;">
+<p><img data-src="assets/screenshot-notebook.png" class="border"></p>
 <p><a href="https://github.com/karmi/talks/blob/main/czpycon2023/library-and-maze-czpycon2023.ipynb" style="font-size: 80%;">github.com/karmi/talks</a></p>
-</div><div class="column" style="width:55%;">
+</div><div class="column" style="width:50%;">
 <p>Software Developer</p>
 <p><small>ex-</small>Elastic.co</p>
 <p><small>ex-</small>Česko.Digital</p>
-<p>MA in Philosophy</p>
+<p>Philosophy major</p>
 <p><a href="https://karmi.cz" class="underline">https://karmi.cz</a></p>
 <p style="margin-top: 40px; margin-bottom:0; line-height: 1;">
 <img src="assets/icons/github-square.svg" width="25" class="icon small" style="opacity: 0.3; top: 4px;"><small><code><a href="https://github.com/karmi"><span class="citation" data-cites="karmi">@karmi</span></a></code></small>
@@ -428,44 +428,6 @@ Karel Minařík
 </div>
 </div>
 </section>
-
-
-<section class="slide level2">
-<h2>ChatGPT by OpenAI</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="https://openai.com/blog/chatgpt"><img data-src="assets/screenshot-chatgpt-announcement.png"></a></p>
-</figure>
-</div>
-</div><div class="column" style="width:70%;">
-<p>Announced in&nbsp;November&nbsp;2022</p>
-<p>A&nbsp;“cambrian explosion” of interest in&nbsp;artificial intelligence</p>
-<p>Every problem in IT will be<br> reframed as an AI problem</p>
-<p><small> Trivial example: extracting data from text </small></p>
-</div>
-</div>
-<aside class="notes">
-<p>Example, extracting data from text: regex pattern or few-shot learning?</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section class="slide level2 text-white" data-background="black" data-background-video="assets/video-openai-rubic-cube-short.mp4" data-background-video-muted="true" data-background-video-loop="true" data-background-opacity="0.8">
-<h2>Rubic Cube by OpenAI</h2>
-<p>Training in virtual simulation, then in physical reality</p>
-<p>Equivalent of 10,000 human years <sup>1</sup></p>
-<p>Reinforcement learning</p>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Metz, Cade. “Genius Makers: The Mavericks Who Brought AI to Google, Facebook, and the World.” Dutton, 2021. Kindle Edition, loc 277</p></li></ol></aside></section>
 <section class="slide level2 quotes-grid">
 <h2></h2>
 <div class="quotes">
@@ -512,6 +474,36 @@ Karel Minařík
           display:block!important;
       }</style></aside>
 </section>
+<section class="slide level2">
+<h2>ChatGPT by OpenAI</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://openai.com/blog/chatgpt"><img data-src="assets/screenshot-chatgpt-announcement.png"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:70%;">
+<p>Announced in&nbsp;November&nbsp;2022</p>
+<p>A&nbsp;“cambrian explosion” of interest in&nbsp;artificial intelligence</p>
+<p>Many problems in IT will be<br> reframed as AI problems</p>
+<p><small> Trivial example: extracting data from text </small></p>
+</div>
+</div>
+<aside class="notes">
+<p>Example, extracting data from text: regex pattern or few-shot learning?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 
 <section class="slide level2 text-white" data-background="black" data-background-image="assets/big-maze.png" data-background-opacity="0.6" data-background-transition="fade">
 <h2>Our Itinerary</h2>
@@ -520,6 +512,19 @@ Karel Minařík
 <li>Use case: <em>Semantic Search</em></li>
 <li>Embeddings for other media</li>
 </ul>
+<aside class="notes">
+<p><code>5 min</code></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2 center" data-background="#dc143c">
 <h2>➊ What Are Text Embeddings?</h2>
@@ -528,11 +533,10 @@ Karel Minařík
 <h2>What Are Text Embeddings?</h2>
 <p><br></p>
 <ul>
-<li><p>Basic mechanism for natural language processing <small>(LLMs, machine translation, sentiment analysis, …)</small></p></li>
-<li><p>Numerical representations of text</p></li>
+<li><p>Basic mechanism for natural language processing<br> <small>(LLMs, machine translation, sentiment analysis, …)</small></p></li>
+<li><p>Numerical representations of text<br> <small>(Words, phrases, sentences …)</small></p></li>
 <li><p>“Long lists of numbers”</p></li>
 <li><p>“GPS coordinates” for meaning</p></li>
-<li><p>“DNA sequence” for words or phrases</p></li>
 </ul>
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
@@ -545,8 +549,9 @@ Karel Minařík
 <p>➊ What Are Text Embeddings?</p>
 </div>
 <aside class="notes">
-<p>“Self-supervised contrastive learning objective” – given a sentence from pair, predict the best pairing.</p>
 <p>Training data is more than 1 billion sentences (scientific papers, Reddit, StackExchange, MS Marco, Yahoo, …)</p>
+<p>The model card at Hugging Face has all the details.</p>
+<p>(“Self-supervised contrastive learning objective” – given a sentence from pair, predict the best pairing.)</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -561,7 +566,7 @@ Karel Minařík
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>q sentence<span class="op">-</span>transformers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> SentenceTransformer(<span class="st">"all-MiniLM-L6-v2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -575,14 +580,14 @@ Karel Minařík
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>embeddings_for_cat <span class="op">=</span> model1.encode(<span class="st">"cat"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(embeddings_for_cat)[:<span class="dv">5</span>] <span class="op">+</span> [<span class="st">"..."</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0.03733039, 0.0511619, -0.00030606816, 0.060209926, -0.11749442, '...']</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>embeddings_for_dog <span class="op">=</span> model1.encode(<span class="st">"dog"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(embeddings_for_dog)[:<span class="dv">5</span>] <span class="op">+</span> [<span class="st">"..."</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -625,7 +630,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="27">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(</span>
@@ -636,7 +641,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">"cat"</span>, <span class="st">"dog"</span>], columns<span class="op">=</span>[<span class="st">"embeddings"</span>])</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -680,7 +685,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell columns column-output-location" data-execution_count="28">
+<div class="cell columns column-output-location" data-execution_count="8">
 <div class="column">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_for_heatmap(df):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
@@ -707,7 +712,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> df_for_heatmap(df1)</span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>source</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -911,26 +916,22 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_to_reduced(df):</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert embeddings into a 2-dimensional array</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    df.copy()</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    .assign(</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      embeddings<span class="op">=</span>reducer.fit_transform(</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        np.stack(df[<span class="st">"embeddings"</span>])</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      ).tolist())</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>df_to_reduced(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert embeddings into a 2-dimensional array</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_to_reduced(df):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.copy().assign(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        embeddings<span class="op">=</span>reducer.fit_transform(np.stack(df[<span class="st">"embeddings"</span>])).tolist()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>df_to_reduced(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -975,7 +976,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1012,7 +1013,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_reduced <span class="op">=</span> df_to_reduced(df1)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> pd.DataFrame({</span>
@@ -1022,26 +1023,26 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>scatterplot(source, labels<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <style>
-  #altair-viz-4947ff4f6d454a8db7be8abdff85a9b0.vega-embed {
+  #altair-viz-1f4617322ddd4488882d998324cac0cf.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-4947ff4f6d454a8db7be8abdff85a9b0.vega-embed details,
-  #altair-viz-4947ff4f6d454a8db7be8abdff85a9b0.vega-embed details summary {
+  #altair-viz-1f4617322ddd4488882d998324cac0cf.vega-embed details,
+  #altair-viz-1f4617322ddd4488882d998324cac0cf.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-4947ff4f6d454a8db7be8abdff85a9b0"></div>
+<div id="altair-viz-1f4617322ddd4488882d998324cac0cf"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-4947ff4f6d454a8db7be8abdff85a9b0") {
-      outputDiv = document.getElementById("altair-viz-4947ff4f6d454a8db7be8abdff85a9b0");
+    if (outputDiv.id !== "altair-viz-1f4617322ddd4488882d998324cac0cf") {
+      outputDiv = document.getElementById("altair-viz-1f4617322ddd4488882d998324cac0cf");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1097,7 +1098,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="33">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"pizza"</span>, <span class="st">"coffee"</span>, <span class="st">"asymptomatic"</span>]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(</span>
@@ -1105,7 +1106,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>words, columns<span class="op">=</span>[<span class="st">"embeddings"</span>])</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1161,7 +1162,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="34">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_reduced <span class="op">=</span> df_to_reduced(df2)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> pd.DataFrame({</span>
@@ -1171,26 +1172,26 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>scatterplot(source, labels<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <style>
-  #altair-viz-bc86f29acf644804b3c0da3dd89fe4f8.vega-embed {
+  #altair-viz-d1d0fc22c7f5428490ab841908d683dc.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-bc86f29acf644804b3c0da3dd89fe4f8.vega-embed details,
-  #altair-viz-bc86f29acf644804b3c0da3dd89fe4f8.vega-embed details summary {
+  #altair-viz-d1d0fc22c7f5428490ab841908d683dc.vega-embed details,
+  #altair-viz-d1d0fc22c7f5428490ab841908d683dc.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-bc86f29acf644804b3c0da3dd89fe4f8"></div>
+<div id="altair-viz-d1d0fc22c7f5428490ab841908d683dc"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-bc86f29acf644804b3c0da3dd89fe4f8") {
-      outputDiv = document.getElementById("altair-viz-bc86f29acf644804b3c0da3dd89fe4f8");
+    if (outputDiv.id !== "altair-viz-d1d0fc22c7f5428490ab841908d683dc") {
+      outputDiv = document.getElementById("altair-viz-d1d0fc22c7f5428490ab841908d683dc");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1262,7 +1263,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="35">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"kočka"</span> <span class="co"># "Cat" in Czech [ˈkot͡ʃka]</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.concat([</span>
@@ -1271,7 +1272,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>])</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>df3.loc[[<span class="st">"cat"</span>, <span class="st">"kočka"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1312,10 +1313,11 @@ print(model1.get_sentence_embedding_dimension())
 </section>
 <section class="slide level2 slide-code smaller">
 <h2>Let’s try the scatterplot again.</h2>
+
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="36">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_reduced <span class="op">=</span> df_to_reduced(df3)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> pd.DataFrame({</span>
@@ -1325,26 +1327,26 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>scatterplot(source, labels<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <style>
-  #altair-viz-9467ca3bc0b94cfb9e4ede89a6794b93.vega-embed {
+  #altair-viz-190865af092a402090a9359b0ed94090.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-9467ca3bc0b94cfb9e4ede89a6794b93.vega-embed details,
-  #altair-viz-9467ca3bc0b94cfb9e4ede89a6794b93.vega-embed details summary {
+  #altair-viz-190865af092a402090a9359b0ed94090.vega-embed details,
+  #altair-viz-190865af092a402090a9359b0ed94090.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-9467ca3bc0b94cfb9e4ede89a6794b93"></div>
+<div id="altair-viz-190865af092a402090a9359b0ed94090"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-9467ca3bc0b94cfb9e4ede89a6794b93") {
-      outputDiv = document.getElementById("altair-viz-9467ca3bc0b94cfb9e4ede89a6794b93");
+    if (outputDiv.id !== "altair-viz-190865af092a402090a9359b0ed94090") {
+      outputDiv = document.getElementById("altair-viz-190865af092a402090a9359b0ed94090");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1394,33 +1396,38 @@ print(model1.get_sentence_embedding_dimension())
 </script>
 </div>
 </div>
-</section>
+<aside><div>
+<p>The model has been trained on English text only.</p>
+</div></aside></section>
 <section class="slide level2 slide-code">
 <h2>Let’s try with a different model.</h2>
 <p><a href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"><img data-src="assets/logo-huggingface.svg" class="icon" width="40" height="40"> <code>sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2</code></a></p>
+
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="37">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> SentenceTransformer(<span class="st">"paraphrase-multilingual-MiniLM-L12-v2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
+<aside><div>
+<p>A model trained on parallel data for more than 50 languages. <small><a href="https://www.sbert.net/docs/pretrained_models.html#multi-lingual-models" class="uri">https://www.sbert.net/docs/pretrained_models.html#multi-lingual-models</a></small></p>
+</div></aside></section>
 <section class="slide level2 slide-code smaller">
 <h2>Let’s create the embeddings with the new model.</h2>
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="38">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> df3.index.to_list()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    [  [model2.encode(word)]  <span class="cf">for</span> word <span class="kw">in</span> words ],</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    [  [model2.encode(word)] <span class="cf">for</span> word <span class="kw">in</span> words ],</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>words, columns<span class="op">=</span>[<span class="st">"embeddings"</span>])</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1480,7 +1487,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="39">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_reduced <span class="op">=</span> df_to_reduced(df4)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> pd.DataFrame({</span>
@@ -1490,26 +1497,26 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>scatterplot(source, labels<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="18">
 
 <style>
-  #altair-viz-06cbfbdb40264c3c85d579a06f5e30cc.vega-embed {
+  #altair-viz-9c776296684841eca4f4970aae948675.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-06cbfbdb40264c3c85d579a06f5e30cc.vega-embed details,
-  #altair-viz-06cbfbdb40264c3c85d579a06f5e30cc.vega-embed details summary {
+  #altair-viz-9c776296684841eca4f4970aae948675.vega-embed details,
+  #altair-viz-9c776296684841eca4f4970aae948675.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-06cbfbdb40264c3c85d579a06f5e30cc"></div>
+<div id="altair-viz-9c776296684841eca4f4970aae948675"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-06cbfbdb40264c3c85d579a06f5e30cc") {
-      outputDiv = document.getElementById("altair-viz-06cbfbdb40264c3c85d579a06f5e30cc");
+    if (outputDiv.id !== "altair-viz-9c776296684841eca4f4970aae948675") {
+      outputDiv = document.getElementById("altair-viz-9c776296684841eca4f4970aae948675");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1560,154 +1567,14 @@ print(model1.get_sentence_embedding_dimension())
 </div>
 </div>
 </section>
-<section class="slide level2 slide-code smaller">
-<h2>Let’s try a word in a different language <em>and alphabet</em>.</h2>
-<div class="footer">
-<p>➊ What Are Text Embeddings?</p>
-</div>
-<div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"γάτα"</span> <span class="co"># "Cat" in Greek /ˈɣa.ta/</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df5 <span class="op">=</span> pd.concat([</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  df4, </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  pd.DataFrame.from_dict({<span class="st">"embeddings"</span>: { word: model2.encode(word)}}),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>df5.loc[[<span class="st">"cat"</span>, <span class="st">"kočka"</span>, word]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-<table class="dataframe" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header" style="text-align: right;">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">embeddings</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">cat</td>
-<td>[0.59055364, -0.3334293, -0.03257506, 0.543022...</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">kočka</td>
-<td>[0.5026489, -0.23199998, -0.008454391, 0.48297...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">γάτα</td>
-<td>[0.5377652, -0.28492135, -0.012445372, 0.51958...</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 slide-code smaller">
-<h2>And let’s try the scatterplot again…</h2>
-<div class="footer">
-<p>➊ What Are Text Embeddings?</p>
-</div>
-<div class="cell" data-execution_count="186">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df_reduced <span class="op">=</span> df_to_reduced(df5)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: df_reduced.index,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: df_reduced[<span class="st">"embeddings"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="dv">0</span>]).to_list(),</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: df_reduced[<span class="st">"embeddings"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="dv">1</span>]).to_list(),</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>scatterplot(source, labels<span class="op">=</span><span class="va">True</span>, jitter<span class="op">=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="186">
-
-<style>
-  #altair-viz-e456e4f769804ccd93fbeed528ce294a.vega-embed {
-    width: 100%;
-    display: flex;
-  }
-
-  #altair-viz-e456e4f769804ccd93fbeed528ce294a.vega-embed details,
-  #altair-viz-e456e4f769804ccd93fbeed528ce294a.vega-embed details summary {
-    position: relative;
-  }
-</style>
-<div id="altair-viz-e456e4f769804ccd93fbeed528ce294a"></div>
-<script type="text/javascript">
-  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-e456e4f769804ccd93fbeed528ce294a") {
-      outputDiv = document.getElementById("altair-viz-e456e4f769804ccd93fbeed528ce294a");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.8.0?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
-    };
-
-    function maybeLoadScript(lib, version) {
-      var key = `${lib.replace("-", "")}_version`;
-      return (VEGA_DEBUG[key] == version) ?
-        Promise.resolve(paths[lib]) :
-        new Promise(function(resolve, reject) {
-          var s = document.createElement('script');
-          document.getElementsByTagName("head")[0].appendChild(s);
-          s.async = true;
-          s.onload = () => {
-            VEGA_DEBUG[key] = version;
-            return resolve(paths[lib]);
-          };
-          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-          s.src = paths[lib];
-        });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else {
-      maybeLoadScript("vega", "5")
-        .then(() => maybeLoadScript("vega-lite", "5.8.0"))
-        .then(() => maybeLoadScript("vega-embed", "6"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"mark": {"type": "circle", "color": "crimson", "size": 200, "stroke": "white", "strokeWidth": 1}, "encoding": {"x": {"field": "xJittered", "scale": {"zero": false}, "title": null, "type": "quantitative"}, "y": {"field": "yJittered", "scale": {"zero": false}, "title": null, "type": "quantitative"}}}, {"mark": {"type": "text", "align": "left", "baseline": "bottom", "dx": 5, "fontSize": 13}, "encoding": {"text": {"field": "text", "type": "nominal"}, "x": {"field": "xJittered", "scale": {"zero": false}, "title": null, "type": "quantitative"}, "y": {"field": "yJittered", "scale": {"zero": false}, "title": null, "type": "quantitative"}}}], "data": {"name": "data-0a4cfd30ebba425f3ffcbb87e63dd757"}, "height": 200, "width": 800, "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json", "datasets": {"data-0a4cfd30ebba425f3ffcbb87e63dd757": [{"text": "cat", "x": -3.267886161804199, "y": 0.5871531367301941, "xJittered": -3.0328755381929016, "yJittered": 0.3863984920451028}, {"text": "dog", "x": 1.0682406425476074, "y": -3.5831055641174316, "xJittered": 0.9686622171823482, "yJittered": -3.5994489023526657}, {"text": "pizza", "x": 3.267690896987915, "y": 4.321041107177734, "xJittered": 3.5064257216970125, "yJittered": 4.484612381245915}, {"text": "coffee", "x": 3.5861752033233643, "y": -0.605080783367157, "xJittered": 3.6761273145140985, "yJittered": -0.8651138226187316}, {"text": "asymptomatic", "x": 1.4974373579025269, "y": -1.8378334045410156, "xJittered": 1.263575886736302, "yJittered": -1.899264812390685}, {"text": "ko\u010dka", "x": -2.950587511062622, "y": 0.5059904456138611, "xJittered": -2.7154858072351793, "yJittered": 0.5483099434315466}, {"text": "\u03b3\u03ac\u03c4\u03b1", "x": -3.2010695934295654, "y": 0.6118332147598267, "xJittered": -3.343421915854009, "yJittered": 0.6485565672439666}]}}, {"mode": "vega-lite"});
-</script>
-</div>
-</div>
-</section>
 <section class="slide level2 slide-code smaller">
 <h2>Let’s compute similarity between a query and the other words.</h2>
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell columns column-output-location" data-execution_count="311">
+<div class="cell columns column-output-location" data-execution_count="19">
 <div class="column">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="op">\</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> cosine_similarity</span>
@@ -1717,7 +1584,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>similarities <span class="op">=</span> {}</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word, embeddings <span class="kw">in</span> df5[<span class="st">"embeddings"</span>].items():</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word, embeddings <span class="kw">in</span> df4[<span class="st">"embeddings"</span>].items():</span>
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># query vector ⇔ word vector</span></span>
 <span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -1748,73 +1615,65 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>    .bar(subset<span class="op">=</span>[<span class="st">'Similarity'</span>], color<span class="op">=</span><span class="st">'#999'</span>)</span>
 <span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="cell-output cell-output-display" data-execution_count="311">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <style type="text/css">
-#T_32953_row0_col1 {
+#T_79604_row0_col1 {
   width: 10em;
   background: linear-gradient(90deg, #999 100.0%, transparent 100.0%);
 }
-#T_32953_row1_col1 {
-  width: 10em;
-  background: linear-gradient(90deg, #999 99.2%, transparent 99.2%);
-}
-#T_32953_row2_col1 {
+#T_79604_row1_col1 {
   width: 10em;
   background: linear-gradient(90deg, #999 98.4%, transparent 98.4%);
 }
-#T_32953_row3_col1 {
+#T_79604_row2_col1 {
   width: 10em;
   background: linear-gradient(90deg, #999 30.3%, transparent 30.3%);
 }
-#T_32953_row4_col1 {
+#T_79604_row3_col1 {
   width: 10em;
   background: linear-gradient(90deg, #999 25.1%, transparent 25.1%);
 }
-#T_32953_row5_col1 {
+#T_79604_row4_col1 {
   width: 10em;
   background: linear-gradient(90deg, #999 21.0%, transparent 21.0%);
 }
-#T_32953_row6_col1 {
+#T_79604_row5_col1 {
   width: 10em;
   background: linear-gradient(90deg, #999 11.3%, transparent 11.3%);
 }
 </style>
 
-<table id="T_32953" class="dataframe" data-quarto-postprocess="true">
+<table id="T_79604" class="dataframe" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_32953_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Word</th>
-<th id="T_32953_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Similarity</th>
+<th id="T_79604_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Word</th>
+<th id="T_79604_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Similarity</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_32953_row0_col0" class="data row0 col0">cat ⇔ cat</td>
-<td id="T_32953_row0_col1" class="data row0 col1">1.000000</td>
+<td id="T_79604_row0_col0" class="data row0 col0">cat ⇔ cat</td>
+<td id="T_79604_row0_col1" class="data row0 col1">1.000000</td>
 </tr>
 <tr class="even">
-<td id="T_32953_row1_col0" class="data row1 col0">cat ⇔ γάτα</td>
-<td id="T_32953_row1_col1" class="data row1 col1">0.992417</td>
+<td id="T_79604_row1_col0" class="data row1 col0">cat ⇔ kočka</td>
+<td id="T_79604_row1_col1" class="data row1 col1">0.983700</td>
 </tr>
 <tr class="odd">
-<td id="T_32953_row2_col0" class="data row2 col0">cat ⇔ kočka</td>
-<td id="T_32953_row2_col1" class="data row2 col1">0.983700</td>
+<td id="T_79604_row2_col0" class="data row2 col0">cat ⇔ dog</td>
+<td id="T_79604_row2_col1" class="data row2 col1">0.303288</td>
 </tr>
 <tr class="even">
-<td id="T_32953_row3_col0" class="data row3 col0">cat ⇔ dog</td>
-<td id="T_32953_row3_col1" class="data row3 col1">0.303288</td>
+<td id="T_79604_row3_col0" class="data row3 col0">cat ⇔ pizza</td>
+<td id="T_79604_row3_col1" class="data row3 col1">0.250888</td>
 </tr>
 <tr class="odd">
-<td id="T_32953_row4_col0" class="data row4 col0">cat ⇔ pizza</td>
-<td id="T_32953_row4_col1" class="data row4 col1">0.250888</td>
+<td id="T_79604_row4_col0" class="data row4 col0">cat ⇔ coffee</td>
+<td id="T_79604_row4_col1" class="data row4 col1">0.209838</td>
 </tr>
 <tr class="even">
-<td id="T_32953_row5_col0" class="data row5 col0">cat ⇔ coffee</td>
-<td id="T_32953_row5_col1" class="data row5 col1">0.209838</td>
-</tr>
-<tr class="odd">
-<td id="T_32953_row6_col0" class="data row6 col0">cat ⇔ asymptomatic</td>
-<td id="T_32953_row6_col1" class="data row6 col1">0.112521</td>
+<td id="T_79604_row5_col0" class="data row5 col0">cat ⇔ asymptomatic</td>
+<td id="T_79604_row5_col1" class="data row5 col1">0.112521</td>
 </tr>
 </tbody>
 </table>
@@ -1824,7 +1683,7 @@ print(model1.get_sentence_embedding_dimension())
 </section>
 <section class="slide level2 slide-code slide-code-wide slide-grey smaller" data-background="#718096">
 <h2>What is “cosine similarity”?</h2>
-<div class="cell columns column-output-location" data-execution_count="85">
+<div class="cell columns column-output-location" data-execution_count="386">
 <div class="column">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2053,15 +1912,7 @@ print(model1.get_sentence_embedding_dimension())
 <aside><div>
 <p><a href="http://jalammar.github.io/illustrated-word2vec" class="uri">http://jalammar.github.io/illustrated-word2vec</a></p>
 </div></aside></section>
-<section class="slide level2 center center-horizontal">
-<h2></h2>
-<p><small> <img data-src="assets/logo-huggingface.svg" class="icon small" width="10" height="10"> <a href="https://huggingface.co/spaces/karmiq/glove-word-arithmetics"><code>spaces/karmiq/glove-word-arithmetics</code></a> </small></p>
-<iframe src="https://karmiq-glove-word-arithmetics.hf.space" frameborder="0" width="850" height="450" style="border: 2px solid #ccc; border-radius: 5px; padding: 10px; box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);">
-</iframe>
-<div class="footer">
-<p>➊ What Are Text Embeddings?</p>
-</div>
-</section>
+
 <section class="slide level2 center" data-background="#dc143c">
 <h2>➋ Semantic search</h2>
 </section>
@@ -2069,7 +1920,7 @@ print(model1.get_sentence_embedding_dimension())
 <h2>Semantic search</h2>
 <p><em>Lexical</em> search <small>(TF-IDF, BM25, …)</small></p>
 <p><em>Semantic</em> search: text embeddings and similarity</p>
-<p>Meaning (“dimensions”), not just words</p>
+<p>Meaning (“dimensions”), not terms</p>
 <p>(Approximate) “Nearest Neighbors” algorithm</p>
 
 <div class="footer">
@@ -2178,33 +2029,7 @@ print(model1.get_sentence_embedding_dimension())
 </div>
 </div>
 </section>
-<section class="slide level2">
-<h2>When “Brute Force” Is Not Enough</h2>
-<p>(Hierarchical) Navigable Small World</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/hnsw-1-pinecone.png" height="250"></p>
-<figcaption>NSW</figcaption>
-</figure>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="assets/hnsw-2-pinecone.png" height="250"></p>
-<figcaption>HNSW</figcaption>
-</figure>
-</div>
-</div>
-</div>
 
-<div class="footer">
-<p>➋ Semantic search</p>
-</div>
-<aside><div>
-<p><a href="https://www.pinecone.io/learn/series/faiss/hnsw/" class="uri">https://www.pinecone.io/learn/series/faiss/hnsw/</a></p>
-</div></aside></section>
 <section class="slide level2">
 <h2>Nearest Neighbors with <em>Annoy</em></h2>
 <ol type="1">
@@ -2222,49 +2047,13 @@ print(model1.get_sentence_embedding_dimension())
 <p><a href="https://github.com/spotify/annoy" class="uri">https://github.com/spotify/annoy</a></p>
 <p><a href="https://github.com/erikbern/ann-presentation" class="uri">https://github.com/erikbern/ann-presentation</a></p>
 </div></aside></section>
-<section class="slide level2 slide-code slide-code-wide smaller">
-<h2>Download the Archive</h2>
-<div class="footer">
-<p>➋ Semantic search</p>
-</div>
-<div class="cell" data-execution_count="140">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">"coffee.stackexchange.com.7z"</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>input_file_path <span class="op">=</span> os.path.join(<span class="st">"tmp"</span>, input_file)</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(input_file_path):</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  archive_url <span class="op">=</span> <span class="ss">f"https://archive.org/download/stackexchange/</span><span class="sc">{</span>input_file<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">with</span> requests.get(archive_url, stream<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> response:</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        response.raise_for_status()</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>        total_size <span class="op">=</span> <span class="bu">int</span>(response.headers.get(<span class="st">"content-length"</span>, <span class="dv">0</span>))</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> tqdm(total<span class="op">=</span>total_size, desc<span class="op">=</span><span class="st">"Download"</span>, unit<span class="op">=</span><span class="st">"B"</span>, unit_scale<span class="op">=</span><span class="va">True</span>, <span class="bu">file</span><span class="op">=</span>sys.stdout) <span class="im">as</span> p:</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>          <span class="cf">with</span> <span class="bu">open</span>(input_file_path, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">4096</span>):</span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>                  p.update(<span class="bu">len</span>(chunk))</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>                  f.write(chunk)</span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Input file already downloaded."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Download: 100%|██████████| 4.49M/4.49M [01:22&lt;00:00, 54.2kB/s]</code></pre>
-</div>
-</div>
-</section>
+
 <section class="slide level2 slide-code slide-code-wide smaller">
 <h2>Extract Titles from XML into a DataFrame</h2>
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell columns column-output-location" data-execution_count="336">
+<div class="cell columns column-output-location" data-execution_count="438">
 <div class="column">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> py7zr <span class="im">import</span> SevenZipFile <span class="im">as</span> <span class="bu">zip</span></span>
@@ -2290,27 +2079,27 @@ print(model1.get_sentence_embedding_dimension())
 <style type="text/css">
 </style>
 
-<table id="T_f335c" data-quarto-postprocess="true">
+<table id="T_703bc" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_f335c_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">text</th>
+<th id="T_703bc_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">text</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_f335c_row0_col0" class="data row0 col0">How should I store whole bean coffee?</td>
+<td id="T_703bc_row0_col0" class="data row0 col0">How should I store whole bean coffee?</td>
 </tr>
 <tr class="even">
-<td id="T_f335c_row1_col0" class="data row1 col0">How fine should I grind coffee for drip/pour over coffee</td>
+<td id="T_703bc_row1_col0" class="data row1 col0">How fine should I grind coffee for drip/pour over coffee</td>
 </tr>
 <tr class="odd">
-<td id="T_f335c_row2_col0" class="data row2 col0">Does the hardness of water matter when making coffee?</td>
+<td id="T_703bc_row2_col0" class="data row2 col0">Does the hardness of water matter when making coffee?</td>
 </tr>
 <tr class="even">
-<td id="T_f335c_row3_col0" class="data row3 col0">What's the theory behind using thin spouted kettles when making drip/pour over coffee</td>
+<td id="T_703bc_row3_col0" class="data row3 col0">What's the theory behind using thin spouted kettles when making drip/pour over coffee</td>
 </tr>
 <tr class="odd">
-<td id="T_f335c_row4_col0" class="data row4 col0">How important is tamping coffee for an espresso machine</td>
+<td id="T_703bc_row4_col0" class="data row4 col0">How important is tamping coffee for an espresso machine</td>
 </tr>
 </tbody>
 </table>
@@ -2326,7 +2115,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell" data-execution_count="337">
+<div class="cell" data-execution_count="439">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SentenceTransformer(<span class="st">"paraphrase-multilingual-MiniLM-L12-v2"</span>)</span>
@@ -2338,7 +2127,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"embeddings"</span>] <span class="op">=</span> df[<span class="st">"text"</span>].progress_apply( <span class="kw">lambda</span> x: model.encode(x) )</span>
 <span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="337">
+<div class="cell-output cell-output-display" data-execution_count="439">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -2390,7 +2179,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell" data-execution_count="338">
+<div class="cell" data-execution_count="440">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> annoy <span class="im">import</span> AnnoyIndex</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> df[<span class="st">"embeddings"</span>][<span class="dv">0</span>].size  <span class="co"># Vector dimensions</span></span>
@@ -2413,7 +2202,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell" data-execution_count="339">
+<div class="cell" data-execution_count="441">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the saved index</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> AnnoyIndex(f, <span class="st">"angular"</span>)</span>
@@ -2427,7 +2216,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.iloc[nearest_ids][[<span class="st">"text"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="340">
+<div class="cell" data-execution_count="442">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Increase column width for display</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_colwidth"</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2438,9 +2227,15 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell" data-execution_count="341">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"How much coffee can you drink in one day?"</span>, index, model, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="341">
+<div class="cell" data-execution_count="456">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"How much coffee can you drink in one day?"</span>, index, model, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 41.9 ms, sys: 14.6 ms, total: 56.5 ms
+Wall time: 42.3 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="456">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -2516,9 +2311,15 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell" data-execution_count="342">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"What is the maximum coffee consumption?"</span>, index, model, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="342">
+<div class="cell" data-execution_count="449">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"What is the maximum coffee consumption?"</span>, index, model, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 41.5 ms, sys: 13.5 ms, total: 55 ms
+Wall time: 39.9 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="449">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -2593,7 +2394,7 @@ print(model1.get_sentence_embedding_dimension())
 <h2>The “Vocabulary Mismatch” Problem</h2>
 <p><em>What is the maximum coffee consumption?</em></p>
 
-<img data-src="assets/screenshot-coffee-stackexchange.png" width="800" class="r-stretch"><div class="footer">
+<img src="assets/screenshot-coffee-stackexchange.png" width="800" class="r-stretch"><div class="footer">
 <p>➋ Semantic search</p>
 </div>
 </section>
@@ -2602,9 +2403,15 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-<div class="cell" data-execution_count="343">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"Kolik kafe můžu denně vypít?"</span>, index, model, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="343">
+<div class="cell" data-execution_count="451">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"Kolik kafe můžu denně vypít?"</span>, index, model, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 15 ms, sys: 3.24 ms, total: 18.2 ms
+Wall time: 16 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="451">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -2678,19 +2485,18 @@ print(model1.get_sentence_embedding_dimension())
 <section class="slide level2 logos">
 <h2>Vector Databases</h2>
 <ul>
-<li><img data-src="assets/logos/postgres.png" height="40"> PostgreSQL (with <code>pgvector</code>)</li>
+<li><img data-src="assets/logos/postgres.png" style="top:21px" height="40"> PostgreSQL (with <code>pgvector</code>)</li>
 <li><img data-src="assets/logos/elasticsearch.png" height="40"> Elasticsearch</li>
 <li><img data-src="assets/logos/redis.png" height="40"> Redis</li>
-<li><img data-src="assets/logos/pinecone.png" height="40"> Pinecone</li>
-<li><img data-src="assets/logos/weviate.png" height="40"> Weviate</li>
-<li><img data-src="assets/logos/vespa.png" height="40"> Vespa</li>
-<li><img data-src="assets/logos/milvus.jpg" height="40"> Milvus</li>
-<li>…</li>
+<li><img data-src="assets/logos/pinecone.png" height="40"> Pinecone, <img data-src="assets/logos/weviate.png" height="40"> Weviate, <img data-src="assets/logos/vespa.png" height="40"> Vespa, <img data-src="assets/logos/milvus.jpg" height="40"> Milvus, …</li>
 </ul>
+
 <div class="footer">
 <p>➋ Semantic search</p>
 </div>
-</section>
+<aside><div>
+<p><a href="https://nb.karmi.cz/semantic-search-with-elasticsearch/" class="uri">https://nb.karmi.cz/semantic-search-with-elasticsearch/</a></p>
+</div></aside></section>
 <section class="slide level2 center" data-background="#dc143c">
 <h2>➌ Embeddings for other media</h2>
 </section>
@@ -2720,44 +2526,44 @@ print(model1.get_sentence_embedding_dimension())
 <p>➌ Embeddings for other media</p>
 </div>
 <div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> humanize</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>DOWNLOAD_PATH <span class="op">=</span> os.path.expanduser(<span class="st">"~/Downloads"</span>)</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/laion/laion2b-en-vit-l-14-embeddings/resolve/main"</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> {</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"metadata"</span>: <span class="st">"metadata/metadata_0000.parquet"</span>,</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"image_emb"</span>: <span class="st">"img_emb/img_emb_0000.npy"</span>,</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text_emb"</span>: <span class="st">"text_emb/text_emb_0000.npy"</span>,</span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (key, filename) <span class="kw">in</span> filenames.items():</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>BASE_URL<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>filename<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    filepath <span class="op">=</span> os.path.join(DOWNLOAD_PATH, os.path.basename(filename))</span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>    filebasename <span class="op">=</span> os.path.basename(filename)</span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(filepath):</span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>        filesize <span class="op">=</span> os.path.getsize(filepath)</span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Skipping download, file </span><span class="sc">{</span>filepath<span class="sc">}</span><span class="ss"> already exists (</span><span class="sc">{</span>humanize<span class="sc">.</span>naturalsize(filesize)<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(url, stream<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>        response.raise_for_status()</span>
-<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>        total_size<span class="op">=</span> <span class="bu">int</span>(response.headers.get(<span class="st">'content-length'</span>, <span class="dv">0</span>))</span>
-<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>        progress_bar <span class="op">=</span> notebook_tqdm(desc<span class="op">=</span>filebasename, total<span class="op">=</span>total_size, unit<span class="op">=</span><span class="st">'iB'</span>, unit_scale<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(filepath, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
-<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">8192</span>): </span>
-<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> chunk:</span>
-<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>                        progress_bar.update(<span class="bu">len</span>(chunk))</span>
-<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>                        f.write(chunk)</span>
-<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
-<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Downloading of [</span><span class="sc">{</span>filebasename<span class="sc">}</span><span class="ss">] interrupted."</span>)</span>
-<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>                filesize <span class="op">=</span> os.path.getsize(filepath)</span>
-<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Downloaded </span><span class="sc">{</span>filepath<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>humanize<span class="sc">.</span>naturalsize(filesize)<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> humanize</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>DOWNLOAD_PATH <span class="op">=</span> os.path.expanduser(<span class="st">"~/Downloads"</span>)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/laion/laion2b-en-vit-l-14-embeddings/resolve/main"</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> {</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"metadata"</span>: <span class="st">"metadata/metadata_0000.parquet"</span>,</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"image_emb"</span>: <span class="st">"img_emb/img_emb_0000.npy"</span>,</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text_emb"</span>: <span class="st">"text_emb/text_emb_0000.npy"</span>,</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (key, filename) <span class="kw">in</span> filenames.items():</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>BASE_URL<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>filename<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    filepath <span class="op">=</span> os.path.join(DOWNLOAD_PATH, os.path.basename(filename))</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    filebasename <span class="op">=</span> os.path.basename(filename)</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(filepath):</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>        filesize <span class="op">=</span> os.path.getsize(filepath)</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Skipping download, file </span><span class="sc">{</span>filepath<span class="sc">}</span><span class="ss"> already exists (</span><span class="sc">{</span>humanize<span class="sc">.</span>naturalsize(filesize)<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(url, stream<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>        response.raise_for_status()</span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>        total_size<span class="op">=</span> <span class="bu">int</span>(response.headers.get(<span class="st">'content-length'</span>, <span class="dv">0</span>))</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>        progress_bar <span class="op">=</span> tqdm(desc<span class="op">=</span>filebasename, total<span class="op">=</span>total_size, unit<span class="op">=</span><span class="st">'iB'</span>, unit_scale<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(filepath, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">8192</span>): </span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> chunk:</span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>                        progress_bar.update(<span class="bu">len</span>(chunk))</span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>                        f.write(chunk)</span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Downloading of [</span><span class="sc">{</span>filebasename<span class="sc">}</span><span class="ss">] interrupted."</span>)</span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>                filesize <span class="op">=</span> os.path.getsize(filepath)</span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Downloaded </span><span class="sc">{</span>filepath<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>humanize<span class="sc">.</span>naturalsize(filesize)<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Skipping download, file /Users/karmi/Downloads/metadata_0000.parquet already exists (194.8 MB)
 Skipping download, file /Users/karmi/Downloads/img_emb_0000.npy already exists (1.4 GB)
@@ -2770,12 +2576,12 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <div class="footer">
 <p>➌ Embeddings for other media</p>
 </div>
-<div class="cell" data-execution_count="321">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_colwidth"</span>, <span class="dv">50</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(os.path.join(DOWNLOAD_PATH, os.path.basename(filenames[<span class="st">"metadata"</span>])))</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"caption"</span>, <span class="st">"url"</span>, <span class="st">"exif"</span>]].head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="321">
+<div class="cell" data-execution_count="393">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_colwidth"</span>, <span class="dv">50</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(os.path.join(DOWNLOAD_PATH, os.path.basename(filenames[<span class="st">"metadata"</span>])))</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"caption"</span>, <span class="st">"url"</span>, <span class="st">"exif"</span>]].head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="393">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -2832,13 +2638,14 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <p>➌ Embeddings for other media</p>
 </div>
 <div class="cell" data-execution_count="322">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, HTML</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> [</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    Image(url<span class="op">=</span>row.url, alt<span class="op">=</span>row.caption, width<span class="op">=</span><span class="dv">200</span>)</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> df[[<span class="st">"url"</span>, <span class="st">"caption"</span>]].head(<span class="dv">5</span>).itertuples()</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>HTML(<span class="st">""</span>.join([image._repr_html_() <span class="cf">for</span> image <span class="kw">in</span> images]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, HTML</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>images <span class="op">=</span> [</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    Image(url<span class="op">=</span>row.url, alt<span class="op">=</span>row.caption, width<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> df[[<span class="st">"url"</span>, <span class="st">"caption"</span>]].head(<span class="dv">5</span>).itertuples()</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>HTML(<span class="st">""</span>.join([image._repr_html_() <span class="cf">for</span> image <span class="kw">in</span> images]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="322">
 
 <img src="http://cdn.shopify.com/s/files/1/0282/0804/products/pulp_1024x1024.jpg?v=1474264437" width="200" alt="Color version PULP FICTION alternative poster art"><img src="http://tse3.mm.bing.net/th?id=OIP.hRMwYK1PG9pkAOq30i9QYQDyEs" width="200" alt="Writing A Successful Cover Letter by Cover Letter How To Write A Cover Letter Exles"><img src="https://cdn.shopify.com/s/files/1/0600/1993/products/A1e_Herrnhut_Stars_orange_special_edition_2016_380x@2x.png?v=1502078257" width="200" alt="Original Herrnhut plastic star, ORANGE (Special Edition 2016), ~ 13 cm / 5 inch ø"><img src="https://i.pinimg.com/originals/43/49/19/4349195deefe538d7711acdde78e2896.png" width="200" alt="Free Disney Planes Printable Coloring Pages Activity Sheets DisneyPlanes"><img src="https://i.pinimg.com/736x/3a/15/c5/3a15c55588e9d880bbbfd1a72082afe5--lady-fingers-chrissy-hynde.jpg" width="200" alt="Stevie Nicks Tee On Chrissie Hynde. Wish I could see them on their tour together.">
@@ -2852,119 +2659,64 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <p>➌ Embeddings for other media</p>
 </div>
 <div class="cell" data-execution_count="326">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>image_embeddings <span class="op">=</span> np.load(os.path.join(DOWNLOAD_PATH, os.path.basename(filenames[<span class="st">"image_emb"</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>image_embeddings <span class="op">=</span> np.load(os.path.join(DOWNLOAD_PATH, os.path.basename(filenames[<span class="st">"image_emb"</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> SentenceTransformer(<span class="st">"clip-ViT-L-14"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> SentenceTransformer(<span class="st">"clip-ViT-L-14"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="332">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_results(df, query, indices, <span class="op">**</span>kwargs):</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> kwargs.get(<span class="st">"width"</span>, <span class="dv">200</span>)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    df_res <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"image"</span>: [Image(url<span class="op">=</span>df[<span class="st">"url"</span>][i], width<span class="op">=</span>width)._repr_html_() <span class="cf">for</span> i <span class="kw">in</span> indices.flatten()],</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"caption"</span>: [df[<span class="st">"caption"</span>][i] <span class="cf">for</span> i <span class="kw">in</span> indices.flatten()] })</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HTML(df_res</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>        .style</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>            .hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>            .set_caption(<span class="ss">f"Query: </span><span class="sc">{</span>query<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>            .set_table_attributes(<span class="st">'class="dataframe smaller align-left"'</span>)</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>            .set_table_styles([<span class="bu">dict</span>(selector<span class="op">=</span><span class="st">"th.col0,td.col0"</span>, props<span class="op">=</span>[(<span class="st">"min-width"</span>, <span class="ss">f"</span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">px"</span>)])])</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>            .to_html(escape<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="436">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> html <span class="im">import</span> escape</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_results(df, query, indices, <span class="op">**</span>kwargs):</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> kwargs.get(<span class="st">"width"</span>, <span class="dv">200</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    df_res <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"image"</span>: [</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"&lt;img src='</span><span class="sc">{</span>df<span class="sc">.</span>url[i]<span class="sc">}</span><span class="ss">' title='</span><span class="sc">{</span>escape(df.caption[i])<span class="sc">}</span><span class="ss">' width='</span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">px' onerror='this.onerror=null;this.src=</span><span class="ch">\"</span><span class="ss">https://placehold.co/400x400?text=Missing</span><span class="ch">\"</span><span class="ss">'&gt;"</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> indices.flatten() ],</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"caption"</span>: [</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>                df[<span class="st">"caption"</span>][i]</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> indices.flatten() ],</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HTML(</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">""</span>.join([</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"&lt;figure style='width: </span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">px'&gt;</span><span class="sc">{</span>item<span class="sc">.</span>image<span class="sc">}</span><span class="ss">&lt;figcaption&gt;</span><span class="sc">{</span>item<span class="sc">.</span>caption<span class="sc">}</span><span class="ss">&lt;/figcaption&gt;&lt;/figure&gt;"</span></span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> item <span class="kw">in</span> df_res.itertuples() ]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code">
 <h2>Let’s query the dataset.</h2>
-<p><small>A “multi-modal” search: searching image embeddings with text embeddings.</small></p>
+<p><small>A <strong>“cross-modality”</strong> search: searching <em>image</em> embeddings with <em>text</em> embeddings.</small></p>
 <div class="footer">
 <p>➌ Embeddings for other media</p>
 </div>
-<div class="cell" data-execution_count="328">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"cat dog pizza coffee asymptomatic"</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> NearestNeighbors</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>NUM_RESULTS <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> NearestNeighbors(n_neighbors<span class="op">=</span>NUM_RESULTS, algorithm<span class="op">=</span><span class="st">"auto"</span>)</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>nn.fit(image_embeddings)</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Search *image* embeddings with *text* embeddings</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>query_embedding <span class="op">=</span> np.array([model3.encode(query)])</span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>distances, indices <span class="op">=</span> nn.kneighbors(query_embedding)</span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>display_results(df, query, indices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="437">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"cat dog pizza coffee asymptomatic"</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> NearestNeighbors</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>NUM_RESULTS <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> NearestNeighbors(n_neighbors<span class="op">=</span>NUM_RESULTS, algorithm<span class="op">=</span><span class="st">"auto"</span>)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>nn.fit(image_embeddings)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Search *image* embeddings with *text* embeddings</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>query_embedding <span class="op">=</span> np.array([model3.encode(query)])</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>distances, indices <span class="op">=</span> nn.kneighbors(query_embedding)</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>display_results(df, query, indices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
-<section id="" class="slide level2 slide-code output-location-slide"><h2>Let’s query the dataset.</h2><div class="cell output-location-slide" data-execution_count="328">
-<div class="cell-output cell-output-display" data-execution_count="328">
-<style type="text/css">
-#T_813e4 th.col0 {
-  min-width: 200px;
-}
-#T_813e4 td.col0 {
-  min-width: 200px;
-}
-</style>
-
-<table id="T_813e4" class="dataframe smaller align-left" data-quarto-postprocess="true">
-<caption>Query: cat dog pizza coffee asymptomatic</caption>
-<thead>
-<tr class="header">
-<th id="T_813e4_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">image</th>
-<th id="T_813e4_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">caption</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_813e4_row0_col0" class="data row0 col0"><img data-src="http://rlv.zcache.co.uk/cute_quirky_cartoon_dog_mug-rb525f7f3d7df45f6a36b6eab6a951c46_x7jgr_8byvr_324.jpg" width="200"></td>
-<td id="T_813e4_row0_col1" class="data row0 col1">Cute quirky cartoon dog mugs</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row1_col0" class="data row1 col0"><img data-src="https://rlv.zcache.co.nz/i_love_skye_terriers_mug-rd2ad2d5ae8834eafa4218fb9dc35e74e_kfpv5_324.jpg?rlvnet=1" width="200"></td>
-<td id="T_813e4_row1_col1" class="data row1 col1">I Love Skye Terriers Mug</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row2_col0" class="data row2 col0"><img data-src="https://www.redwolf.in/image/cache/catalog/fridge-magnets/better-with-pizza-fridge-magnet-india-270x270.jpg" width="200"></td>
-<td id="T_813e4_row2_col1" class="data row2 col1">Better With Pizza - Scooby Doo Official Fridge Magnet</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row3_col0" class="data row3 col0"><img data-src="https://cdn-images.threadless.com/threadless-media/artist_shops/shops/magnusblomster/products/949292/shirt-1552495007-f13a3438ee73bab652eedc1f9334663b.png?v=3&amp;d=eyJvbmx5X21ldGEiOiBmYWxzZSwgImZvcmNlIjogZmFsc2UsICJvcHMiOiBbWyJpZl8iLCBbeyJ0IjogImV4cHIiLCAidiI6IFsiaGFzX2FscGhhIiwgbnVsbCwgbnVsbF19LCB7InQiOiAiY29tcCIsICJ2IjogWyJ0aHJlYWRsZXNzLW1lZGlhL2FydGlzdF9zaG9wcy9zaG9wcy9tYWdudXNibG9tc3Rlci9wcm9kdWN0cy85NDkyOTIvc2hpcnQtMTU1MjQ5NTAwNy1mMTNhMzQzOGVlNzNiYWI2NTJlZWRjMWY5MzM0NjYzYi5wbmciLCBbWyJ0cmltIiwgW3RydWUsIGZhbHNlXSwge31dLCBbInJlc2l6ZSIsIFsxNjg3LjUsIDIwMDguOTI4NTcxNDI4NTcxM10sIHsibWF4X3NjYWxlIjogMy4wfV0sIFsicGFkIiwgWzMzNC44MjE0Mjg1NzE0Mjg1NiwgMjgxLjI1LCAzMzQuODIxNDI4NTcxNDI4NTYsIDI4MS4yNV0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJiYWNrZ3JvdW5kIjogImZmZmZmZiJ9XV1dfSwgeyJ0IjogImNvbXAiLCAidiI6IFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvc2hvcHMvbWFnbnVzYmxvbXN0ZXIvcHJvZHVjdHMvOTQ5MjkyL3NoaXJ0LTE1NTI0OTUwMDctZjEzYTM0MzhlZTczYmFiNjUyZWVkYzFmOTMzNDY2M2IucG5nIiwgW1sicmVzaXplIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJtYXhfc2NhbGUiOiAzLjAsICJzdHlsZSI6ICJDUk9QIn1dLCBbImNhbnZhc19jZW50ZXJlZCIsIFsyMjUwLjAsIDI2NzguNTcxNDI4NTcxNDI4NF0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV1dXX1dLCB7fV0sIFsiZW5jb2RlIiwgWyIucG5nIl0sIHsiZHBpIjogMzAwfV0sIFsicmVzaXplIiwgWzEzNzVdLCB7fV0sIFsib3ZlcmxheSIsIFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvb3ZlcmxheXMvM2Y5NjVlZjcxYjE3YjgxMTQ5ZDQyNGZiYTU2MmUzNGMvZnJvbnQtMTQ5NDAwMzkyMy04MzQxMjg5MDAyODA4YzRmMzQzMGFhOWRmYmQ0NGQ2Yy5wbmciXSwgeyJ5IjogMjA1LCAieCI6IDMxOCwgImJhY2tncm91bmQiOiAiZmZmZmZmIn1dLCBbInJlc2l6ZSIsIFs4MDBdLCB7fV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzgwMCwgODAwLCAiI2ZmZmZmZiJdLCB7fV0sIFsiZW5jb2RlIiwgWyJqcGciLCA4NV0sIHt9XV19" width="200"></td>
-<td id="T_813e4_row3_col1" class="data row3 col1">Starving cat Home Sherpa Blanket Blanket by Magnus Blomster</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row4_col0" class="data row4 col0"><img data-src="https://static1.bigstockphoto.com/0/6/8/large2/8605693.jpg" width="200"></td>
-<td id="T_813e4_row4_col1" class="data row4 col1">Dog And Cat</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row5_col0" class="data row5 col0"><img data-src="http://ciaosoftware.com/images/Lost%20Dog%20Cafe.png" width="200"></td>
-<td id="T_813e4_row5_col1" class="data row5 col1">Lost Dog Cafe</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row6_col0" class="data row6 col0"><img data-src="https://cdn.drawception.com/images/panels/2015/1-3/hNzWG9GFYZ-10.png" width="200"></td>
-<td id="T_813e4_row6_col1" class="data row6 col1">Birthday cake, but it's a pizza with pepperoni</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row7_col0" class="data row7 col0"><img data-src="https://static2.bigstockphoto.com/7/3/2/large2/237136057.jpg" width="200"></td>
-<td id="T_813e4_row7_col1" class="data row7 col1">Portrait Of Kitten And Puppy On а White Background.</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row8_col0" class="data row8 col0"><img data-src="http://www.quotehd.com/imagequotes/authors74/tmb/jake-gyllenhaal-jake-gyllenhaal-its-funny-to-me-that-people-find.jpg" width="200"></td>
-<td id="T_813e4_row8_col1" class="data row8 col1">Jake Gyllenhaal - It's funny to me that people find other people getting coffee really interesting, or walking their dog in the dog park.</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row9_col0" class="data row9 col0"><img data-src="https://t0.gstatic.com/images?q=tbn:ANd9GcTjjwQUc5aMu4aYE0YQCr_HO5zGcUB2tJxITIdQxoXkz6xKjXUJjw" width="200"></td>
-<td id="T_813e4_row9_col1" class="data row9 col1">Can Starbucks Be Any Perfect Than This Imagine How Awesome</td>
-</tr>
-</tbody>
-</table>
+<section id="" class="slide level2 slide-code output-location-slide"><h2>Let’s query the dataset.</h2><div class="cell output-location-slide" data-execution_count="437">
+<div class="cell-output cell-output-display" data-execution_count="437">
+<figure style="width: 200px"><img src="http://rlv.zcache.co.uk/cute_quirky_cartoon_dog_mug-rb525f7f3d7df45f6a36b6eab6a951c46_x7jgr_8byvr_324.jpg" title="Cute quirky cartoon dog mugs" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Cute quirky cartoon dog mugs</figcaption></figure><figure style="width: 200px"><img src="https://rlv.zcache.co.nz/i_love_skye_terriers_mug-rd2ad2d5ae8834eafa4218fb9dc35e74e_kfpv5_324.jpg?rlvnet=1" title="I Love Skye Terriers Mug" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>I Love Skye Terriers Mug</figcaption></figure><figure style="width: 200px"><img src="https://www.redwolf.in/image/cache/catalog/fridge-magnets/better-with-pizza-fridge-magnet-india-270x270.jpg" title="Better With Pizza - Scooby Doo Official Fridge Magnet" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Better With Pizza - Scooby Doo Official Fridge Magnet</figcaption></figure><figure style="width: 200px"><img src="https://cdn-images.threadless.com/threadless-media/artist_shops/shops/magnusblomster/products/949292/shirt-1552495007-f13a3438ee73bab652eedc1f9334663b.png?v=3&amp;d=eyJvbmx5X21ldGEiOiBmYWxzZSwgImZvcmNlIjogZmFsc2UsICJvcHMiOiBbWyJpZl8iLCBbeyJ0IjogImV4cHIiLCAidiI6IFsiaGFzX2FscGhhIiwgbnVsbCwgbnVsbF19LCB7InQiOiAiY29tcCIsICJ2IjogWyJ0aHJlYWRsZXNzLW1lZGlhL2FydGlzdF9zaG9wcy9zaG9wcy9tYWdudXNibG9tc3Rlci9wcm9kdWN0cy85NDkyOTIvc2hpcnQtMTU1MjQ5NTAwNy1mMTNhMzQzOGVlNzNiYWI2NTJlZWRjMWY5MzM0NjYzYi5wbmciLCBbWyJ0cmltIiwgW3RydWUsIGZhbHNlXSwge31dLCBbInJlc2l6ZSIsIFsxNjg3LjUsIDIwMDguOTI4NTcxNDI4NTcxM10sIHsibWF4X3NjYWxlIjogMy4wfV0sIFsicGFkIiwgWzMzNC44MjE0Mjg1NzE0Mjg1NiwgMjgxLjI1LCAzMzQuODIxNDI4NTcxNDI4NTYsIDI4MS4yNV0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJiYWNrZ3JvdW5kIjogImZmZmZmZiJ9XV1dfSwgeyJ0IjogImNvbXAiLCAidiI6IFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvc2hvcHMvbWFnbnVzYmxvbXN0ZXIvcHJvZHVjdHMvOTQ5MjkyL3NoaXJ0LTE1NTI0OTUwMDctZjEzYTM0MzhlZTczYmFiNjUyZWVkYzFmOTMzNDY2M2IucG5nIiwgW1sicmVzaXplIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJtYXhfc2NhbGUiOiAzLjAsICJzdHlsZSI6ICJDUk9QIn1dLCBbImNhbnZhc19jZW50ZXJlZCIsIFsyMjUwLjAsIDI2NzguNTcxNDI4NTcxNDI4NF0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV1dXX1dLCB7fV0sIFsiZW5jb2RlIiwgWyIucG5nIl0sIHsiZHBpIjogMzAwfV0sIFsicmVzaXplIiwgWzEzNzVdLCB7fV0sIFsib3ZlcmxheSIsIFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvb3ZlcmxheXMvM2Y5NjVlZjcxYjE3YjgxMTQ5ZDQyNGZiYTU2MmUzNGMvZnJvbnQtMTQ5NDAwMzkyMy04MzQxMjg5MDAyODA4YzRmMzQzMGFhOWRmYmQ0NGQ2Yy5wbmciXSwgeyJ5IjogMjA1LCAieCI6IDMxOCwgImJhY2tncm91bmQiOiAiZmZmZmZmIn1dLCBbInJlc2l6ZSIsIFs4MDBdLCB7fV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzgwMCwgODAwLCAiI2ZmZmZmZiJdLCB7fV0sIFsiZW5jb2RlIiwgWyJqcGciLCA4NV0sIHt9XV19" title="Starving cat Home Sherpa Blanket Blanket by Magnus Blomster" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Starving cat Home Sherpa Blanket Blanket by Magnus Blomster</figcaption></figure><figure style="width: 200px"><img src="https://static1.bigstockphoto.com/0/6/8/large2/8605693.jpg" title="Dog And Cat" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Dog And Cat</figcaption></figure><figure style="width: 200px"><img src="http://ciaosoftware.com/images/Lost%20Dog%20Cafe.png" title="Lost Dog Cafe" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Lost Dog Cafe</figcaption></figure><figure style="width: 200px"><img src="https://cdn.drawception.com/images/panels/2015/1-3/hNzWG9GFYZ-10.png" title="Birthday cake, but it's a pizza with pepperoni" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Birthday cake, but it's a pizza with pepperoni</figcaption></figure><figure style="width: 200px"><img src="https://static2.bigstockphoto.com/7/3/2/large2/237136057.jpg" title="Portrait Of Kitten And Puppy On а White Background." width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Portrait Of Kitten And Puppy On а White Background.</figcaption></figure><figure style="width: 200px"><img src="http://www.quotehd.com/imagequotes/authors74/tmb/jake-gyllenhaal-jake-gyllenhaal-its-funny-to-me-that-people-find.jpg" title="Jake Gyllenhaal - It's funny to me that people find other people getting coffee really interesting, or walking their dog in the dog park." width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Jake Gyllenhaal - It's funny to me that people find other people getting coffee really interesting, or walking their dog in the dog park.</figcaption></figure><figure style="width: 200px"><img src="https://t0.gstatic.com/images?q=tbn:ANd9GcTjjwQUc5aMu4aYE0YQCr_HO5zGcUB2tJxITIdQxoXkz6xKjXUJjw" title="Can Starbucks Be Any Perfect Than This Imagine How Awesome" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Can Starbucks Be Any Perfect Than This Imagine How Awesome</figcaption></figure>
 </div>
 </div></section><section class="slide level2 slide-code smaller">
 <h2>Let’s query the dataset <em>with a picture</em>.</h2>
@@ -2974,98 +2726,64 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 </div><div class="column" style="width:50%;">
 
 <!-- NOTE: Executable code is in the cell below -->
-<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> PIL</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>image_url <span class="op">=</span> <span class="st">"https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=600"</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> PIL.Image.<span class="bu">open</span>(</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  requests.get(image_url, stream<span class="op">=</span><span class="va">True</span>).raw</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Search *image* embeddings with *image* embeddings</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>query_image_embedding <span class="op">=</span> model3.encode([image])</span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>distances, indices <span class="op">=</span> nn.kneighbors(query_image_embedding)</span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>display_results(df, <span class="st">"Image"</span>, indices, width<span class="op">=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> PIL</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>image_url <span class="op">=</span> <span class="st">"https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=600"</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> PIL.Image.<span class="bu">open</span>(</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  requests.get(image_url, stream<span class="op">=</span><span class="va">True</span>).raw</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Search *image* embeddings with *image* embeddings</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>query_image_embedding <span class="op">=</span> model3.encode([image])</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>distances, indices <span class="op">=</span> nn.kneighbors(query_image_embedding)</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>display_results(df, <span class="st">"Image"</span>, indices, width<span class="op">=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="footer">
 <p>➌ Embeddings for other media</p>
 </div>
 </section>
-<section class="slide level2">
-
-<div class="cell" data-execution_count="333">
-<div class="cell-output cell-output-display" data-execution_count="333">
-<style type="text/css">
-#T_aea2f th.col0 {
-  min-width: 400px;
-}
-#T_aea2f td.col0 {
-  min-width: 400px;
-}
-</style>
-
-<table id="T_aea2f" class="dataframe smaller align-left" data-quarto-postprocess="true">
-<caption>Query: Image</caption>
-<thead>
-<tr class="header">
-<th id="T_aea2f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">image</th>
-<th id="T_aea2f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">caption</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_aea2f_row0_col0" class="data row0 col0"><img data-src="https://earthsky.org/upl/2013/07/morning-forest-scence-300x214.jpg" width="400"></td>
-<td id="T_aea2f_row0_col1" class="data row0 col1">morning-forest-scence</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row1_col0" class="data row1 col0"><img data-src="https://itsok2notbeok.files.wordpress.com/2017/07/nature-forest-trees-fog.jpeg?w=300&amp;" width="400"></td>
-<td id="T_aea2f_row1_col1" class="data row1 col1">nature-forest-trees-fog</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row2_col0" class="data row2 col0"><img data-src="https://media.istockphoto.com/photos/misty-forest-picture-id495880050?k=6&amp;m=495880050&amp;s=612x612&amp;w=0&amp;h=7cnyG_gm-8scWaMJ7yr1D3YJKEsY-rAZdmaXIrtPA3M=" width="400"></td>
-<td id="T_aea2f_row2_col1" class="data row2 col1">misty forest - trees in mist stock pictures, royalty-free photos &amp; images</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row3_col0" class="data row3 col0"><img data-src="https://blog.ons.gov.uk/wp-content/uploads/sites/6/2021/07/Forest-630x470.jpg" width="400"></td>
-<td id="T_aea2f_row3_col1" class="data row3 col1">Picture of a forest</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row4_col0" class="data row4 col0"><img data-src="https://static.wixstatic.com/media/244598303d544aa899beb16d0fa95fde.jpg/v1/fill/w_390,h_585,al_c,q_80,usm_0.66_1.00_0.01/Hiking%20Path%20in%20Forest.jpg" width="400"></td>
-<td id="T_aea2f_row4_col1" class="data row4 col1">Hiking Path in Forest</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row5_col0" class="data row5 col0"><img data-src="https://images.unsplash.com/photo-1495395226200-8fbf6b720b8c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80" width="400"></td>
-<td id="T_aea2f_row5_col1" class="data row5 col1">woman walking in the forest</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row6_col0" class="data row6 col0"><img data-src="https://cdn.eyeem.com/thumb/991f5e54cb5563b3c9e5e061689421c1a672aeee-1406431509/2600/2600" width="400"></td>
-<td id="T_aea2f_row6_col1" class="data row6 col1">tree, focus on foreground, branch, growth, tree trunk, close-up, nature, leaf, forest, selective focus, tranquility, plant, day, outdoors, twig, no people, sunlight, green color, beauty in nature, stem</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row7_col0" class="data row7 col0"><img data-src="https://i1.wp.com/artsyforager.com/wp-content/uploads/2016/02/Redwoods4.jpg?resize=600%2C800" width="400"></td>
-<td id="T_aea2f_row7_col1" class="data row7 col1">Finding Latitude. The Redwoods | artsy forager #travel #nature #photography #findinglatitude #redwoods</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row8_col0" class="data row8 col0"><img data-src="https://0.s3.envato.com/files/217499708/preview.jpg" width="400"></td>
-<td id="T_aea2f_row8_col1" class="data row8 col1">Download Morning Forest in Fog nulled download</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row9_col0" class="data row9 col0"><img data-src="https://www.commercialcafe.com/blog/wp-content/uploads/sites/10/2020/08/Best-US-Cities-by-Public-Parks-and-Walkability.jpg?w=1280&amp;h=500&amp;crop=1" width="400"></td>
-<td id="T_aea2f_row9_col1" class="data row9 col1">Best US Cities by Public Parks and Walkability</td>
-</tr>
-</tbody>
-</table>
+<section class="slide level2 slide-code">
+<h2></h2>
+<div class="cell" data-execution_count="431">
+<div class="cell-output cell-output-display" data-execution_count="431">
+<figure style="width: 400px"><img src="https://earthsky.org/upl/2013/07/morning-forest-scence-300x214.jpg" title="morning-forest-scence" width="400px"><figcaption>morning-forest-scence</figcaption></figure><figure style="width: 400px"><img src="https://itsok2notbeok.files.wordpress.com/2017/07/nature-forest-trees-fog.jpeg?w=300&amp;" title="nature-forest-trees-fog" width="400px"><figcaption>nature-forest-trees-fog</figcaption></figure><figure style="width: 400px"><img src="https://media.istockphoto.com/photos/misty-forest-picture-id495880050?k=6&amp;m=495880050&amp;s=612x612&amp;w=0&amp;h=7cnyG_gm-8scWaMJ7yr1D3YJKEsY-rAZdmaXIrtPA3M=" title="misty forest - trees in mist stock pictures, royalty-free photos &amp; images" width="400px"><figcaption>misty forest - trees in mist stock pictures, royalty-free photos &amp; images</figcaption></figure><figure style="width: 400px"><img src="https://blog.ons.gov.uk/wp-content/uploads/sites/6/2021/07/Forest-630x470.jpg" title="Picture of a forest" width="400px"><figcaption>Picture of a forest</figcaption></figure><figure style="width: 400px"><img src="https://static.wixstatic.com/media/244598303d544aa899beb16d0fa95fde.jpg/v1/fill/w_390,h_585,al_c,q_80,usm_0.66_1.00_0.01/Hiking%20Path%20in%20Forest.jpg" title="Hiking Path in Forest" width="400px"><figcaption>Hiking Path in Forest</figcaption></figure><figure style="width: 400px"><img src="https://images.unsplash.com/photo-1495395226200-8fbf6b720b8c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80" title="woman walking in the forest" width="400px"><figcaption>woman walking in the forest</figcaption></figure><figure style="width: 400px"><img src="https://cdn.eyeem.com/thumb/991f5e54cb5563b3c9e5e061689421c1a672aeee-1406431509/2600/2600" title="tree, focus on foreground, branch, growth, tree trunk, close-up, nature, leaf, forest, selective focus, tranquility, plant, day, outdoors, twig, no people, sunlight, green color, beauty in nature, stem" width="400px"><figcaption>tree, focus on foreground, branch, growth, tree trunk, close-up, nature, leaf, forest, selective focus, tranquility, plant, day, outdoors, twig, no people, sunlight, green color, beauty in nature, stem</figcaption></figure><figure style="width: 400px"><img src="https://i1.wp.com/artsyforager.com/wp-content/uploads/2016/02/Redwoods4.jpg?resize=600%2C800" title="Finding Latitude. The Redwoods | artsy forager #travel #nature #photography #findinglatitude #redwoods" width="400px"><figcaption>Finding Latitude. The Redwoods | artsy forager #travel #nature #photography #findinglatitude #redwoods</figcaption></figure><figure style="width: 400px"><img src="https://0.s3.envato.com/files/217499708/preview.jpg" title="Download Morning Forest in Fog nulled download" width="400px"><figcaption>Download Morning Forest in Fog nulled download</figcaption></figure><figure style="width: 400px"><img src="https://www.commercialcafe.com/blog/wp-content/uploads/sites/10/2020/08/Best-US-Cities-by-Public-Parks-and-Walkability.jpg?w=1280&amp;h=500&amp;crop=1" title="Best US Cities by Public Parks and Walkability" width="400px"><figcaption>Best US Cities by Public Parks and Walkability</figcaption></figure>
 </div>
 </div>
 </section>
-<section class="slide level2" data-background="#E2E8F0">
-<h2>Summary</h2>
-<p><code>TODO</code></p>
+<section class="slide level2 smaller" data-background="#FAF089">
+<h2>Embeddings for … smells?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><a href="https://spectrum.ieee.org/digital-smell"><img data-src="assets/osmo-principal-odor-map.png" class="radius"></a> <small><a href="https://spectrum.ieee.org/digital-smell" class="uri">https://spectrum.ieee.org/digital-smell</a></small></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>A graph neural network</li>
+<li>A model that maps chemical structure to odor descriptors (256 dimensions)</li>
+<li>Trained on a dataset of over 5,000 molecules from fragrance industry</li>
+<li>Achieves human-level reliability in describing odors</li>
+</ul>
+<p><a href="https://www.osmo.ai" class="uri">https://www.osmo.ai</a> <small><a href="https://doi.org/10.1101/2022.09.01.504602" class="uri">https://doi.org/10.1101/2022.09.01.504602</a></small></p>
+</div>
+</div>
+<aside class="notes">
+<p>“You can do math with numbers”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2 center center-horizontal" data-background="black">
 <h2>Thank you!</h2>
@@ -3102,10 +2820,10 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="216">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> [ <span class="op">-</span>d <span class="st">'tmp/nanoGPT'</span> ] <span class="op">||</span> <span class="op">\</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  git clone <span class="op">-</span>q <span class="st">'https://github.com/karmi/nanoGPT.git'</span> <span class="op">-</span>b config_python_peps <span class="st">'tmp/nanoGPT'</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> tree <span class="op">--</span>filesfirst <span class="st">'tmp/nanoGPT'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> [ <span class="op">-</span>d <span class="st">'tmp/nanoGPT'</span> ] <span class="op">||</span> <span class="op">\</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  git clone <span class="op">-</span>q <span class="st">'https://github.com/karmi/nanoGPT.git'</span> <span class="op">-</span>b config_python_peps <span class="st">'tmp/nanoGPT'</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> tree <span class="op">--</span>filesfirst <span class="st">'tmp/nanoGPT'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tmp/nanoGPT
 ├── LICENSE
@@ -3156,7 +2874,7 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="219">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> python3 <span class="st">'tmp/nanoGPT/data/python_peps_char/prepare.py'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> python3 <span class="st">'tmp/nanoGPT/data/python_peps_char/prepare.py'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Downloaded ZIP to /var/folders/n8/vs92rw8d3z53yxqcfvt9nk9m0000gn/T/tmprjg5wt9q  
 Extracted content to /var/folders/n8/vs92rw8d3z53yxqcfvt9nk9m0000gn/T/tmp738t2vmv
@@ -3176,7 +2894,7 @@ val has 1,082,460 tokens</code></pre>
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p>Replace the <code>mps</code> device when not running on Apple M1/M2 hardware.</p>
+<p>Replace the <code>mps</code> device with <code>cuda</code> or <code>cpu</code> when not running on Apple M1/M2 hardware.</p>
 </div>
 </div>
 </div>
@@ -3184,11 +2902,11 @@ val has 1,082,460 tokens</code></pre>
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="226">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  python3 train.py <span class="st">'config/train_python_peps_char.py'</span> \</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>device<span class="op">=</span>mps <span class="op">--</span><span class="bu">compile</span><span class="op">=</span><span class="va">False</span> <span class="op">\</span></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>max_iters<span class="op">=</span><span class="dv">100</span> <span class="op">--</span>log_interval<span class="op">=</span><span class="dv">10</span> <span class="op">--</span>eval_interval<span class="op">=</span><span class="dv">10</span> <span class="op">\</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>block_size<span class="op">=</span><span class="dv">128</span> <span class="op">--</span>batch_size<span class="op">=</span><span class="dv">12</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  python3 train.py <span class="st">'config/train_python_peps_char.py'</span> \</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>device<span class="op">=</span>mps <span class="op">--</span><span class="bu">compile</span><span class="op">=</span><span class="va">False</span> <span class="op">\</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>max_iters<span class="op">=</span><span class="dv">100</span> <span class="op">--</span>log_interval<span class="op">=</span><span class="dv">10</span> <span class="op">--</span>eval_interval<span class="op">=</span><span class="dv">10</span> <span class="op">\</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>block_size<span class="op">=</span><span class="dv">128</span> <span class="op">--</span>batch_size<span class="op">=</span><span class="dv">12</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overriding config with config/train_python_peps_char.py:
 # train a miniature character-level model based on Python PEPs
@@ -3286,14 +3004,14 @@ iter 100: loss 2.8701, time 2097.65ms, mfu 0.02%</code></pre>
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="227">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    python3 sample.py <span class="op">\</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>out_dir<span class="op">=</span>out<span class="op">-</span>python<span class="op">-</span>peps<span class="op">-</span>char <span class="op">\</span></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>num_samples<span class="op">=</span><span class="dv">1</span> <span class="op">\</span></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>max_new_tokens<span class="op">=</span><span class="dv">500</span> <span class="op">\</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>device<span class="op">=</span>cpu <span class="op">\</span></span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>seed<span class="op">=</span><span class="st">"$(date +</span><span class="sc">%s</span><span class="st">)"</span> \</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>start<span class="op">=</span><span class="st">'A good Python code is '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    python3 sample.py <span class="op">\</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>out_dir<span class="op">=</span>out<span class="op">-</span>python<span class="op">-</span>peps<span class="op">-</span>char <span class="op">\</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>num_samples<span class="op">=</span><span class="dv">1</span> <span class="op">\</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>max_new_tokens<span class="op">=</span><span class="dv">500</span> <span class="op">\</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>device<span class="op">=</span>cpu <span class="op">\</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>seed<span class="op">=</span><span class="st">"$(date +</span><span class="sc">%s</span><span class="st">)"</span> \</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>start<span class="op">=</span><span class="st">'A good Python code is '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overriding: out_dir = out-python-peps-char
 Overriding: num_samples = 1
@@ -3321,12 +3039,12 @@ dicor ance t
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="228">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  python3 train.py <span class="st">'config/train_python_peps_char.py'</span> \</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>device<span class="op">=</span>mps <span class="op">--</span><span class="bu">compile</span><span class="op">=</span><span class="va">False</span> <span class="op">\</span></span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>max_iters<span class="op">=</span><span class="dv">1000</span> <span class="op">--</span>eval_interval<span class="op">=</span><span class="dv">100</span> <span class="op">--</span>log_interval<span class="op">=</span><span class="dv">10</span> <span class="op">\</span></span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>block_size<span class="op">=</span><span class="dv">128</span> <span class="op">--</span>batch_size<span class="op">=</span><span class="dv">12</span> <span class="op">\</span></span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>init_from<span class="op">=</span><span class="st">'resume'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  python3 train.py <span class="st">'config/train_python_peps_char.py'</span> \</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>device<span class="op">=</span>mps <span class="op">--</span><span class="bu">compile</span><span class="op">=</span><span class="va">False</span> <span class="op">\</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>max_iters<span class="op">=</span><span class="dv">1000</span> <span class="op">--</span>eval_interval<span class="op">=</span><span class="dv">100</span> <span class="op">--</span>log_interval<span class="op">=</span><span class="dv">10</span> <span class="op">\</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>block_size<span class="op">=</span><span class="dv">128</span> <span class="op">--</span>batch_size<span class="op">=</span><span class="dv">12</span> <span class="op">\</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>init_from<span class="op">=</span><span class="st">'resume'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overriding config with config/train_python_peps_char.py:
 # train a miniature character-level model based on Python PEPs
@@ -3503,14 +3221,14 @@ iter 1000: loss 2.3887, time 2068.74ms, mfu 0.18%</code></pre>
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="229">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    python3 sample.py <span class="op">\</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>out_dir<span class="op">=</span>out<span class="op">-</span>python<span class="op">-</span>peps<span class="op">-</span>char <span class="op">\</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>num_samples<span class="op">=</span><span class="dv">1</span> <span class="op">\</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>max_new_tokens<span class="op">=</span><span class="dv">500</span> <span class="op">\</span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>device<span class="op">=</span>cpu <span class="op">\</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>seed<span class="op">=</span><span class="st">"$(date +</span><span class="sc">%s</span><span class="st">)"</span> \</span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>start<span class="op">=</span><span class="st">'A good Python code is '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    python3 sample.py <span class="op">\</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>out_dir<span class="op">=</span>out<span class="op">-</span>python<span class="op">-</span>peps<span class="op">-</span>char <span class="op">\</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>num_samples<span class="op">=</span><span class="dv">1</span> <span class="op">\</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>max_new_tokens<span class="op">=</span><span class="dv">500</span> <span class="op">\</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>device<span class="op">=</span>cpu <span class="op">\</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>seed<span class="op">=</span><span class="st">"$(date +</span><span class="sc">%s</span><span class="st">)"</span> \</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>start<span class="op">=</span><span class="st">'A good Python code is '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overriding: out_dir = out-python-peps-char
 Overriding: num_samples = 1
@@ -3541,12 +3259,12 @@ de the cover peveg rarnt is of din as ave cal `````````` all...
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="230">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  python3 train.py <span class="st">'config/train_python_peps_char.py'</span> \</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>device<span class="op">=</span>mps <span class="op">--</span><span class="bu">compile</span><span class="op">=</span><span class="va">False</span> <span class="op">\</span></span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>max_iters<span class="op">=</span><span class="dv">5000</span> <span class="op">--</span>eval_interval<span class="op">=</span><span class="dv">100</span> <span class="op">--</span>log_interval<span class="op">=</span><span class="dv">10</span> <span class="op">\</span></span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>block_size<span class="op">=</span><span class="dv">128</span> <span class="op">--</span>batch_size<span class="op">=</span><span class="dv">12</span> <span class="op">\</span></span>
-<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>init_from<span class="op">=</span><span class="st">'resume'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  python3 train.py <span class="st">'config/train_python_peps_char.py'</span> \</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>device<span class="op">=</span>mps <span class="op">--</span><span class="bu">compile</span><span class="op">=</span><span class="va">False</span> <span class="op">\</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>max_iters<span class="op">=</span><span class="dv">5000</span> <span class="op">--</span>eval_interval<span class="op">=</span><span class="dv">100</span> <span class="op">--</span>log_interval<span class="op">=</span><span class="dv">10</span> <span class="op">\</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>block_size<span class="op">=</span><span class="dv">128</span> <span class="op">--</span>batch_size<span class="op">=</span><span class="dv">12</span> <span class="op">\</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">--</span>init_from<span class="op">=</span><span class="st">'resume'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overriding config with config/train_python_peps_char.py:
 # train a miniature character-level model based on Python PEPs
@@ -4084,14 +3802,14 @@ iter 5000: loss 1.4665, time 1889.73ms, mfu 0.18%</code></pre>
 <p>➍ Training a tiny transformer model</p>
 </div>
 <div class="cell" data-execution_count="233">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    python3 sample.py <span class="op">\</span></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>out_dir<span class="op">=</span>out<span class="op">-</span>python<span class="op">-</span>peps<span class="op">-</span>char <span class="op">\</span></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>num_samples<span class="op">=</span><span class="dv">1</span> <span class="op">\</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>max_new_tokens<span class="op">=</span><span class="dv">500</span> <span class="op">\</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>device<span class="op">=</span>cpu <span class="op">\</span></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>seed<span class="op">=</span><span class="st">"$(date +</span><span class="sc">%s</span><span class="st">)"</span> \</span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>start<span class="op">=</span><span class="st">'A good Python code is '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> (cd <span class="st">'tmp/nanoGPT'</span> <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    python3 sample.py <span class="op">\</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>out_dir<span class="op">=</span>out<span class="op">-</span>python<span class="op">-</span>peps<span class="op">-</span>char <span class="op">\</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>num_samples<span class="op">=</span><span class="dv">1</span> <span class="op">\</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>max_new_tokens<span class="op">=</span><span class="dv">500</span> <span class="op">\</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>device<span class="op">=</span>cpu <span class="op">\</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>seed<span class="op">=</span><span class="st">"$(date +</span><span class="sc">%s</span><span class="st">)"</span> \</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>start<span class="op">=</span><span class="st">'A good Python code is '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overriding: out_dir = out-python-peps-char
 Overriding: num_samples = 1
@@ -4122,6 +3840,9 @@ developer ...
 <div class="footer">
 <p>➍ Training a tiny transformer model</p>
 </div>
+</section>
+<section class="slide level2 center center-horizontal" data-background="black">
+<h2>The End</h2>
 <div class="footer footer-default">
 
 </div>
