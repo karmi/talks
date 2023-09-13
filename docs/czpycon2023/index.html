@@ -528,8 +528,8 @@ Karel Minařík
 <h2>What Are Text Embeddings?</h2>
 <p><br></p>
 <ul>
-<li><p>Basic mechanism for natural language processing <small>(LLMs, machine translation, sentiment analysis, …)</small></p></li>
-<li><p>Numerical representations of text</p></li>
+<li><p>Basic mechanism for natural language processing<br> <small>(LLMs, machine translation, sentiment analysis, …)</small></p></li>
+<li><p>Numerical representations of text<br> <small>(Words, phrases, sentences …)</small></p></li>
 <li><p>“Long lists of numbers”</p></li>
 <li><p>“GPS coordinates” for meaning</p></li>
 <li><p>“DNA sequence” for words or phrases</p></li>
@@ -911,26 +911,22 @@ print(model1.get_sentence_embedding_dimension())
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="376">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_to_reduced(df):</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert embeddings into a 2-dimensional array</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    df.copy()</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    .assign(</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      embeddings<span class="op">=</span>reducer.fit_transform(</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        np.stack(df[<span class="st">"embeddings"</span>])</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      ).tolist())</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>df_to_reduced(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert embeddings into a 2-dimensional array</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df_to_reduced(df):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.copy().assign(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        embeddings<span class="op">=</span>reducer.fit_transform(np.stack(df[<span class="st">"embeddings"</span>])).tolist()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>df_to_reduced(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="376">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -1312,6 +1308,7 @@ print(model1.get_sentence_embedding_dimension())
 </section>
 <section class="slide level2 slide-code smaller">
 <h2>Let’s try the scatterplot again.</h2>
+
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
@@ -1394,10 +1391,13 @@ print(model1.get_sentence_embedding_dimension())
 </script>
 </div>
 </div>
-</section>
+<aside><div>
+<p>The model has been trained on English text only.</p>
+</div></aside></section>
 <section class="slide level2 slide-code">
 <h2>Let’s try with a different model.</h2>
 <p><a href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"><img data-src="assets/logo-huggingface.svg" class="icon" width="40" height="40"> <code>sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2</code></a></p>
+
 <div class="footer">
 <p>➊ What Are Text Embeddings?</p>
 </div>
@@ -1406,7 +1406,9 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> SentenceTransformer(<span class="st">"paraphrase-multilingual-MiniLM-L12-v2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
+<aside><div>
+<p>A model trained on parallel data for more than 50 languages. <small><a href="https://www.sbert.net/docs/pretrained_models.html#multi-lingual-models" class="uri">https://www.sbert.net/docs/pretrained_models.html#multi-lingual-models</a></small></p>
+</div></aside></section>
 <section class="slide level2 slide-code smaller">
 <h2>Let’s create the embeddings with the new model.</h2>
 <div class="footer">
@@ -1416,7 +1418,7 @@ print(model1.get_sentence_embedding_dimension())
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> df3.index.to_list()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    [  [model2.encode(word)]  <span class="cf">for</span> word <span class="kw">in</span> words ],</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    [  [model2.encode(word)] <span class="cf">for</span> word <span class="kw">in</span> words ],</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>words, columns<span class="op">=</span>[<span class="st">"embeddings"</span>])</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1824,7 +1826,7 @@ print(model1.get_sentence_embedding_dimension())
 </section>
 <section class="slide level2 slide-code slide-code-wide slide-grey smaller" data-background="#718096">
 <h2>What is “cosine similarity”?</h2>
-<div class="cell columns column-output-location" data-execution_count="85">
+<div class="cell columns column-output-location" data-execution_count="386">
 <div class="column">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2746,7 +2748,7 @@ print(model1.get_sentence_embedding_dimension())
 <span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>        response.raise_for_status()</span>
 <span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>        total_size<span class="op">=</span> <span class="bu">int</span>(response.headers.get(<span class="st">'content-length'</span>, <span class="dv">0</span>))</span>
 <span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>        progress_bar <span class="op">=</span> notebook_tqdm(desc<span class="op">=</span>filebasename, total<span class="op">=</span>total_size, unit<span class="op">=</span><span class="st">'iB'</span>, unit_scale<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>        progress_bar <span class="op">=</span> tqdm(desc<span class="op">=</span>filebasename, total<span class="op">=</span>total_size, unit<span class="op">=</span><span class="st">'iB'</span>, unit_scale<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(filepath, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
 <span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">8192</span>): </span>
@@ -2877,7 +2879,7 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 </section>
 <section class="slide level2 slide-code">
 <h2>Let’s query the dataset.</h2>
-<p><small>A “multi-modal” search: searching image embeddings with text embeddings.</small></p>
+<p><small>A <strong>“cross-modality”</strong> search: searching <em>image</em> embeddings with <em>text</em> embeddings.</small></p>
 <div class="footer">
 <p>➌ Embeddings for other media</p>
 </div>
@@ -3063,9 +3065,34 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 </div>
 </div>
 </section>
-<section class="slide level2" data-background="#E2E8F0">
-<h2>Summary</h2>
-<p><code>TODO</code></p>
+<section class="slide level2 smaller" data-background="#FAF089">
+<h2>Embeddings for … smells?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><a href="https://spectrum.ieee.org/digital-smell"><img data-src="assets/osmo-principal-odor-map.png" class="radius"></a> <small><a href="https://spectrum.ieee.org/digital-smell" class="uri">https://spectrum.ieee.org/digital-smell</a></small></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>A graph neural network</li>
+<li>A model that maps chemical structure to odor descriptors (256 dimensions)</li>
+<li>Trained on a dataset of over 5,000 molecules from fragrance industry</li>
+<li>Achieves human-level reliability in describing odors</li>
+</ul>
+<p><a href="https://www.osmo.ai" class="uri">https://www.osmo.ai</a> <small><a href="https://doi.org/10.1101/2022.09.01.504602" class="uri">https://doi.org/10.1101/2022.09.01.504602</a></small></p>
+</div>
+</div>
+<aside class="notes">
+<p>“You can do math with numbers”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2 center center-horizontal" data-background="black">
 <h2>Thank you!</h2>
