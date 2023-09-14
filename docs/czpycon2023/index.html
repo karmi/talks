@@ -2680,7 +2680,7 @@ print(model1.get_sentence_embedding_dimension())
 <section class="slide level2 logos">
 <h2>Vector Databases</h2>
 <ul>
-<li><img data-src="assets/logos/postgres.png" height="40"> PostgreSQL (with <code>pgvector</code>)</li>
+<li><img data-src="assets/logos/postgres.png" style="top:21px" height="40"> PostgreSQL (with <code>pgvector</code>)</li>
 <li><img data-src="assets/logos/elasticsearch.png" height="40"> Elasticsearch</li>
 <li><img data-src="assets/logos/redis.png" height="40"> Redis</li>
 <li><img data-src="assets/logos/pinecone.png" height="40"> Pinecone</li>
@@ -2772,12 +2772,12 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <div class="footer">
 <p>➌ Embeddings for other media</p>
 </div>
-<div class="cell" data-execution_count="321">
+<div class="cell" data-execution_count="393">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_colwidth"</span>, <span class="dv">50</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(os.path.join(DOWNLOAD_PATH, os.path.basename(filenames[<span class="st">"metadata"</span>])))</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"caption"</span>, <span class="st">"url"</span>, <span class="st">"exif"</span>]].head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="321">
+<div class="cell-output cell-output-display" data-execution_count="393">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -2861,20 +2861,24 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> SentenceTransformer(<span class="st">"clip-ViT-L-14"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="332">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_results(df, query, indices, <span class="op">**</span>kwargs):</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> kwargs.get(<span class="st">"width"</span>, <span class="dv">200</span>)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    df_res <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"image"</span>: [Image(url<span class="op">=</span>df[<span class="st">"url"</span>][i], width<span class="op">=</span>width)._repr_html_() <span class="cf">for</span> i <span class="kw">in</span> indices.flatten()],</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"caption"</span>: [df[<span class="st">"caption"</span>][i] <span class="cf">for</span> i <span class="kw">in</span> indices.flatten()] })</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HTML(df_res</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>        .style</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>            .hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>            .set_caption(<span class="ss">f"Query: </span><span class="sc">{</span>query<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>            .set_table_attributes(<span class="st">'class="dataframe smaller align-left"'</span>)</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>            .set_table_styles([<span class="bu">dict</span>(selector<span class="op">=</span><span class="st">"th.col0,td.col0"</span>, props<span class="op">=</span>[(<span class="st">"min-width"</span>, <span class="ss">f"</span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">px"</span>)])])</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>            .to_html(escape<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="436">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> html <span class="im">import</span> escape</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_results(df, query, indices, <span class="op">**</span>kwargs):</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> kwargs.get(<span class="st">"width"</span>, <span class="dv">200</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    df_res <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"image"</span>: [</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"&lt;img src='</span><span class="sc">{</span>df<span class="sc">.</span>url[i]<span class="sc">}</span><span class="ss">' title='</span><span class="sc">{</span>escape(df.caption[i])<span class="sc">}</span><span class="ss">' width='</span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">px' onerror='this.onerror=null;this.src=</span><span class="ch">\"</span><span class="ss">https://placehold.co/400x400?text=Missing</span><span class="ch">\"</span><span class="ss">'&gt;"</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> indices.flatten() ],</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"caption"</span>: [</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>                df[<span class="st">"caption"</span>][i]</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> i <span class="kw">in</span> indices.flatten() ],</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HTML(</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">""</span>.join([</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"&lt;figure style='width: </span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">px'&gt;</span><span class="sc">{</span>item<span class="sc">.</span>image<span class="sc">}</span><span class="ss">&lt;figcaption&gt;</span><span class="sc">{</span>item<span class="sc">.</span>caption<span class="sc">}</span><span class="ss">&lt;/figcaption&gt;&lt;/figure&gt;"</span></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> item <span class="kw">in</span> df_res.itertuples() ]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code">
@@ -2883,7 +2887,7 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <div class="footer">
 <p>➌ Embeddings for other media</p>
 </div>
-<div class="cell" data-execution_count="328">
+<div class="cell" data-execution_count="437">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"cat dog pizza coffee asymptomatic"</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> NearestNeighbors</span>
@@ -2905,68 +2909,9 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 </div>
 
 </section>
-<section id="" class="slide level2 slide-code output-location-slide"><h2>Let’s query the dataset.</h2><div class="cell output-location-slide" data-execution_count="328">
-<div class="cell-output cell-output-display" data-execution_count="328">
-<style type="text/css">
-#T_813e4 th.col0 {
-  min-width: 200px;
-}
-#T_813e4 td.col0 {
-  min-width: 200px;
-}
-</style>
-
-<table id="T_813e4" class="dataframe smaller align-left" data-quarto-postprocess="true">
-<caption>Query: cat dog pizza coffee asymptomatic</caption>
-<thead>
-<tr class="header">
-<th id="T_813e4_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">image</th>
-<th id="T_813e4_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">caption</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_813e4_row0_col0" class="data row0 col0"><img data-src="http://rlv.zcache.co.uk/cute_quirky_cartoon_dog_mug-rb525f7f3d7df45f6a36b6eab6a951c46_x7jgr_8byvr_324.jpg" width="200"></td>
-<td id="T_813e4_row0_col1" class="data row0 col1">Cute quirky cartoon dog mugs</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row1_col0" class="data row1 col0"><img data-src="https://rlv.zcache.co.nz/i_love_skye_terriers_mug-rd2ad2d5ae8834eafa4218fb9dc35e74e_kfpv5_324.jpg?rlvnet=1" width="200"></td>
-<td id="T_813e4_row1_col1" class="data row1 col1">I Love Skye Terriers Mug</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row2_col0" class="data row2 col0"><img data-src="https://www.redwolf.in/image/cache/catalog/fridge-magnets/better-with-pizza-fridge-magnet-india-270x270.jpg" width="200"></td>
-<td id="T_813e4_row2_col1" class="data row2 col1">Better With Pizza - Scooby Doo Official Fridge Magnet</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row3_col0" class="data row3 col0"><img data-src="https://cdn-images.threadless.com/threadless-media/artist_shops/shops/magnusblomster/products/949292/shirt-1552495007-f13a3438ee73bab652eedc1f9334663b.png?v=3&amp;d=eyJvbmx5X21ldGEiOiBmYWxzZSwgImZvcmNlIjogZmFsc2UsICJvcHMiOiBbWyJpZl8iLCBbeyJ0IjogImV4cHIiLCAidiI6IFsiaGFzX2FscGhhIiwgbnVsbCwgbnVsbF19LCB7InQiOiAiY29tcCIsICJ2IjogWyJ0aHJlYWRsZXNzLW1lZGlhL2FydGlzdF9zaG9wcy9zaG9wcy9tYWdudXNibG9tc3Rlci9wcm9kdWN0cy85NDkyOTIvc2hpcnQtMTU1MjQ5NTAwNy1mMTNhMzQzOGVlNzNiYWI2NTJlZWRjMWY5MzM0NjYzYi5wbmciLCBbWyJ0cmltIiwgW3RydWUsIGZhbHNlXSwge31dLCBbInJlc2l6ZSIsIFsxNjg3LjUsIDIwMDguOTI4NTcxNDI4NTcxM10sIHsibWF4X3NjYWxlIjogMy4wfV0sIFsicGFkIiwgWzMzNC44MjE0Mjg1NzE0Mjg1NiwgMjgxLjI1LCAzMzQuODIxNDI4NTcxNDI4NTYsIDI4MS4yNV0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJiYWNrZ3JvdW5kIjogImZmZmZmZiJ9XV1dfSwgeyJ0IjogImNvbXAiLCAidiI6IFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvc2hvcHMvbWFnbnVzYmxvbXN0ZXIvcHJvZHVjdHMvOTQ5MjkyL3NoaXJ0LTE1NTI0OTUwMDctZjEzYTM0MzhlZTczYmFiNjUyZWVkYzFmOTMzNDY2M2IucG5nIiwgW1sicmVzaXplIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJtYXhfc2NhbGUiOiAzLjAsICJzdHlsZSI6ICJDUk9QIn1dLCBbImNhbnZhc19jZW50ZXJlZCIsIFsyMjUwLjAsIDI2NzguNTcxNDI4NTcxNDI4NF0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV1dXX1dLCB7fV0sIFsiZW5jb2RlIiwgWyIucG5nIl0sIHsiZHBpIjogMzAwfV0sIFsicmVzaXplIiwgWzEzNzVdLCB7fV0sIFsib3ZlcmxheSIsIFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvb3ZlcmxheXMvM2Y5NjVlZjcxYjE3YjgxMTQ5ZDQyNGZiYTU2MmUzNGMvZnJvbnQtMTQ5NDAwMzkyMy04MzQxMjg5MDAyODA4YzRmMzQzMGFhOWRmYmQ0NGQ2Yy5wbmciXSwgeyJ5IjogMjA1LCAieCI6IDMxOCwgImJhY2tncm91bmQiOiAiZmZmZmZmIn1dLCBbInJlc2l6ZSIsIFs4MDBdLCB7fV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzgwMCwgODAwLCAiI2ZmZmZmZiJdLCB7fV0sIFsiZW5jb2RlIiwgWyJqcGciLCA4NV0sIHt9XV19" width="200"></td>
-<td id="T_813e4_row3_col1" class="data row3 col1">Starving cat Home Sherpa Blanket Blanket by Magnus Blomster</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row4_col0" class="data row4 col0"><img data-src="https://static1.bigstockphoto.com/0/6/8/large2/8605693.jpg" width="200"></td>
-<td id="T_813e4_row4_col1" class="data row4 col1">Dog And Cat</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row5_col0" class="data row5 col0"><img data-src="http://ciaosoftware.com/images/Lost%20Dog%20Cafe.png" width="200"></td>
-<td id="T_813e4_row5_col1" class="data row5 col1">Lost Dog Cafe</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row6_col0" class="data row6 col0"><img data-src="https://cdn.drawception.com/images/panels/2015/1-3/hNzWG9GFYZ-10.png" width="200"></td>
-<td id="T_813e4_row6_col1" class="data row6 col1">Birthday cake, but it's a pizza with pepperoni</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row7_col0" class="data row7 col0"><img data-src="https://static2.bigstockphoto.com/7/3/2/large2/237136057.jpg" width="200"></td>
-<td id="T_813e4_row7_col1" class="data row7 col1">Portrait Of Kitten And Puppy On а White Background.</td>
-</tr>
-<tr class="odd">
-<td id="T_813e4_row8_col0" class="data row8 col0"><img data-src="http://www.quotehd.com/imagequotes/authors74/tmb/jake-gyllenhaal-jake-gyllenhaal-its-funny-to-me-that-people-find.jpg" width="200"></td>
-<td id="T_813e4_row8_col1" class="data row8 col1">Jake Gyllenhaal - It's funny to me that people find other people getting coffee really interesting, or walking their dog in the dog park.</td>
-</tr>
-<tr class="even">
-<td id="T_813e4_row9_col0" class="data row9 col0"><img data-src="https://t0.gstatic.com/images?q=tbn:ANd9GcTjjwQUc5aMu4aYE0YQCr_HO5zGcUB2tJxITIdQxoXkz6xKjXUJjw" width="200"></td>
-<td id="T_813e4_row9_col1" class="data row9 col1">Can Starbucks Be Any Perfect Than This Imagine How Awesome</td>
-</tr>
-</tbody>
-</table>
+<section id="" class="slide level2 slide-code output-location-slide"><h2>Let’s query the dataset.</h2><div class="cell output-location-slide" data-execution_count="437">
+<div class="cell-output cell-output-display" data-execution_count="437">
+<figure style="width: 200px"><img src="http://rlv.zcache.co.uk/cute_quirky_cartoon_dog_mug-rb525f7f3d7df45f6a36b6eab6a951c46_x7jgr_8byvr_324.jpg" title="Cute quirky cartoon dog mugs" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Cute quirky cartoon dog mugs</figcaption></figure><figure style="width: 200px"><img src="https://rlv.zcache.co.nz/i_love_skye_terriers_mug-rd2ad2d5ae8834eafa4218fb9dc35e74e_kfpv5_324.jpg?rlvnet=1" title="I Love Skye Terriers Mug" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>I Love Skye Terriers Mug</figcaption></figure><figure style="width: 200px"><img src="https://www.redwolf.in/image/cache/catalog/fridge-magnets/better-with-pizza-fridge-magnet-india-270x270.jpg" title="Better With Pizza - Scooby Doo Official Fridge Magnet" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Better With Pizza - Scooby Doo Official Fridge Magnet</figcaption></figure><figure style="width: 200px"><img src="https://cdn-images.threadless.com/threadless-media/artist_shops/shops/magnusblomster/products/949292/shirt-1552495007-f13a3438ee73bab652eedc1f9334663b.png?v=3&amp;d=eyJvbmx5X21ldGEiOiBmYWxzZSwgImZvcmNlIjogZmFsc2UsICJvcHMiOiBbWyJpZl8iLCBbeyJ0IjogImV4cHIiLCAidiI6IFsiaGFzX2FscGhhIiwgbnVsbCwgbnVsbF19LCB7InQiOiAiY29tcCIsICJ2IjogWyJ0aHJlYWRsZXNzLW1lZGlhL2FydGlzdF9zaG9wcy9zaG9wcy9tYWdudXNibG9tc3Rlci9wcm9kdWN0cy85NDkyOTIvc2hpcnQtMTU1MjQ5NTAwNy1mMTNhMzQzOGVlNzNiYWI2NTJlZWRjMWY5MzM0NjYzYi5wbmciLCBbWyJ0cmltIiwgW3RydWUsIGZhbHNlXSwge31dLCBbInJlc2l6ZSIsIFsxNjg3LjUsIDIwMDguOTI4NTcxNDI4NTcxM10sIHsibWF4X3NjYWxlIjogMy4wfV0sIFsicGFkIiwgWzMzNC44MjE0Mjg1NzE0Mjg1NiwgMjgxLjI1LCAzMzQuODIxNDI4NTcxNDI4NTYsIDI4MS4yNV0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJiYWNrZ3JvdW5kIjogImZmZmZmZiJ9XV1dfSwgeyJ0IjogImNvbXAiLCAidiI6IFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvc2hvcHMvbWFnbnVzYmxvbXN0ZXIvcHJvZHVjdHMvOTQ5MjkyL3NoaXJ0LTE1NTI0OTUwMDctZjEzYTM0MzhlZTczYmFiNjUyZWVkYzFmOTMzNDY2M2IucG5nIiwgW1sicmVzaXplIiwgWzIyNTAuMCwgMjY3OC41NzE0Mjg1NzE0Mjg0XSwgeyJtYXhfc2NhbGUiOiAzLjAsICJzdHlsZSI6ICJDUk9QIn1dLCBbImNhbnZhc19jZW50ZXJlZCIsIFsyMjUwLjAsIDI2NzguNTcxNDI4NTcxNDI4NF0sIHsiYmFja2dyb3VuZCI6ICJmZmZmZmYifV1dXX1dLCB7fV0sIFsiZW5jb2RlIiwgWyIucG5nIl0sIHsiZHBpIjogMzAwfV0sIFsicmVzaXplIiwgWzEzNzVdLCB7fV0sIFsib3ZlcmxheSIsIFsidGhyZWFkbGVzcy1tZWRpYS9hcnRpc3Rfc2hvcHMvb3ZlcmxheXMvM2Y5NjVlZjcxYjE3YjgxMTQ5ZDQyNGZiYTU2MmUzNGMvZnJvbnQtMTQ5NDAwMzkyMy04MzQxMjg5MDAyODA4YzRmMzQzMGFhOWRmYmQ0NGQ2Yy5wbmciXSwgeyJ5IjogMjA1LCAieCI6IDMxOCwgImJhY2tncm91bmQiOiAiZmZmZmZmIn1dLCBbInJlc2l6ZSIsIFs4MDBdLCB7fV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzgwMCwgODAwLCAiI2ZmZmZmZiJdLCB7fV0sIFsiZW5jb2RlIiwgWyJqcGciLCA4NV0sIHt9XV19" title="Starving cat Home Sherpa Blanket Blanket by Magnus Blomster" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Starving cat Home Sherpa Blanket Blanket by Magnus Blomster</figcaption></figure><figure style="width: 200px"><img src="https://static1.bigstockphoto.com/0/6/8/large2/8605693.jpg" title="Dog And Cat" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Dog And Cat</figcaption></figure><figure style="width: 200px"><img src="http://ciaosoftware.com/images/Lost%20Dog%20Cafe.png" title="Lost Dog Cafe" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Lost Dog Cafe</figcaption></figure><figure style="width: 200px"><img src="https://cdn.drawception.com/images/panels/2015/1-3/hNzWG9GFYZ-10.png" title="Birthday cake, but it's a pizza with pepperoni" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Birthday cake, but it's a pizza with pepperoni</figcaption></figure><figure style="width: 200px"><img src="https://static2.bigstockphoto.com/7/3/2/large2/237136057.jpg" title="Portrait Of Kitten And Puppy On а White Background." width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Portrait Of Kitten And Puppy On а White Background.</figcaption></figure><figure style="width: 200px"><img src="http://www.quotehd.com/imagequotes/authors74/tmb/jake-gyllenhaal-jake-gyllenhaal-its-funny-to-me-that-people-find.jpg" title="Jake Gyllenhaal - It's funny to me that people find other people getting coffee really interesting, or walking their dog in the dog park." width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Jake Gyllenhaal - It's funny to me that people find other people getting coffee really interesting, or walking their dog in the dog park.</figcaption></figure><figure style="width: 200px"><img src="https://t0.gstatic.com/images?q=tbn:ANd9GcTjjwQUc5aMu4aYE0YQCr_HO5zGcUB2tJxITIdQxoXkz6xKjXUJjw" title="Can Starbucks Be Any Perfect Than This Imagine How Awesome" width="200px" onerror="this.onerror=null;this.src=&quot;https://placehold.co/400x400?text=Missing&quot;"><figcaption>Can Starbucks Be Any Perfect Than This Imagine How Awesome</figcaption></figure>
 </div>
 </div></section><section class="slide level2 slide-code smaller">
 <h2>Let’s query the dataset <em>with a picture</em>.</h2>
@@ -2998,70 +2943,11 @@ Skipping download, file /Users/karmi/Downloads/text_emb_0000.npy already exists 
 <p>➌ Embeddings for other media</p>
 </div>
 </section>
-<section class="slide level2">
-
-<div class="cell" data-execution_count="333">
-<div class="cell-output cell-output-display" data-execution_count="333">
-<style type="text/css">
-#T_aea2f th.col0 {
-  min-width: 400px;
-}
-#T_aea2f td.col0 {
-  min-width: 400px;
-}
-</style>
-
-<table id="T_aea2f" class="dataframe smaller align-left" data-quarto-postprocess="true">
-<caption>Query: Image</caption>
-<thead>
-<tr class="header">
-<th id="T_aea2f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">image</th>
-<th id="T_aea2f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">caption</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td id="T_aea2f_row0_col0" class="data row0 col0"><img data-src="https://earthsky.org/upl/2013/07/morning-forest-scence-300x214.jpg" width="400"></td>
-<td id="T_aea2f_row0_col1" class="data row0 col1">morning-forest-scence</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row1_col0" class="data row1 col0"><img data-src="https://itsok2notbeok.files.wordpress.com/2017/07/nature-forest-trees-fog.jpeg?w=300&amp;" width="400"></td>
-<td id="T_aea2f_row1_col1" class="data row1 col1">nature-forest-trees-fog</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row2_col0" class="data row2 col0"><img data-src="https://media.istockphoto.com/photos/misty-forest-picture-id495880050?k=6&amp;m=495880050&amp;s=612x612&amp;w=0&amp;h=7cnyG_gm-8scWaMJ7yr1D3YJKEsY-rAZdmaXIrtPA3M=" width="400"></td>
-<td id="T_aea2f_row2_col1" class="data row2 col1">misty forest - trees in mist stock pictures, royalty-free photos &amp; images</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row3_col0" class="data row3 col0"><img data-src="https://blog.ons.gov.uk/wp-content/uploads/sites/6/2021/07/Forest-630x470.jpg" width="400"></td>
-<td id="T_aea2f_row3_col1" class="data row3 col1">Picture of a forest</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row4_col0" class="data row4 col0"><img data-src="https://static.wixstatic.com/media/244598303d544aa899beb16d0fa95fde.jpg/v1/fill/w_390,h_585,al_c,q_80,usm_0.66_1.00_0.01/Hiking%20Path%20in%20Forest.jpg" width="400"></td>
-<td id="T_aea2f_row4_col1" class="data row4 col1">Hiking Path in Forest</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row5_col0" class="data row5 col0"><img data-src="https://images.unsplash.com/photo-1495395226200-8fbf6b720b8c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80" width="400"></td>
-<td id="T_aea2f_row5_col1" class="data row5 col1">woman walking in the forest</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row6_col0" class="data row6 col0"><img data-src="https://cdn.eyeem.com/thumb/991f5e54cb5563b3c9e5e061689421c1a672aeee-1406431509/2600/2600" width="400"></td>
-<td id="T_aea2f_row6_col1" class="data row6 col1">tree, focus on foreground, branch, growth, tree trunk, close-up, nature, leaf, forest, selective focus, tranquility, plant, day, outdoors, twig, no people, sunlight, green color, beauty in nature, stem</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row7_col0" class="data row7 col0"><img data-src="https://i1.wp.com/artsyforager.com/wp-content/uploads/2016/02/Redwoods4.jpg?resize=600%2C800" width="400"></td>
-<td id="T_aea2f_row7_col1" class="data row7 col1">Finding Latitude. The Redwoods | artsy forager #travel #nature #photography #findinglatitude #redwoods</td>
-</tr>
-<tr class="odd">
-<td id="T_aea2f_row8_col0" class="data row8 col0"><img data-src="https://0.s3.envato.com/files/217499708/preview.jpg" width="400"></td>
-<td id="T_aea2f_row8_col1" class="data row8 col1">Download Morning Forest in Fog nulled download</td>
-</tr>
-<tr class="even">
-<td id="T_aea2f_row9_col0" class="data row9 col0"><img data-src="https://www.commercialcafe.com/blog/wp-content/uploads/sites/10/2020/08/Best-US-Cities-by-Public-Parks-and-Walkability.jpg?w=1280&amp;h=500&amp;crop=1" width="400"></td>
-<td id="T_aea2f_row9_col1" class="data row9 col1">Best US Cities by Public Parks and Walkability</td>
-</tr>
-</tbody>
-</table>
+<section class="slide level2 slide-code">
+<h2></h2>
+<div class="cell" data-execution_count="431">
+<div class="cell-output cell-output-display" data-execution_count="431">
+<figure style="width: 400px"><img src="https://earthsky.org/upl/2013/07/morning-forest-scence-300x214.jpg" title="morning-forest-scence" width="400px"><figcaption>morning-forest-scence</figcaption></figure><figure style="width: 400px"><img src="https://itsok2notbeok.files.wordpress.com/2017/07/nature-forest-trees-fog.jpeg?w=300&amp;" title="nature-forest-trees-fog" width="400px"><figcaption>nature-forest-trees-fog</figcaption></figure><figure style="width: 400px"><img src="https://media.istockphoto.com/photos/misty-forest-picture-id495880050?k=6&amp;m=495880050&amp;s=612x612&amp;w=0&amp;h=7cnyG_gm-8scWaMJ7yr1D3YJKEsY-rAZdmaXIrtPA3M=" title="misty forest - trees in mist stock pictures, royalty-free photos &amp; images" width="400px"><figcaption>misty forest - trees in mist stock pictures, royalty-free photos &amp; images</figcaption></figure><figure style="width: 400px"><img src="https://blog.ons.gov.uk/wp-content/uploads/sites/6/2021/07/Forest-630x470.jpg" title="Picture of a forest" width="400px"><figcaption>Picture of a forest</figcaption></figure><figure style="width: 400px"><img src="https://static.wixstatic.com/media/244598303d544aa899beb16d0fa95fde.jpg/v1/fill/w_390,h_585,al_c,q_80,usm_0.66_1.00_0.01/Hiking%20Path%20in%20Forest.jpg" title="Hiking Path in Forest" width="400px"><figcaption>Hiking Path in Forest</figcaption></figure><figure style="width: 400px"><img src="https://images.unsplash.com/photo-1495395226200-8fbf6b720b8c?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80" title="woman walking in the forest" width="400px"><figcaption>woman walking in the forest</figcaption></figure><figure style="width: 400px"><img src="https://cdn.eyeem.com/thumb/991f5e54cb5563b3c9e5e061689421c1a672aeee-1406431509/2600/2600" title="tree, focus on foreground, branch, growth, tree trunk, close-up, nature, leaf, forest, selective focus, tranquility, plant, day, outdoors, twig, no people, sunlight, green color, beauty in nature, stem" width="400px"><figcaption>tree, focus on foreground, branch, growth, tree trunk, close-up, nature, leaf, forest, selective focus, tranquility, plant, day, outdoors, twig, no people, sunlight, green color, beauty in nature, stem</figcaption></figure><figure style="width: 400px"><img src="https://i1.wp.com/artsyforager.com/wp-content/uploads/2016/02/Redwoods4.jpg?resize=600%2C800" title="Finding Latitude. The Redwoods | artsy forager #travel #nature #photography #findinglatitude #redwoods" width="400px"><figcaption>Finding Latitude. The Redwoods | artsy forager #travel #nature #photography #findinglatitude #redwoods</figcaption></figure><figure style="width: 400px"><img src="https://0.s3.envato.com/files/217499708/preview.jpg" title="Download Morning Forest in Fog nulled download" width="400px"><figcaption>Download Morning Forest in Fog nulled download</figcaption></figure><figure style="width: 400px"><img src="https://www.commercialcafe.com/blog/wp-content/uploads/sites/10/2020/08/Best-US-Cities-by-Public-Parks-and-Walkability.jpg?w=1280&amp;h=500&amp;crop=1" title="Best US Cities by Public Parks and Walkability" width="400px"><figcaption>Best US Cities by Public Parks and Walkability</figcaption></figure>
 </div>
 </div>
 </section>
