@@ -85,6 +85,18 @@ figcaption {
   opacity: 0.7;
 }
 
+.slide-code figure {
+  display: inline-block;
+}
+
+.slide-code figcaption {
+  font-size: 0.5em !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1em 0 1em;
+}
+
 .text-white * {
   color: white !important;
 }
@@ -221,6 +233,11 @@ img.icon.small {
   width: 25px;
   height: 25px;
   top: 2px;
+}
+
+img.border {
+  border: 1px solid #CBD5E0;
+  border-radius: 5px;
 }
 
 .has-dark-background .footer {
