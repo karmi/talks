@@ -147,7 +147,8 @@ div.sourceCode {
 }
 
 div.sourceCode pre {
-  background-color: #ccdbdf;
+  /* background-color: #ccdbdf; */
+  background-color: hsl(0, 0%, 96%);
   padding: 20px;
 }
 
@@ -381,6 +382,13 @@ img.border {
   margin: 0;
 }
 
+.slide table.eval_results caption {
+  font-family: monospace;
+  text-align: left;
+  padding-left: 0.5em;
+  border-bottom: 2px solid black;
+}
+
 .slide table.eval_results thead th {
   font-weight: normal;
 }
@@ -395,7 +403,7 @@ img.border {
   font-size: 100% !important;
   border-radius: 5px;
   padding: 0.25em 0.5em;
-  margin: 0.5em 0;
+  margin: 0.5em 0.5em 0.5em 0;
   display: inline-block;
 }
 
