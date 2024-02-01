@@ -366,3 +366,12 @@ img.border {
 .slide .vega-embed details {
   display: none;
 }
+
+.slide a code {
+  color: var(--r-link-color);
+}
+
+.slide.final a {
+  color: #fff;
+  text-decoration: underline;
+}
