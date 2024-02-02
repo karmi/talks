@@ -198,6 +198,10 @@ table.dataframe {
   vertical-align: top;
 }
 
+table.dataframe.small {
+  font-size: 70%;
+}
+
 table.dataframe td {
   vertical-align: top;
 }
