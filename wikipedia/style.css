@@ -393,6 +393,11 @@ img.border {
   border-bottom: 2px solid black;
 }
 
+.slide table.eval_results span.small {
+  font-size: 60%;
+  vertical-align: middle;
+}
+
 .slide table.eval_results thead th {
   font-weight: normal;
 }
@@ -409,6 +414,11 @@ img.border {
   padding: 0.25em 0.5em;
   margin: 0.5em 0.5em 0.5em 0;
   display: inline-block;
+}
+
+.slide table.eval_results span.small code {
+  color: #666;
+  background-color: transparent;
 }
 
 .slide table.eval_results tbody td {
