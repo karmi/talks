@@ -3,3 +3,6 @@
 _site/
 docs/
 tmp/
+
+*.html
+*_files
