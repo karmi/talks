@@ -1,0 +1,55 @@
+# $ docker compose up --detach --wait
+
+version: "3.8"
+
+services:
+  app:
+    container_name: app
+    depends_on: [ 'elasticsearch' ]
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+      args:
+        - MODEL_ID=intfloat/multilingual-e5-small
+    networks:
+      - application
+    ports:
+      - 8080:8080
+    environment:
+      - ELASTICSEARCH_URL=http://es01:9200
+      - INDEX_NAME=wikipedia-search
+    restart: on-failure:5
+    healthcheck:
+      test: curl --max-time 120 --retry 120 --retry-delay 1 --show-error --silent http://0.0.0.0:8000/status
+
+  elasticsearch:
+    container_name: es01
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:?unset}
+    volumes:
+      - data-es:/usr/share/elasticsearch/data
+    networks:
+      - application
+      - elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME:-elasticsearch}
+      - discovery.type=single-node
+      - network.publish_host=es01
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - ES_JAVA_OPTS=-Xms${ES_MEMORY:-2G} -Xmx${ES_MEMORY:-2G}
+    ulimits: { nofile: { soft: 65535, hard: 65535 }, memlock: -1 }
+    restart: on-failure:5
+    healthcheck:
+      test: curl --head --max-time 120 --retry 120 --retry-delay 1 --show-error --silent http://localhost:9200
+
+networks:
+  application:
+  elasticsearch:
+
+
+volumes:
+  data-es:
