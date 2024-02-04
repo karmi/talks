@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon">
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        .is-rounded { border-radius: 5px; }
+        img.icon {
+            width: 14px; height: auto;
+            filter: saturate(0) contrast(1.3);
+        }
+        header a:hover {
+            color: hsl(204, 86%, 53%) !important;
+            border-bottom: 1px solid hsl(204, 86%, 53%);
+        }
+        mark {
+            color: #000;
+            background: #68D391;
+            font-weight: bolder;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .force-wrap {
+            word-break: break-word;
+        }
+        .snippet {
+            display: inline;
+        }
+        .snippet:hover {
+            background-color: hsl(48, 100%, 96%);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/mark.js/8.6.0/mark.min.js"></script>
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <header class="column is-12 mb-1">
+                <div class="columns">
+                    <h1 class="title column mb-0">
+                        Wikipedia Search
+                        <i class="is-hidden mdi mdi-progress-helper mdi-spin has-text-grey pl-1"></i>
+                    </h1>
+                    <p class="column has-text-grey-dark has-text-right" style="margin-top: 11px;">
+                        <img class="icon" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt=":huggingface:">
+                        <a class="has-text-grey-dark" href="https://huggingface.co/datasets?search=karmiq%2Fwikipedia-embeddings-cs" target="_blank">Datasets</a>
+
+                        <i class="mdi mdi-github"></i>
+                        <a class="has-text-grey-dark" href="https://github.com/karmi/talks/tree/main/wikipedia/code/app" target="_blank">Code</a>
+                    </p>
+                </div>
+            </header>
+            <section class="block">
+                <form action="/" method="GET">
+                    <div class="columns mb-0">
+                        <div class="column is-10">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" name="q" value="{{ request.args.get('q', '') }}" placeholder="Please enter a query...">
+                                    <span class="icon is-left is-medium">
+                                        <i class="mdi mdi-magnify" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-2">
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-link is-fullwidth" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="level ml-4 mr-1">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <div class="field is-horizontal">
+                                    <div class="field-label mr-2">
+                                        <label class="label mt-1">Model</label>
+                                    </div>
+                                    <div class="control">
+                                        <div class="select is-small">
+                                            <select name="m">
+                                                <option disabled>Model</option>
+                                                {% for model_name in model_names %}
+                                                    <option {{ 'selected' if request.args.get('m') == model_name }}>
+                                                        {{ model_name }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="level-item">
+                                <div class="field is-horizontal">
+                                    <div class="field-label mr-2">
+                                        <label class="label">Type</label>
+                                    </div>
+                                    <div class="control">
+                                        <label class="radio is-unselectable">
+                                            <input type="radio" name="t" value="lexical" {{ 'checked' if request.args.get('t') == 'lexical' or request.args.get('t') == None }}>
+                                            Lexical
+                                        </label>
+                                        <label class="radio is-unselectable">
+                                            <input type="radio" name="t" value="semantic" {{ 'checked' if request.args.get('t') == 'semantic' }}>
+                                            Semantic
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="level-item">
+                                <div class="field is-horizontal">
+                                    <div class="control">
+                                        <label class="checkbox is-unselectable">
+                                            <input id="highlight" type="checkbox" name="h" {{ 'checked' if request.args.get('h') }}>
+                                            Highlight?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level-right">
+                            {% if results %}
+                                <p class="is-size-7 has-text-right">
+                                Displaying {{ results|length }} results of
+                                {{ 'more than' if total['relation'] == 'gte' else ''  }}
+                                {{ '{:,d}'.format(total['value']) }}
+                                / <small>es:</small>{{ '{:,d}'.format(took) }}ms
+                                / <small>req:</small>{{ '{:,d}'.format(req_d) }}ms
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </form>
+            </section>
+            <section class="block">
+                {% if results %}
+                    <table class="table is-fullwidth">
+                        <thead>
+                            <tr><th>Score</th><th>Text</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for result in results %}
+                                <tr>
+                                    <td style="width:7em">
+                                        <span class="has-text-grey is-size-7">#</span><span class="has-text-weight-bold">{{ loop.index }}</span>
+                                        <span class="tag is-family-monospace is-size-7">{{ "%.2f" | format(result['_score']*100) if result['_score'] else 'N/A' }}</span>
+                                    </td>
+                                    <td class="text">
+                                        <h3 class="is-size-5 mb-1">
+                                            {{ result['_source']['title'] }}
+
+                                            <code class="is-size-7 has-text-grey-dark">
+                                                {{ result['_id'] }}
+                                            </code>
+
+                                            <a href="{{ result['_source']['url'] }}" target="_blank" class="icon has-text-grey-light">
+                                                <i class="mdi mdi-open-in-new" style="top:2px;position:relative"></i>
+                                            </a>
+
+                                            <small class="is-size-7 has-text-grey-dark">
+                                                Matching chunks: {{ result['inner_hits']['parts']['hits']['hits'] | length }}
+                                            </small>
+                                        </h3>
+                                        {% for inner_hit in result['inner_hits']['parts']['hits']['hits'] %}
+                                            {% set outer_loop = loop %}
+                                            {% for part in inner_hit['fields']['parts'] %}
+                                            <p class="force-wrap snippet">
+                                                {{ part['chunk'][0] | truncate(500, end=' …') }}
+                                                {% if outer_loop.index < result['inner_hits']['parts']['hits']['hits'] | length %}<span class="has-text-danger">|</span>{% endif %}
+                                            </p>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="px-4 py-2 has-background-warning is-rounded">
+                        {% if not request.args.get('q')  %}
+                        Please provide a query.
+                        {% else %}
+                        No search results.
+                        {% endif %}
+                    </p>
+                {% endif %}
+            </section>
+        </div>
+    </section>
+</body>
+{% if request.args.get('q') %}
+    <script>
+        var elForm = document.getElementsByTagName('form')[0];
+        elForm.addEventListener("submit", () => {
+            document.querySelector('i.mdi-progress-helper').classList.remove('is-hidden');
+        });
+
+        var elSearchType = document.querySelectorAll("input[type=radio]");
+        elSearchType.forEach((el) => {
+            el.addEventListener("change", (e) => { submitForm(); });
+        });
+
+        var elModelName = document.querySelector("select[name=m]");
+        elModelName.addEventListener("change", () => {
+            var elOptions = Array.from(document.querySelectorAll("input[name=t]").entries());
+            if (elOptions.filter((el) => el[1].checked)[0][1].value == "semantic") { submitForm(); }
+        });
+
+        var elHighlight = document.getElementById("highlight");
+        elHighlight.addEventListener("change", highlightQuery);
+
+        addEventListener("DOMContentLoaded", () => { highlightQuery({target: elHighlight}) });
+
+        function highlightQuery(e) {
+            var m = new Mark("table td.text");
+            if (e.target.checked) {
+                m.mark(
+                    "{{ request.args.get('q').rstrip('?!.') }}",
+                    {
+                        accuracy: 'partially',
+                        filter: (textNode, foundTerm, totalCounter, counter) => { return foundTerm.length > 2; }
+                    }
+                );
+                var params = new URLSearchParams(document.location.search);
+                if (!params.has('h')) {
+                    var url = new URL(location);
+                    url.searchParams.set("h", "on");
+                    history.replaceState({}, "", url);
+                }
+            } else {
+                m.unmark();
+                var params = new URLSearchParams(document.location.search);
+                if (params.has('h')) {
+                    var url = new URL(location);
+                    url.searchParams.delete("h");
+                    history.replaceState({}, "", url);
+                }
+            }
+        };
+
+        function submitForm() {
+            document.querySelector('i.mdi-progress-helper').classList.remove('is-hidden');
+            document.getElementsByTagName("form")[0].submit();
+        }
+    </script>
+{% endif %}
+</html>
