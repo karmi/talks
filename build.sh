@@ -12,6 +12,7 @@ for dir in */ ; do
         (cd "$dir" && /bin/bash build.sh)
     else
         echo "Skipping [$dir], no build file present."
+        echo "------------------------------------------------------------"
     fi
 done
 
@@ -26,4 +27,4 @@ git add docs/
 git commit -m "Update the website"
 git push -f origin gh-pages
 
-git checkout main
+git checkout -
