@@ -425,6 +425,14 @@ img.border {
   padding-right: 1em;
 }
 
+.slide table.eval_results tbody td a {
+  color: #000;
+}
+
+.slide table.eval_results tbody td a:hover {
+  text-decoration: underline;
+}
+
 .slide table.eval_results tbody code {
   color: #fff;
   background-color: hsl(0, 0%, 48%);
