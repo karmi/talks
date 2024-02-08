@@ -25,5 +25,5 @@ cp -r assets/ _site/wikipedia-semantic-search/assets/
 cp style.css _site/wikipedia-semantic-search/
 
 mkdir -p ../_site/
-mv _site/wikipedia-semantic-search/ ../_site/wikipedia-semantic-search/
+mv _site/wikipedia-semantic-search/ ../_site/wikipedia/
 rm -rf _site
