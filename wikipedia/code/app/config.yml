@@ -1,0 +1,33 @@
+---
+
+# Run the inference API services locally with docker-compose.yml
+# Certain models are available through <https://huggingface.co/docs/api-inference/index>
+
+models:
+  e5-small:
+    model_id: intfloat/multilingual-e5-small
+    index_name: wikipedia-search-small
+    # endpoint: http://localhost:5001/embed
+    endpoint: http://wikipedia-search-inference-api-e5-small-1/embed
+  e5-base:
+    model_id: intfloat/multilingual-e5-base
+    index_name: wikipedia-search-base
+    # endpoint: http://localhost:5002/embed
+    endpoint: http://wikipedia-search-inference-api-e5-base-1/embed
+  e5-large:
+    model_id: intfloat/multilingual-e5-large
+    index_name: wikipedia-search-large
+    # endpoint: http://localhost:5003/embed
+    endpoint: http://wikipedia-search-inference-api-e5-large-1/embed
+    # endpoint: https://api-inference.huggingface.co/models/intfloat/multilingual-e5-large
+  e5-instruct:
+    model_id: intfloat/multilingual-e5-large-instruct
+    index_name: wikipedia-search-instruct
+    # endpoint: http://localhost:5004/embed
+    endpoint: http://wikipedia-search-inference-api-e5-large-instruct-1/embed
+    # endpoint: https://api-inference.huggingface.co/models/intfloat/multilingual-e5-large-instruct
+  minilm:
+    model_id: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+    index_name: wikipedia-search-minilm
+    # endpoint: http://localhost:5005/embed
+    endpoint: http://wikipedia-search-inference-api-minilm-1/embed

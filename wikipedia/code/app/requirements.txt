@@ -1,8 +1,9 @@
 python-dotenv
+PyYAML
+requests
+numpy
 
 elasticsearch==8.*
-
-sentence_transformers==2.2.2
 
 flask==3.*
 gunicorn

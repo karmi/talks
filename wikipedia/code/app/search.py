@@ -1,62 +1,80 @@
 import os
 import time
+import yaml
 
 from dotenv import load_dotenv
 
 from flask import Flask, request, Response, render_template
+import werkzeug
 
+import numpy as np
+
+import requests
 from elasticsearch import Elasticsearch
-
-from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
 
-class Search:
-    TORCH_DEVICE = os.getenv("TORCH_DEVICE", "cpu")
+class InferenceAPIException(Exception):
+    pass
 
+
+class Search:
     def __init__(self, client):
         self.client = client
 
-        _models = {
-            "e5-small": "intfloat/multilingual-e5-small",
-            "e5-base": "intfloat/multilingual-e5-base",
-            "e5-large": "intfloat/multilingual-e5-large",
-            "minilm": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        }
+        with open("config.yml") as f:
+            self.config = yaml.safe_load(f)
 
-        self.config = {}
-        for name, model_id in _models.items():
-            suffix = name.split("-")[-1]
-            self.config[name] = {
-                "model_name": model_id,
-                "index_name": f"wikipedia-search-{suffix}",
-                "model": SentenceTransformer(model_id, device=self.TORCH_DEVICE),
-            }
+    def _get_embeddings(self, model_name, inputs):
+        api_url = self.config["models"][model_name]["endpoint"]
+        api_token = os.getenv("INFERENCE_API_TOKEN")
+        response = requests.post(
+            api_url,
+            headers={"Authorization": f"Bearer {api_token}"} if api_token else {},
+            params={"wait_for_model": True},
+            json={"inputs": inputs},
+            timeout=300,
+        )
 
-    def _get_model(self, model_name):
-        return self.config[model_name]["model"]
+        if not response.ok:
+            raise InferenceAPIException(response.json()["error"])
+
+        return np.array(response.json()).flatten().tolist()
 
     def _get_index_name(self, model_name):
-        return self.config[model_name]["index_name"]
+        return self.config["models"][model_name]["index_name"]
 
     def search_lexical(self, query, model_name, size=100):
-        print(model_name)
         return self.client.search(
             index=self._get_index_name(model_name),
             query={
-                "nested": {
-                    "path": "parts",
-                    "query": {
-                        "match": {
-                            "parts.chunk": query,
+                "bool": {
+                    "should": [
+                        {
+                            "nested": {
+                                "path": "parts",
+                                "query": {
+                                    "match": {
+                                        "parts.chunk": query,
+                                    },
+                                },
+                                "inner_hits": {
+                                    "_source": {"includes": "parts.chunk"},
+                                    "size": 5,
+                                },
+                            }
                         },
-                    },
-                    "inner_hits": {
-                        "_source": False,
-                        "fields": ["parts.chunk"],
-                        "size": 5,
-                    },
+                        # {
+                        #     "match": {
+                        #         "title": {
+                        #             "query": query,
+                        #             "operator": "AND",
+                        #             "boost": 2.0,
+                        #         },
+                        #     }
+                        # },
+                    ],
                 },
             },
             size=size,
@@ -69,16 +87,21 @@ class Search:
 
         return self.client.search(
             index=self._get_index_name(model_name),
-            knn={
-                "field": "parts.embedding",
-                "query_vector": self._get_model(model_name).encode(query),
-                "k": size,
-                "num_candidates": 1000,
-                "inner_hits": {
-                    "_source": False,
-                    "fields": ["parts.chunk"],
-                    "size": 5,  # https://github.com/elastic/elasticsearch/pull/104006
-                },
+            query={
+                "nested": {
+                    "path": "parts",
+                    "query": {
+                        "knn": {
+                            "field": "parts.embedding",
+                            "query_vector": self._get_embeddings(model_name, query),
+                            "num_candidates": 1000,
+                        }
+                    },
+                    "inner_hits": {
+                        "_source": {"includes": "parts.chunk"},
+                        "size": 5,  # Currently returns only 1. // https://github.com/elastic/elasticsearch/pull/104006
+                    },
+                }
             },
             size=size,
             sort=["_score", "_doc"],
@@ -89,16 +112,27 @@ class Search:
 es = Elasticsearch(
     hosts=os.getenv("ELASTICSEARCH_URL"),
     basic_auth=(
-        os.getenv("ELASTICSEARCH_USER", None),
-        os.getenv("ELASTICSEARCH_PASSWORD", None),
-    )
-    if os.getenv("ELASTICSEARCH_USER")
-    else None,
+        (
+            os.getenv("ELASTICSEARCH_USER", None),
+            os.getenv("ELASTICSEARCH_PASSWORD", None),
+        )
+        if os.getenv("ELASTICSEARCH_USER")
+        else None
+    ),
 )
 search = Search(es)
 
 
 app = Flask(__name__, template_folder=".")
+
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    if isinstance(e, werkzeug.exceptions.HTTPException):
+        return e
+    m = e.__class__.__module__
+    c = e.__class__.__name__
+    return f"{m}.{c}: {e}", 500
 
 
 @app.route("/", methods=["GET"])
@@ -126,10 +160,11 @@ def index():
     return render_template(
         "search.html",
         results=results,
-        model_names=search.config.keys(),
+        model_names=search.config["models"].keys(),
         total=total,
         took=took,
         req_d=req_d,
+        search_type=search_type,
     )
 
 

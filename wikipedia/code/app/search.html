@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wikipedia Search</title>
+    <link rel="shortcut icon" href="data:,">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
     <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon">
@@ -22,7 +23,7 @@
             color: #000;
             background: #68D391;
             font-weight: bolder;
-            padding: 5px;
+            padding: 2px 5px;
             border-radius: 5px;
         }
         .force-wrap {
@@ -154,13 +155,14 @@
                                 <tr>
                                     <td style="width:7em">
                                         <span class="has-text-grey is-size-7">#</span><span class="has-text-weight-bold">{{ loop.index }}</span>
-                                        <span class="tag is-family-monospace is-size-7">{{ "%.2f" | format(result['_score']*100) if result['_score'] else 'N/A' }}</span>
+                                        {% set score = result['_score']*100 if search_type == "semantic" else result['_score'] %}
+                                        <span class="tag is-family-monospace is-size-7">{{ "%.2f" | format(score) if score else 'N/A' }}</span>
                                     </td>
                                     <td class="text">
                                         <h3 class="is-size-5 mb-1">
                                             {{ result['_source']['title'] }}
 
-                                            <code class="is-size-7 has-text-grey-dark">
+                                            <code class="is-size-7 is-rounded mx-1 has-text-grey-dark">
                                                 {{ result['_id'] }}
                                             </code>
 
@@ -173,13 +175,10 @@
                                             </small>
                                         </h3>
                                         {% for inner_hit in result['inner_hits']['parts']['hits']['hits'] %}
-                                            {% set outer_loop = loop %}
-                                            {% for part in inner_hit['fields']['parts'] %}
                                             <p class="force-wrap snippet">
-                                                {{ part['chunk'][0] | truncate(500, end=' …') }}
-                                                {% if outer_loop.index < result['inner_hits']['parts']['hits']['hits'] | length %}<span class="has-text-danger">|</span>{% endif %}
+                                                {{ inner_hit['_source']['chunk'] | truncate(500, end=' …') }}
+                                                {% if loop.index < result['inner_hits']['parts']['hits']['hits'] | length %}<span class="has-text-danger">|</span>{% endif %}
                                             </p>
-                                            {% endfor %}
                                         {% endfor %}
                                     </td>
                                 </tr>
