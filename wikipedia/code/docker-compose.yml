@@ -1,29 +1,93 @@
+# To run the whole project:
+#
 # $ docker compose up --detach --wait
+#
+# To run only Elasticsearch
+#
+# $ docker compose up --detach --wait elasticsearch
+
+# NOTE: If you see `ERROR: Elasticsearch exited unexpectedly, with exit code 137`,
+# you need to allocate more RAM to Docker.
 
 version: "3.8"
 
+# Template for the inference API services
+#
+x-inference-api: &inference-api
+  platform: linux/amd64/v8
+  image: ghcr.io/huggingface/text-embeddings-inference:cpu-0.6
+  volumes: [ "~/.cache/huggingface/hub:/data:ro" ] # Mount local HF cache
+  networks: [ "application" ]
+  environment:
+    # Defaults, but prevent future breakage
+    - PORT=80
+    - HUGGINGFACE_HUB_CACHE=/data
+  # See <https://github.com/huggingface/text-embeddings-inference/pull/117>
+  # healthcheck:
+  #   test: curl --max-time 120 --retry 120 --retry-delay 1 --show-error --silent http://localhost/health
+
 services:
+  # The application
+  #
   app:
-    container_name: app
     depends_on: [ 'elasticsearch' ]
     build:
       context: ./app
       dockerfile: Dockerfile
-      args:
-        - MODEL_ID=intfloat/multilingual-e5-small
     networks:
       - application
     ports:
       - 8080:8080
     environment:
       - ELASTICSEARCH_URL=http://es01:9200
-      - INDEX_NAME=wikipedia-search
     restart: on-failure:5
     healthcheck:
-      test: curl --max-time 120 --retry 120 --retry-delay 1 --show-error --silent http://0.0.0.0:8000/status
+      test: curl --max-time 120 --retry 120 --retry-delay 1 --show-error --silent http://0.0.0.0:8080/status
 
+  # Inference API: small
+  #
+  inference-api-e5-small:
+    <<: *inference-api
+    ports: [ "5001:80" ]
+    environment:
+      - MODEL_ID=intfloat/multilingual-e5-small
+
+  # Inference API: base
+  #
+  inference-api-e5-base:
+    <<: *inference-api
+    ports: [ "5002:80" ]
+    environment:
+      - MODEL_ID=intfloat/multilingual-e5-base
+
+  # Inference API: large
+  #
+  inference-api-e5-large:
+    <<: *inference-api
+    ports: [ "5003:80" ]
+    environment:
+      - MODEL_ID=intfloat/multilingual-e5-large
+
+  # Inference API: large-instruct
+  #
+  inference-api-e5-large-instruct:
+    <<: *inference-api
+    ports: [ "5004:80" ]
+    environment:
+      - MODEL_ID=intfloat/multilingual-e5-large-instruct
+
+  # Inference API: minilm
+  #
+  inference-api-minilm:
+    <<: *inference-api
+    ports: [ "5005:80" ]
+    environment:
+      - MODEL_ID=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+
+  # Elasticsearch
+  #
   elasticsearch:
-    container_name: es01
+    container_name: es01 # Configures the hostname
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:?unset}
     volumes:
       - data-es:/usr/share/elasticsearch/data
