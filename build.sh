@@ -91,6 +91,6 @@ html = Template(template).render({"talks":talks})
 with open('_site/index.html', 'w') as file: file.write(html)
 EOF)
 
-python3 -c "${CODE}"
+python3.11 -c "${CODE}"
 
 echo "open _site/index.html"
