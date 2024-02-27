@@ -1,0 +1,284 @@
+[
+  {
+    "metric": "lexical",
+    "metric_name": "nDCG@10",
+    "score": 0.16687993983753535,
+    "hits": [
+      {
+        "title": "Kadaňský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Kada%C5%88sk%C3%BD%20orloj"
+      },
+      {
+        "title": "Jakub Čech (hodinář)",
+        "url": "https://cs.wikipedia.org/wiki/Jakub%20%C4%8Cech%20%28hodin%C3%A1%C5%99%29"
+      },
+      {
+        "title": "Pohádkový orloj v Ostravě",
+        "url": "https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B"
+      },
+      {
+        "title": "Chmelový orloj",
+        "url": "https://cs.wikipedia.org/wiki/Chmelov%C3%BD%20orloj"
+      },
+      {
+        "title": "Jan Táborský z Klokotské Hory",
+        "url": "https://cs.wikipedia.org/wiki/Jan%20T%C3%A1borsk%C3%BD%20z%20Klokotsk%C3%A9%20Hory"
+      },
+      {
+        "title": "Orloj",
+        "url": "https://cs.wikipedia.org/wiki/Orloj"
+      },
+      {
+        "title": "Ludvík Hainz",
+        "url": "https://cs.wikipedia.org/wiki/Ludv%C3%ADk%20Hainz"
+      },
+      {
+        "title": "Seznam osobností Prahy",
+        "url": "https://cs.wikipedia.org/wiki/Seznam%20osobnost%C3%AD%20Prahy"
+      },
+      {
+        "title": "Mistr Hanuš",
+        "url": "https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1"
+      },
+      {
+        "title": "Cisiojan",
+        "url": "https://cs.wikipedia.org/wiki/Cisiojan"
+      }
+    ]
+  },
+  {
+    "metric": "e5-small",
+    "metric_name": "nDCG@10",
+    "score": 0.8768083590039725,
+    "hits": [
+      {
+        "title": "Staroměstský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj"
+      },
+      {
+        "title": "Orloj",
+        "url": "https://cs.wikipedia.org/wiki/Orloj"
+      },
+      {
+        "title": "Jakub Čech (hodinář)",
+        "url": "https://cs.wikipedia.org/wiki/Jakub%20%C4%8Cech%20%28hodin%C3%A1%C5%99%29"
+      },
+      {
+        "title": "Mistr Hanuš",
+        "url": "https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1"
+      },
+      {
+        "title": "Pokojový orloj Jana Maška",
+        "url": "https://cs.wikipedia.org/wiki/Pokojov%C3%BD%20orloj%20Jana%20Ma%C5%A1ka"
+      },
+      {
+        "title": "Slovenský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj"
+      },
+      {
+        "title": "Pohádkový orloj v Ostravě",
+        "url": "https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B"
+      },
+      {
+        "title": "Jan Táborský z Klokotské Hory",
+        "url": "https://cs.wikipedia.org/wiki/Jan%20T%C3%A1borsk%C3%BD%20z%20Klokotsk%C3%A9%20Hory"
+      },
+      {
+        "title": "Olomoucký orloj",
+        "url": "https://cs.wikipedia.org/wiki/Olomouck%C3%BD%20orloj"
+      },
+      {
+        "title": "Chronologie starověkého Blízkého východu",
+        "url": "https://cs.wikipedia.org/wiki/Chronologie%20starov%C4%9Bk%C3%A9ho%20Bl%C3%ADzk%C3%A9ho%20v%C3%BDchodu"
+      }
+    ]
+  },
+  {
+    "metric": "e5-base",
+    "metric_name": "nDCG@10",
+    "score": 0.5798168917598391,
+    "hits": [
+      {
+        "title": "Ovocný trh (Praha)",
+        "url": "https://cs.wikipedia.org/wiki/Ovocn%C3%BD%20trh%20%28Praha%29"
+      },
+      {
+        "title": "Staroměstský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj"
+      },
+      {
+        "title": "Orloj",
+        "url": "https://cs.wikipedia.org/wiki/Orloj"
+      },
+      {
+        "title": "Pohádkový orloj v Ostravě",
+        "url": "https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B"
+      },
+      {
+        "title": "Chmelový orloj",
+        "url": "https://cs.wikipedia.org/wiki/Chmelov%C3%BD%20orloj"
+      },
+      {
+        "title": "Křižovnické náměstí",
+        "url": "https://cs.wikipedia.org/wiki/K%C5%99i%C5%BEovnick%C3%A9%20n%C3%A1m%C4%9Bst%C3%AD"
+      },
+      {
+        "title": "Očnice",
+        "url": "https://cs.wikipedia.org/wiki/O%C4%8Dnice"
+      },
+      {
+        "title": "Slovenský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj"
+      },
+      {
+        "title": "Pokojový orloj Jana Maška",
+        "url": "https://cs.wikipedia.org/wiki/Pokojov%C3%BD%20orloj%20Jana%20Ma%C5%A1ka"
+      },
+      {
+        "title": "Mistr Hanuš",
+        "url": "https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1"
+      }
+    ]
+  },
+  {
+    "metric": "e5-large",
+    "metric_name": "nDCG@10",
+    "score": 0.8532545915999133,
+    "hits": [
+      {
+        "title": "Staroměstský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj"
+      },
+      {
+        "title": "Orloj",
+        "url": "https://cs.wikipedia.org/wiki/Orloj"
+      },
+      {
+        "title": "Ovocný trh (Praha)",
+        "url": "https://cs.wikipedia.org/wiki/Ovocn%C3%BD%20trh%20%28Praha%29"
+      },
+      {
+        "title": "Dům U Bílého orla (Rytířská)",
+        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20B%C3%ADl%C3%A9ho%20orla%20%28Ryt%C3%AD%C5%99sk%C3%A1%29"
+      },
+      {
+        "title": "Dům U Červeného orla (Jilská)",
+        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20%C4%8Cerven%C3%A9ho%20orla%20%28Jilsk%C3%A1%29"
+      },
+      {
+        "title": "Kadaňský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Kada%C5%88sk%C3%BD%20orloj"
+      },
+      {
+        "title": "Mistr Hanuš",
+        "url": "https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1"
+      },
+      {
+        "title": "Slovenský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj"
+      },
+      {
+        "title": "Pohádkový orloj v Ostravě",
+        "url": "https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B"
+      },
+      {
+        "title": "Staré Město (Praha)",
+        "url": "https://cs.wikipedia.org/wiki/Star%C3%A9%20M%C4%9Bsto%20%28Praha%29"
+      }
+    ]
+  },
+  {
+    "metric": "e5-instruct",
+    "metric_name": "nDCG@10",
+    "score": 0.539475046508732,
+    "hits": [
+      {
+        "title": "Dům U Zlatého orla (Malé náměstí)",
+        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20Zlat%C3%A9ho%20orla%20%28Mal%C3%A9%20n%C3%A1m%C4%9Bst%C3%AD%29"
+      },
+      {
+        "title": "Staroměstský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj"
+      },
+      {
+        "title": "Orloj",
+        "url": "https://cs.wikipedia.org/wiki/Orloj"
+      },
+      {
+        "title": "Seznam gymnázií v Česku",
+        "url": "https://cs.wikipedia.org/wiki/Seznam%20gymn%C3%A1zi%C3%AD%20v%20%C4%8Cesku"
+      },
+      {
+        "title": "Seznam středních škol v Česku",
+        "url": "https://cs.wikipedia.org/wiki/Seznam%20st%C5%99edn%C3%ADch%20%C5%A1kol%20v%20%C4%8Cesku"
+      },
+      {
+        "title": "Seznam ulic v Praze",
+        "url": "https://cs.wikipedia.org/wiki/Seznam%20ulic%20v%20Praze"
+      },
+      {
+        "title": "Dům čp. 100 (Štramberk)",
+        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20%C4%8Dp.%20100%20%28%C5%A0tramberk%29"
+      },
+      {
+        "title": "Náměstí Svobody (Zákupy)",
+        "url": "https://cs.wikipedia.org/wiki/N%C3%A1m%C4%9Bst%C3%AD%20Svobody%20%28Z%C3%A1kupy%29"
+      },
+      {
+        "title": "Ostravský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Ostravsk%C3%BD%20orloj"
+      },
+      {
+        "title": "Produkční zahrady Pražského hradu",
+        "url": "https://cs.wikipedia.org/wiki/Produk%C4%8Dn%C3%AD%20zahrady%20Pra%C5%BEsk%C3%A9ho%20hradu"
+      }
+    ]
+  },
+  {
+    "metric": "minilm",
+    "metric_name": "nDCG@10",
+    "score": 0.0,
+    "hits": [
+      {
+        "title": "Ruské kolo",
+        "url": "https://cs.wikipedia.org/wiki/Rusk%C3%A9%20kolo"
+      },
+      {
+        "title": "Dlask tlustozobý",
+        "url": "https://cs.wikipedia.org/wiki/Dlask%20tlustozob%C3%BD"
+      },
+      {
+        "title": "Čečetka tmavá",
+        "url": "https://cs.wikipedia.org/wiki/%C4%8Ce%C4%8Detka%20tmav%C3%A1"
+      },
+      {
+        "title": "Komerční aranžování květin",
+        "url": "https://cs.wikipedia.org/wiki/Komer%C4%8Dn%C3%AD%20aran%C5%BEov%C3%A1n%C3%AD%20kv%C4%9Btin"
+      },
+      {
+        "title": "Helheim",
+        "url": "https://cs.wikipedia.org/wiki/Helheim"
+      },
+      {
+        "title": "Křížová cesta (Žulová)",
+        "url": "https://cs.wikipedia.org/wiki/K%C5%99%C3%AD%C5%BEov%C3%A1%20cesta%20%28%C5%BDulov%C3%A1%29"
+      },
+      {
+        "title": "NGC 6752",
+        "url": "https://cs.wikipedia.org/wiki/NGC%206752"
+      },
+      {
+        "title": "Hyperbola",
+        "url": "https://cs.wikipedia.org/wiki/Hyperbola"
+      },
+      {
+        "title": "Vratislav Bělík",
+        "url": "https://cs.wikipedia.org/wiki/Vratislav%20B%C4%9Bl%C3%ADk"
+      },
+      {
+        "title": "Paježura Attenboroughova",
+        "url": "https://cs.wikipedia.org/wiki/Paje%C5%BEura%20Attenboroughova"
+      }
+    ]
+  }
+]
