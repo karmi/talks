@@ -870,6 +870,14 @@ Karel Minařík
 </section>
 </section>
 <section class="slide level2" data-background="#36454F">
+<h2>The Outcome</h2>
+<iframe src="http://127.0.0.1:5000/?q=Jak+fungují+hodinky%3F&amp;m=e5-base&amp;t=semantic" width="100%" height="85%">
+</iframe>
+<div class="footer">
+<p><a href="https://wikipedia.karmi.dev/?q=jak+fungují+hodinky%3F&amp;m=e5-large&amp;t=semantic">https://wikipedia.karmi.dev</a></p>
+</div>
+</section>
+<section class="slide level2" data-background="#36454F">
 <h2>The Workflow</h2>
 <ol type="1">
 <li>Pre-process the data</li>
@@ -878,11 +886,6 @@ Karel Minařík
 <li>Search the data</li>
 <li>Evaluate search quality</li>
 </ol>
-</section>
-<section class="slide level2" data-background="#36454F">
-<h2>The Outcome</h2>
-<iframe id="word-arithmetics" src="http://127.0.0.1:5000/?q=Jak+fungují+hodinky%3F&amp;m=e5-base&amp;t=semantic" width="100%" height="85%">
-</iframe>
 </section>
 <section class="slide level2 slide-code">
 <h2><a href="https://huggingface.co/datasets/wikimedia/wikipedia/viewer/20231101.cs"><img data-src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" class="icon" width="40" height="40"> <code>wikimedia/wikipedia</code></a></h2>
@@ -1486,6 +1489,8 @@ Reference Související články Astrofyzika Astronomický ústav AV Hvězda Pla
 <li>Generate embeddings for each chunk</li>
 <li>Computationally expensive, best suited for GPU</li>
 <li>Performance: Hardware, batch size</li>
+<li>Multiple batching strategies</li>
+<li>Skipping wrapper and decorators <small>(see notebook source)</small></li>
 </ul>
 </section>
 <section class="slide level2 slide-code smaller">
@@ -1606,54 +1611,27 @@ Duration: 52 seconds, throughput: 19.00 pages/sec, estimated running time: 6 hou
 <div class="footer">
 <p>➋ Generate the Embeddings</p>
 </div>
-<div class="cell columns column-output-location" data-execution_count="1394">
-<div class="column">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>metrics_df <span class="op">=</span> pd.read_csv(<span class="st">"data/metrics.csv"</span>)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>alt.Chart(metrics_df, width<span class="op">=</span><span class="dv">200</span>, padding<span class="op">=</span><span class="dv">10</span>).mark_bar(</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  cornerRadiusEnd<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  binSpacing<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>).encode(</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span>alt.X(<span class="st">'throughput:Q'</span>, title<span class="op">=</span><span class="va">None</span>, axis<span class="op">=</span>{<span class="st">'orient'</span>:<span class="st">'top'</span>}),</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span>alt.Y(<span class="st">'implementation:N'</span>, title<span class="op">=</span><span class="va">None</span>),</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  yOffset<span class="op">=</span>alt.YOffset(<span class="st">'num_pages:N'</span>),</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  row<span class="op">=</span>alt.Row(<span class="st">'device_name:N'</span>, title<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>              sort<span class="op">=</span>[<span class="st">'a100'</span>, <span class="st">'rtx-4090'</span>, <span class="st">'m3-max'</span>]),</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  color<span class="op">=</span>alt.Color(<span class="st">'num_pages:N'</span>,</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>                  scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'set1'</span>),</span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>                  title<span class="op">=</span><span class="va">None</span>),</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  tooltip<span class="op">=</span>[</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'device_name'</span>,</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'implementation'</span>,</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'num_pages'</span>,</span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'throughput'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output cell-output-display" data-execution_count="1394">
+<div class="cell" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="72">
 
 <style>
-  #altair-viz-456ded335c57439fac51df1959459342.vega-embed {
+  #altair-viz-ab145c52762f4855a8d02483bff78075.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-456ded335c57439fac51df1959459342.vega-embed details,
-  #altair-viz-456ded335c57439fac51df1959459342.vega-embed details summary {
+  #altair-viz-ab145c52762f4855a8d02483bff78075.vega-embed details,
+  #altair-viz-ab145c52762f4855a8d02483bff78075.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-456ded335c57439fac51df1959459342"></div>
+<div id="altair-viz-ab145c52762f4855a8d02483bff78075"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-456ded335c57439fac51df1959459342") {
-      outputDiv = document.getElementById("altair-viz-456ded335c57439fac51df1959459342");
+    if (outputDiv.id !== "altair-viz-ab145c52762f4855a8d02483bff78075") {
+      outputDiv = document.getElementById("altair-viz-ab145c52762f4855a8d02483bff78075");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1699,9 +1677,8 @@ Duration: 52 seconds, throughput: 19.00 pages/sec, estimated running time: 6 hou
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-b30f767c433853421dd46dbb9f98ef84"}, "mark": {"type": "bar", "binSpacing": 2, "cornerRadiusEnd": 2}, "encoding": {"color": {"field": "num_pages", "scale": {"scheme": "set1"}, "title": null, "type": "nominal"}, "row": {"field": "device_name", "sort": ["a100", "rtx-4090", "m3-max"], "title": null, "type": "nominal"}, "tooltip": [{"field": "device_name", "type": "nominal"}, {"field": "implementation", "type": "nominal"}, {"field": "num_pages", "type": "quantitative"}, {"field": "throughput", "type": "quantitative"}], "x": {"axis": {"orient": "top"}, "field": "throughput", "title": null, "type": "quantitative"}, "y": {"field": "implementation", "title": null, "type": "nominal"}, "yOffset": {"field": "num_pages", "type": "nominal"}}, "padding": 10, "width": 200, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-b30f767c433853421dd46dbb9f98ef84": [{"Unnamed: 0": 3, "implementation": "create_embeddings_sequential", "device_type": "MPS", "device_name": "m3-max", "device_info": "m3-max-mps", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 247.77223254198907, "throughput": 4.035964763850338, "min_duration": 17.401388917001896, "max_duration": 34.378650124999695, "mean_duration": 24.03367872920062}, {"Unnamed: 0": 4, "implementation": "create_embeddings_parallel_page", "device_type": "MPS", "device_name": "m3-max", "device_info": "m3-max-mps", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 228.46622016699985, "throughput": 4.377014681947464, "min_duration": 11.901914332993329, "max_duration": 29.113616457994794, "mean_duration": 22.11304713330173}, {"Unnamed: 0": 5, "implementation": "create_embeddings_parallel_batch", "device_type": "MPS", "device_name": "m3-max", "device_info": "m3-max-mps", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 67.95902479099459, "throughput": 14.714749116478089, "min_duration": 2.757536541990703, "max_duration": 11.325305000005756, "mean_duration": 6.008715983500588}, {"Unnamed: 0": 9, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 188.3925132260192, "throughput": 5.308066562073382, "min_duration": 9.864557188004255, "max_duration": 29.46253813011572, "mean_duration": 18.43356993533671}, {"Unnamed: 0": 10, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 45.380948398960754, "throughput": 22.035678743613488, "min_duration": 3.4234943059273064, "max_duration": 5.089134408161044, "mean_duration": 4.099871359486133}, {"Unnamed: 0": 11, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 1000, "map_batch_size": 10.0, "encode_batch_size": 1000.0, "total_duration": 24.03447675914504, "throughput": 41.606897042994845, "min_duration": 0.0363102511037141, "max_duration": 1.2418507039546969, "mean_duration": 0.1935074247210286}, {"Unnamed: 0": 12, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 5000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 994.7829352600966, "throughput": 5.026222126229675, "min_duration": 7.355776490876451, "max_duration": 41.05631630704738, "mean_duration": 19.803826822559348}, {"Unnamed: 0": 13, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 5000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 207.6293034960981, "throughput": 24.08137924565143, "min_duration": 3.3026222879998386, "max_duration": 5.859481386840344, "mean_duration": 4.036378885945306}, {"Unnamed: 0": 14, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 5000, "map_batch_size": 10.0, "encode_batch_size": 1000.0, "total_duration": 104.53412756603213, "throughput": 47.83126923637068, "min_duration": 0.0388324949890375, "max_duration": 1.2960564950481055, "mean_duration": 0.1942237078305334}, {"Unnamed: 0": 15, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 50000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 1774.4695705620106, "throughput": 28.177434445474308, "min_duration": 30.72697459394112, "max_duration": 57.73582288692705, "mean_duration": 35.09485867723357}, {"Unnamed: 0": 16, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 50000, "map_batch_size": 10.0, "encode_batch_size": 500.0, "total_duration": 722.2194288070314, "throughput": 69.23103700296522, "min_duration": 0.0330811021849513, "max_duration": 3.896171391941607, "mean_duration": 0.1368736956728622}, {"Unnamed: 0": 20, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 50.511659348383546, "throughput": 19.79740940805188, "min_duration": 2.6452941726893187, "max_duration": 7.723219372332096, "mean_duration": 4.932920461520553}, {"Unnamed: 0": 21, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 29.373896284028888, "throughput": 34.043832330943374, "min_duration": 1.6890865433961153, "max_duration": 4.258179413154721, "mean_duration": 2.814694369211793}, {"Unnamed: 0": 22, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 24.18323518522084, "throughput": 41.35096037982265, "min_duration": 1.2339102029800415, "max_duration": 3.630253599956632, "mean_duration": 2.2953676452860234}, {"Unnamed: 0": 23, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 5000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 263.60818984918296, "throughput": 18.967544228654766, "min_duration": 40.12282294780016, "max_duration": 62.75354970805347, "mean_duration": 52.24163052327931}, {"Unnamed: 0": 24, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 5000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 142.3300096169114, "throughput": 35.12962595490409, "min_duration": 22.800316836684942, "max_duration": 32.688373072072864, "mean_duration": 28.0423240352422}, {"Unnamed: 0": 25, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 5000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 102.54322223551571, "throughput": 48.75992670209125, "min_duration": 16.01880633458495, "max_duration": 23.73845813423395, "mean_duration": 20.091905187815428}, {"Unnamed: 0": 26, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 50000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 1065.03233342804, "throughput": 46.94693149743542, "min_duration": 13.634426517412066, "max_duration": 54.98637079447508, "mean_duration": 21.155522922500968}, {"Unnamed: 0": 27, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 50000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 577.4295165520161, "throughput": 86.59065490549077, "min_duration": 4.995810279622674, "max_duration": 39.11978733353317, "mean_duration": 11.405137999877333}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-123fa0c77a39450060c7c56f7dfc8eac"}, "mark": {"type": "bar", "binSpacing": 2, "cornerRadiusEnd": 2}, "encoding": {"color": {"field": "num_pages", "scale": {"scheme": "set1"}, "title": null, "type": "nominal"}, "column": {"field": "device_name_formatted", "header": {"labelFontWeight": "bold"}, "sort": ["A100", "RTX 4090", "M3 Max"], "title": null, "type": "nominal"}, "tooltip": [{"field": "device_name", "type": "nominal"}, {"field": "implementation", "type": "nominal"}, {"field": "num_pages", "type": "quantitative"}, {"field": "throughput", "type": "quantitative"}], "x": {"axis": {"orient": "top"}, "field": "throughput", "title": null, "type": "quantitative"}, "y": {"field": "implementation", "title": null, "type": "nominal"}, "yOffset": {"field": "num_pages", "type": "nominal"}}, "height": 300, "padding": 10, "width": 250, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-123fa0c77a39450060c7c56f7dfc8eac": [{"Unnamed: 0": 3, "implementation": "create_embeddings_sequential", "device_type": "MPS", "device_name": "m3-max", "device_info": "m3-max-mps", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 247.77223254198907, "throughput": 4.035964763850338, "min_duration": 17.401388917001896, "max_duration": 34.378650124999695, "mean_duration": 24.03367872920062, "device_name_formatted": "M3 Max"}, {"Unnamed: 0": 4, "implementation": "create_embeddings_parallel_page", "device_type": "MPS", "device_name": "m3-max", "device_info": "m3-max-mps", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 228.46622016699985, "throughput": 4.377014681947464, "min_duration": 11.901914332993329, "max_duration": 29.113616457994794, "mean_duration": 22.11304713330173, "device_name_formatted": "M3 Max"}, {"Unnamed: 0": 5, "implementation": "create_embeddings_parallel_batch", "device_type": "MPS", "device_name": "m3-max", "device_info": "m3-max-mps", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 67.95902479099459, "throughput": 14.714749116478089, "min_duration": 2.757536541990703, "max_duration": 11.325305000005756, "mean_duration": 6.008715983500588, "device_name_formatted": "M3 Max"}, {"Unnamed: 0": 9, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 188.3925132260192, "throughput": 5.308066562073382, "min_duration": 9.864557188004255, "max_duration": 29.46253813011572, "mean_duration": 18.43356993533671, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 10, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 45.380948398960754, "throughput": 22.035678743613488, "min_duration": 3.4234943059273064, "max_duration": 5.089134408161044, "mean_duration": 4.099871359486133, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 11, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 1000, "map_batch_size": 10.0, "encode_batch_size": 1000.0, "total_duration": 24.03447675914504, "throughput": 41.606897042994845, "min_duration": 0.0363102511037141, "max_duration": 1.2418507039546969, "mean_duration": 0.1935074247210286, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 12, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 5000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 994.7829352600966, "throughput": 5.026222126229675, "min_duration": 7.355776490876451, "max_duration": 41.05631630704738, "mean_duration": 19.803826822559348, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 13, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 5000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 207.6293034960981, "throughput": 24.08137924565143, "min_duration": 3.3026222879998386, "max_duration": 5.859481386840344, "mean_duration": 4.036378885945306, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 14, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 5000, "map_batch_size": 10.0, "encode_batch_size": 1000.0, "total_duration": 104.53412756603213, "throughput": 47.83126923637068, "min_duration": 0.0388324949890375, "max_duration": 1.2960564950481055, "mean_duration": 0.1942237078305334, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 15, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 50000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 1774.4695705620106, "throughput": 28.177434445474308, "min_duration": 30.72697459394112, "max_duration": 57.73582288692705, "mean_duration": 35.09485867723357, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 16, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "rtx-4090", "device_info": "rtx-4090-cuda", "num_pages": 50000, "map_batch_size": 10.0, "encode_batch_size": 500.0, "total_duration": 722.2194288070314, "throughput": 69.23103700296522, "min_duration": 0.0330811021849513, "max_duration": 3.896171391941607, "mean_duration": 0.1368736956728622, "device_name_formatted": "RTX 4090"}, {"Unnamed: 0": 20, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 50.511659348383546, "throughput": 19.79740940805188, "min_duration": 2.6452941726893187, "max_duration": 7.723219372332096, "mean_duration": 4.932920461520553, "device_name_formatted": "A100"}, {"Unnamed: 0": 21, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 29.373896284028888, "throughput": 34.043832330943374, "min_duration": 1.6890865433961153, "max_duration": 4.258179413154721, "mean_duration": 2.814694369211793, "device_name_formatted": "A100"}, {"Unnamed: 0": 22, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 1000, "map_batch_size": 100.0, "encode_batch_size": 1000.0, "total_duration": 24.18323518522084, "throughput": 41.35096037982265, "min_duration": 1.2339102029800415, "max_duration": 3.630253599956632, "mean_duration": 2.2953676452860234, "device_name_formatted": "A100"}, {"Unnamed: 0": 23, "implementation": "create_embeddings_sequential", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 5000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 263.60818984918296, "throughput": 18.967544228654766, "min_duration": 40.12282294780016, "max_duration": 62.75354970805347, "mean_duration": 52.24163052327931, "device_name_formatted": "A100"}, {"Unnamed: 0": 24, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 5000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 142.3300096169114, "throughput": 35.12962595490409, "min_duration": 22.800316836684942, "max_duration": 32.688373072072864, "mean_duration": 28.0423240352422, "device_name_formatted": "A100"}, {"Unnamed: 0": 25, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 5000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 102.54322223551571, "throughput": 48.75992670209125, "min_duration": 16.01880633458495, "max_duration": 23.73845813423395, "mean_duration": 20.091905187815428, "device_name_formatted": "A100"}, {"Unnamed: 0": 26, "implementation": "create_embeddings_parallel_page", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 50000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 1065.03233342804, "throughput": 46.94693149743542, "min_duration": 13.634426517412066, "max_duration": 54.98637079447508, "mean_duration": 21.155522922500968, "device_name_formatted": "A100"}, {"Unnamed: 0": 27, "implementation": "create_embeddings_parallel_batch", "device_type": "CUDA", "device_name": "a100", "device_info": "a100-cuda", "num_pages": 50000, "map_batch_size": 1000.0, "encode_batch_size": 1000.0, "total_duration": 577.4295165520161, "throughput": 86.59065490549077, "min_duration": 4.995810279622674, "max_duration": 39.11978733353317, "mean_duration": 11.405137999877333, "device_name_formatted": "A100"}]}}, {"mode": "vega-lite"});
 </script>
-</div>
 </div>
 </div>
 <aside><div>
@@ -1715,10 +1692,10 @@ Duration: 52 seconds, throughput: 19.00 pages/sec, estimated running time: 6 hou
 <p>➋ Generate the Embeddings</p>
 </div>
 <div class="cell" data-execution_count="532">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>DATASET_ID <span class="op">=</span> <span class="st">"karmiq/wikipedia-embeddings-cs-e5-base"</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>ds_emb <span class="op">=</span> datasets.load_dataset(DATASET_ID, split<span class="op">=</span><span class="st">"train"</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>ds_emb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>DATASET_ID <span class="op">=</span> <span class="st">"karmiq/wikipedia-embeddings-cs-e5-base"</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>ds_emb <span class="op">=</span> datasets.load_dataset(DATASET_ID, split<span class="op">=</span><span class="st">"train"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>ds_emb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="532">
 <pre><code>Dataset({
     features: ['id', 'url', 'title', 'chunks', 'embeddings'],
@@ -1742,29 +1719,29 @@ Duration: 52 seconds, throughput: 19.00 pages/sec, estimated running time: 6 hou
 <p>➌ Index the Data</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> cd code <span class="op">&amp;&amp;</span> docker compose up <span class="op">--</span>wait <span class="op">--</span>detach elasticsearch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> cd code <span class="op">&amp;&amp;</span> docker compose up <span class="op">--</span>wait <span class="op">--</span>detach elasticsearch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="534">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> urlparse</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm.notebook <span class="im">import</span> tqdm</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> elasticsearch <span class="im">import</span> Elasticsearch</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>ELASTICSEARCH_URL <span class="op">=</span> os.getenv(<span class="st">"ELASTICSEARCH_URL"</span>, <span class="st">"http://localhost:9200"</span>)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>INDEX_NAME <span class="op">=</span> <span class="st">"wikipedia-search-v999"</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>INDEX_ALIAS <span class="op">=</span> <span class="ss">f"wikipedia-search-sample"</span></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> Elasticsearch(hosts<span class="op">=</span>ELASTICSEARCH_URL, request_timeout<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using model [</span><span class="sc">{</span>MODEL_ID<span class="sc">}</span><span class="ss">] on [</span><span class="sc">{</span>model<span class="sc">.</span>device<span class="sc">}</span><span class="ss">] "</span></span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"with [</span><span class="sc">{</span>model<span class="sc">.</span>get_sentence_embedding_dimension()<span class="sc">}</span><span class="ss">] dimensions "</span>)</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using dataset [</span><span class="sc">{</span>DATASET_ID<span class="sc">}</span><span class="ss">] (</span><span class="sc">{</span>humanize<span class="sc">.</span>naturalsize(ds_emb.size_in_bytes)<span class="sc">}</span><span class="ss">) with </span><span class="sc">{</span>ds_emb<span class="sc">.</span>num_rows<span class="sc">:,}</span><span class="ss"> rows"</span>)</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Connected to Elasticsearch at [</span><span class="sc">{</span>urlparse(ELASTICSEARCH_URL)<span class="sc">.</span>hostname<span class="sc">}</span><span class="ss">] "</span></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"with index [</span><span class="sc">{</span>INDEX_NAME<span class="sc">}</span><span class="ss">] and alias [</span><span class="sc">{</span>INDEX_ALIAS<span class="sc">}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> urlparse</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm.notebook <span class="im">import</span> tqdm</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> elasticsearch <span class="im">import</span> Elasticsearch</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>ELASTICSEARCH_URL <span class="op">=</span> os.getenv(<span class="st">"ELASTICSEARCH_URL"</span>, <span class="st">"http://localhost:9200"</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>INDEX_NAME <span class="op">=</span> <span class="st">"wikipedia-search-v999"</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>INDEX_ALIAS <span class="op">=</span> <span class="ss">f"wikipedia-search-sample"</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> Elasticsearch(hosts<span class="op">=</span>ELASTICSEARCH_URL, request_timeout<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using model [</span><span class="sc">{</span>MODEL_ID<span class="sc">}</span><span class="ss">] on [</span><span class="sc">{</span>model<span class="sc">.</span>device<span class="sc">}</span><span class="ss">] "</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"with [</span><span class="sc">{</span>model<span class="sc">.</span>get_sentence_embedding_dimension()<span class="sc">}</span><span class="ss">] dimensions "</span>)</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using dataset [</span><span class="sc">{</span>DATASET_ID<span class="sc">}</span><span class="ss">] (</span><span class="sc">{</span>humanize<span class="sc">.</span>naturalsize(ds_emb.size_in_bytes)<span class="sc">}</span><span class="ss">) with </span><span class="sc">{</span>ds_emb<span class="sc">.</span>num_rows<span class="sc">:,}</span><span class="ss"> rows"</span>)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Connected to Elasticsearch at [</span><span class="sc">{</span>urlparse(ELASTICSEARCH_URL)<span class="sc">.</span>hostname<span class="sc">}</span><span class="ss">] "</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"with index [</span><span class="sc">{</span>INDEX_NAME<span class="sc">}</span><span class="ss">] and alias [</span><span class="sc">{</span>INDEX_ALIAS<span class="sc">}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Using model [intfloat/multilingual-e5-base] on [mps:0] with [768] dimensions 
 Using dataset [karmiq/wikipedia-embeddings-cs-e5-base] (9.9 GB) with 534,044 rows
@@ -1778,32 +1755,32 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 <p>➌ Index the Data</p>
 </div>
 <div class="cell" data-execution_count="535">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"properties"</span>: {</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span>: { <span class="st">"type"</span>: <span class="st">"keyword"</span> },</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"url"</span>:   { <span class="st">"type"</span>: <span class="st">"keyword"</span>, <span class="st">"index"</span>: <span class="va">False</span> },</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"parts"</span>: {</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span>: <span class="st">"nested"</span>,</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"properties"</span>: {</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chunk"</span>: {</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"text"</span>,</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"analyzer"</span>: <span class="st">"czech"</span>,</span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"embedding"</span>: {</span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"dense_vector"</span>,</span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"dims"</span>: model.get_sentence_embedding_dimension(),</span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"index"</span>: <span class="va">True</span>,</span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"similarity"</span>: <span class="st">"cosine"</span>,</span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"meta"</span>: { <span class="st">"model"</span>: MODEL_ID },</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"_source"</span>: {</span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"excludes"</span>: [<span class="st">"parts.embedding"</span>]</span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"properties"</span>: {</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span>: { <span class="st">"type"</span>: <span class="st">"keyword"</span> },</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"url"</span>:   { <span class="st">"type"</span>: <span class="st">"keyword"</span>, <span class="st">"index"</span>: <span class="va">False</span> },</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"parts"</span>: {</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"type"</span>: <span class="st">"nested"</span>,</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"properties"</span>: {</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chunk"</span>: {</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"text"</span>,</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"analyzer"</span>: <span class="st">"czech"</span>,</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"embedding"</span>: {</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"type"</span>: <span class="st">"dense_vector"</span>,</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"dims"</span>: model.get_sentence_embedding_dimension(),</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"index"</span>: <span class="va">True</span>,</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"similarity"</span>: <span class="st">"cosine"</span>,</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"meta"</span>: { <span class="st">"model"</span>: MODEL_ID },</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"_source"</span>: {</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"excludes"</span>: [<span class="st">"parts.embedding"</span>]</span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code smaller">
@@ -1829,22 +1806,22 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 <p>➌ Index the Data</p>
 </div>
 <div class="cell" data-execution_count="121">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">3</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> ds_emb.select(<span class="bu">range</span>(<span class="dv">100_000</span>)):</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> row[<span class="st">"id"</span>]</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> row[<span class="st">"embeddings"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">3</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> ds_emb.select(<span class="bu">range</span>(<span class="dv">100_000</span>)):</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> row[<span class="st">"id"</span>]</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> row[<span class="st">"embeddings"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>21.9 s ± 57.2 ms per loop (mean ± std. dev. of 3 runs, 3 loops each)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="120">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">3</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> batch <span class="kw">in</span> ds_emb.select(<span class="bu">range</span>(<span class="dv">100_000</span>)).with_format(<span class="st">"numpy"</span>).<span class="bu">iter</span>(<span class="dv">1000</span>):</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(batch[<span class="st">"id"</span>]):</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>      _ <span class="op">=</span> item</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>      _ <span class="op">=</span> batch[<span class="st">"embeddings"</span>][i].tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">3</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> batch <span class="kw">in</span> ds_emb.select(<span class="bu">range</span>(<span class="dv">100_000</span>)).with_format(<span class="st">"numpy"</span>).<span class="bu">iter</span>(<span class="dv">1000</span>):</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(batch[<span class="st">"id"</span>]):</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>      _ <span class="op">=</span> item</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>      _ <span class="op">=</span> batch[<span class="st">"embeddings"</span>][i].tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2.98 s ± 13.1 ms per loop (mean ± std. dev. of 3 runs, 3 loops each)</code></pre>
 </div>
@@ -1857,12 +1834,12 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 <p>➌ Index the Data</p>
 </div>
 <div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy, json, orjson</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> numpy.arange(<span class="dv">500</span>)</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10_000</span> json.dumps(a.tolist())</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10_000</span> orjson.dumps(a, option<span class="op">=</span>orjson.OPT_SERIALIZE_NUMPY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy, json, orjson</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> numpy.arange(<span class="dv">500</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10_000</span> json.dumps(a.tolist())</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10_000</span> orjson.dumps(a, option<span class="op">=</span>orjson.OPT_SERIALIZE_NUMPY)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>21.3 µs ± 303 ns per loop (mean ± std. dev. of 100 runs, 10,000 loops each)
 2.22 µs ± 175 ns per loop (mean ± std. dev. of 100 runs, 10,000 loops each)</code></pre>
@@ -1875,22 +1852,22 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 <p>➌ Index the Data</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>q orjson</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>q orjson</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="537">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> orjson</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> elasticsearch <span class="im">import</span> JSONSerializer</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OrjsonSerializer(JSONSerializer):</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> json_loads(<span class="va">self</span>, data):</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> orjson.loads(data)</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> json_dumps(<span class="va">self</span>, data):</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> orjson.dumps(data, option<span class="op">=</span>orjson.OPT_SERIALIZE_NUMPY)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> Elasticsearch(</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    hosts<span class="op">=</span>ELASTICSEARCH_URL, request_timeout<span class="op">=</span><span class="dv">300</span>, serializer<span class="op">=</span>OrjsonSerializer()</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> orjson</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> elasticsearch <span class="im">import</span> JSONSerializer</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OrjsonSerializer(JSONSerializer):</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> json_loads(<span class="va">self</span>, data):</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> orjson.loads(data)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> json_dumps(<span class="va">self</span>, data):</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> orjson.dumps(data, option<span class="op">=</span>orjson.OPT_SERIALIZE_NUMPY)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> Elasticsearch(</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    hosts<span class="op">=</span>ELASTICSEARCH_URL, request_timeout<span class="op">=</span><span class="dv">300</span>, serializer<span class="op">=</span>OrjsonSerializer()</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code smaller">
@@ -1899,20 +1876,20 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 <p>➌ Index the Data</p>
 </div>
 <div class="cell" data-execution_count="1396">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doc_generator(data, batch_size<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> batch <span class="kw">in</span> data.with_format(<span class="st">"numpy"</span>).<span class="bu">iter</span>(batch_size):</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, <span class="bu">id</span> <span class="kw">in</span> <span class="bu">enumerate</span>(batch[<span class="st">"id"</span>]):</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>      output <span class="op">=</span> {<span class="st">"id"</span>: <span class="bu">id</span>}</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>      output[<span class="st">"title"</span>] <span class="op">=</span> batch[<span class="st">"title"</span>][i]</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>      output[<span class="st">"url"</span>] <span class="op">=</span> batch[<span class="st">"url"</span>][i]</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>      output[<span class="st">"parts"</span>] <span class="op">=</span> [</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>          { <span class="st">"chunk"</span>: chunk, <span class="st">"embedding"</span>: embedding }</span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> chunk, embedding <span class="kw">in</span> <span class="bu">zip</span>(batch[<span class="st">"chunks"</span>][i], batch[<span class="st">"embeddings"</span>][i])</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>      ]</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">yield</span> output</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.printoptions(linewidth<span class="op">=</span><span class="dv">120</span>, threshold<span class="op">=</span><span class="dv">100</span>):</span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  display(<span class="bu">list</span>(doc_generator(ds_emb.select(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">2</span>)))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doc_generator(data, batch_size<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> batch <span class="kw">in</span> data.with_format(<span class="st">"numpy"</span>).<span class="bu">iter</span>(batch_size):</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, <span class="bu">id</span> <span class="kw">in</span> <span class="bu">enumerate</span>(batch[<span class="st">"id"</span>]):</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>      output <span class="op">=</span> {<span class="st">"id"</span>: <span class="bu">id</span>}</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>      output[<span class="st">"title"</span>] <span class="op">=</span> batch[<span class="st">"title"</span>][i]</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>      output[<span class="st">"url"</span>] <span class="op">=</span> batch[<span class="st">"url"</span>][i]</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>      output[<span class="st">"parts"</span>] <span class="op">=</span> [</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>          { <span class="st">"chunk"</span>: chunk, <span class="st">"embedding"</span>: embedding }</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> chunk, embedding <span class="kw">in</span> <span class="bu">zip</span>(batch[<span class="st">"chunks"</span>][i], batch[<span class="st">"embeddings"</span>][i])</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">yield</span> output</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.printoptions(linewidth<span class="op">=</span><span class="dv">120</span>, threshold<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  display(<span class="bu">list</span>(doc_generator(ds_emb.select(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">2</span>)))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>[{'id': '10',
   'title': 'Astronomie',
@@ -1938,53 +1915,53 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 <p>➌ Index the Data</p>
 </div>
 <div class="cell" data-execution_count="539">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> elasticsearch.helpers <span class="im">import</span> parallel_bulk</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>ds_to_index <span class="op">=</span> ds_emb.select(<span class="bu">range</span>(<span class="dv">100_000</span>))</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> skip_indexing:</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"Skipping indexing for [</span><span class="sc">{</span>INDEX_NAME<span class="sc">}</span><span class="ss">]"</span>)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  num_threads, batch_size <span class="op">=</span> <span class="dv">8</span>, <span class="dv">1_000</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  num_indexed, num_failed <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  progress <span class="op">=</span> tqdm(total<span class="op">=</span>ds_to_index.num_rows, unit<span class="op">=</span><span class="st">"doc"</span>, desc<span class="op">=</span><span class="st">"Indexing"</span>)</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  start <span class="op">=</span> time.perf_counter()</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span>:</span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    es.indices.put_settings(index<span class="op">=</span>INDEX_NAME, settings<span class="op">=</span>{<span class="st">"index.refresh_interval"</span>: <span class="st">"-1"</span>})</span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ok, info <span class="kw">in</span> parallel_bulk(</span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>        es,</span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span>INDEX_NAME,</span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>        actions<span class="op">=</span>doc_generator(ds_to_index),</span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>        thread_count<span class="op">=</span>num_threads,</span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>        chunk_size<span class="op">=</span>batch_size,</span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>        raise_on_error<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>    ):</span>
-<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ok:</span>
-<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a>            num_indexed <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>            num_failed <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"ERROR </span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'status'</span>]<span class="sc">}</span><span class="ss">: "</span></span>
-<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a>                  <span class="ss">f"</span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'error'</span>][<span class="st">'type'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'error'</span>][<span class="st">'caused_by'</span>][<span class="st">'type'</span>]<span class="sc">}</span><span class="ss">: "</span></span>
-<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a>                  <span class="ss">f"</span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'error'</span>][<span class="st">'caused_by'</span>][<span class="st">'reason'</span>][:<span class="dv">250</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-32"><a href="#cb55-32" aria-hidden="true" tabindex="-1"></a>        progress.update(<span class="dv">1</span>)</span>
-<span id="cb55-33"><a href="#cb55-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
-<span id="cb55-34"><a href="#cb55-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Indexing interrupted by the user after [</span><span class="sc">{</span>num_indexed<span class="sc">:,</span>d<span class="sc">}</span><span class="ss">] documents"</span>)</span>
-<span id="cb55-35"><a href="#cb55-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">finally</span>:</span>
-<span id="cb55-36"><a href="#cb55-36" aria-hidden="true" tabindex="-1"></a>    es.indices.refresh(index<span class="op">=</span>INDEX_NAME)</span>
-<span id="cb55-37"><a href="#cb55-37" aria-hidden="true" tabindex="-1"></a>    es.indices.put_settings(index<span class="op">=</span>INDEX_NAME, settings<span class="op">=</span>{<span class="st">"index.refresh_interval"</span>: <span class="va">None</span>})</span>
-<span id="cb55-38"><a href="#cb55-38" aria-hidden="true" tabindex="-1"></a>    progress.close()</span>
-<span id="cb55-39"><a href="#cb55-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-40"><a href="#cb55-40" aria-hidden="true" tabindex="-1"></a>  duration <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
-<span id="cb55-41"><a href="#cb55-41" aria-hidden="true" tabindex="-1"></a>  index_stats <span class="op">=</span> es.indices.stats(index<span class="op">=</span>INDEX_NAME, metric<span class="op">=</span><span class="st">'store'</span>, human<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb55-42"><a href="#cb55-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-43"><a href="#cb55-43" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(</span>
-<span id="cb55-44"><a href="#cb55-44" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Indexed [</span><span class="sc">{</span>num_indexed<span class="sc">:,</span>d<span class="sc">}</span><span class="ss">] documents with [</span><span class="sc">{</span>num_failed<span class="sc">:,</span>d<span class="sc">}</span><span class="ss">] errors"</span>,</span>
-<span id="cb55-45"><a href="#cb55-45" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"in </span><span class="sc">{</span>humanize<span class="sc">.</span>precisedelta(duration, minimum_unit<span class="op">=</span><span class="st">'seconds'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'</span><span class="sc">%d</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">,"</span>,</span>
-<span id="cb55-46"><a href="#cb55-46" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"throughput: </span><span class="sc">{</span>(num_indexed<span class="op">//</span>duration)<span class="sc">:,}</span><span class="ss"> doc/sec,"</span>,</span>
-<span id="cb55-47"><a href="#cb55-47" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"disk size: </span><span class="sc">{</span>index_stats[<span class="st">'_all'</span>][<span class="st">'primaries'</span>][<span class="st">'store'</span>][<span class="st">'size'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> elasticsearch.helpers <span class="im">import</span> parallel_bulk</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>ds_to_index <span class="op">=</span> ds_emb.select(<span class="bu">range</span>(<span class="dv">100_000</span>))</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> skip_indexing:</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"Skipping indexing for [</span><span class="sc">{</span>INDEX_NAME<span class="sc">}</span><span class="ss">]"</span>)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  num_threads, batch_size <span class="op">=</span> <span class="dv">8</span>, <span class="dv">1_000</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  num_indexed, num_failed <span class="op">=</span> <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  progress <span class="op">=</span> tqdm(total<span class="op">=</span>ds_to_index.num_rows, unit<span class="op">=</span><span class="st">"doc"</span>, desc<span class="op">=</span><span class="st">"Indexing"</span>)</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  start <span class="op">=</span> time.perf_counter()</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span>:</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>    es.indices.put_settings(index<span class="op">=</span>INDEX_NAME, settings<span class="op">=</span>{<span class="st">"index.refresh_interval"</span>: <span class="st">"-1"</span>})</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ok, info <span class="kw">in</span> parallel_bulk(</span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>        es,</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span>INDEX_NAME,</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>        actions<span class="op">=</span>doc_generator(ds_to_index),</span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>        thread_count<span class="op">=</span>num_threads,</span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>        chunk_size<span class="op">=</span>batch_size,</span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>        raise_on_error<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ok:</span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a>            num_indexed <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>            num_failed <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"ERROR </span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'status'</span>]<span class="sc">}</span><span class="ss">: "</span></span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a>                  <span class="ss">f"</span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'error'</span>][<span class="st">'type'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'error'</span>][<span class="st">'caused_by'</span>][<span class="st">'type'</span>]<span class="sc">}</span><span class="ss">: "</span></span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a>                  <span class="ss">f"</span><span class="sc">{</span>info[<span class="st">'index'</span>][<span class="st">'error'</span>][<span class="st">'caused_by'</span>][<span class="st">'reason'</span>][:<span class="dv">250</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a>        progress.update(<span class="dv">1</span>)</span>
+<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
+<span id="cb54-34"><a href="#cb54-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Indexing interrupted by the user after [</span><span class="sc">{</span>num_indexed<span class="sc">:,</span>d<span class="sc">}</span><span class="ss">] documents"</span>)</span>
+<span id="cb54-35"><a href="#cb54-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">finally</span>:</span>
+<span id="cb54-36"><a href="#cb54-36" aria-hidden="true" tabindex="-1"></a>    es.indices.refresh(index<span class="op">=</span>INDEX_NAME)</span>
+<span id="cb54-37"><a href="#cb54-37" aria-hidden="true" tabindex="-1"></a>    es.indices.put_settings(index<span class="op">=</span>INDEX_NAME, settings<span class="op">=</span>{<span class="st">"index.refresh_interval"</span>: <span class="va">None</span>})</span>
+<span id="cb54-38"><a href="#cb54-38" aria-hidden="true" tabindex="-1"></a>    progress.close()</span>
+<span id="cb54-39"><a href="#cb54-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-40"><a href="#cb54-40" aria-hidden="true" tabindex="-1"></a>  duration <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
+<span id="cb54-41"><a href="#cb54-41" aria-hidden="true" tabindex="-1"></a>  index_stats <span class="op">=</span> es.indices.stats(index<span class="op">=</span>INDEX_NAME, metric<span class="op">=</span><span class="st">'store'</span>, human<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb54-42"><a href="#cb54-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-43"><a href="#cb54-43" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(</span>
+<span id="cb54-44"><a href="#cb54-44" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Indexed [</span><span class="sc">{</span>num_indexed<span class="sc">:,</span>d<span class="sc">}</span><span class="ss">] documents with [</span><span class="sc">{</span>num_failed<span class="sc">:,</span>d<span class="sc">}</span><span class="ss">] errors"</span>,</span>
+<span id="cb54-45"><a href="#cb54-45" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"in </span><span class="sc">{</span>humanize<span class="sc">.</span>precisedelta(duration, minimum_unit<span class="op">=</span><span class="st">'seconds'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'</span><span class="sc">%d</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">,"</span>,</span>
+<span id="cb54-46"><a href="#cb54-46" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"throughput: </span><span class="sc">{</span>(num_indexed<span class="op">//</span>duration)<span class="sc">:,}</span><span class="ss"> doc/sec,"</span>,</span>
+<span id="cb54-47"><a href="#cb54-47" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"disk size: </span><span class="sc">{</span>index_stats[<span class="st">'_all'</span>][<span class="st">'primaries'</span>][<span class="st">'store'</span>][<span class="st">'size'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"c0ee248104cc48c4bd31f85c18de2742","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -2003,9 +1980,9 @@ Connected to Elasticsearch at [localhost] with index [wikipedia-search-v999] and
 </div>
 <div class="cell columns column-output-location" data-execution_count="540">
 <div class="column">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es.cat.segments(</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  index<span class="op">=</span>INDEX_NAME, v<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  h<span class="op">=</span>[<span class="st">"index"</span>, <span class="st">"shard"</span>, <span class="st">"docs.count"</span>, <span class="st">"size"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es.cat.segments(</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  index<span class="op">=</span>INDEX_NAME, v<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  h<span class="op">=</span>[<span class="st">"index"</span>, <span class="st">"shard"</span>, <span class="st">"docs.count"</span>, <span class="st">"size"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code>index                 shard docs.count    size
@@ -2078,20 +2055,20 @@ wikipedia-search-v999 0           6419  53.6mb
 <p>➌ Index the Data</p>
 </div>
 <div class="cell" data-execution_count="541">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>task_id <span class="op">=</span> es.indices.forcemerge(index<span class="op">=</span>INDEX_NAME, max_num_segments<span class="op">=</span><span class="dv">1</span>, wait_for_completion<span class="op">=</span><span class="va">False</span>)[<span class="st">'task'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>task_id <span class="op">=</span> es.indices.forcemerge(index<span class="op">=</span>INDEX_NAME, max_num_segments<span class="op">=</span><span class="dv">1</span>, wait_for_completion<span class="op">=</span><span class="va">False</span>)[<span class="st">'task'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="543">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>task <span class="op">=</span> es.tasks.get(task_id<span class="op">=</span>task_id)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"[</span><span class="sc">{</span>task_id<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span><span class="st">'Completed in'</span> <span class="cf">if</span> task[<span class="st">'completed'</span>] <span class="cf">else</span> <span class="st">'Running for'</span><span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"</span><span class="sc">{</span>task[<span class="st">'task'</span>][<span class="st">'running_time_in_nanos'</span>]<span class="op">/</span><span class="fl">6e+10</span><span class="sc">:.2f}</span><span class="ss"> minutes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>task <span class="op">=</span> es.tasks.get(task_id<span class="op">=</span>task_id)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"[</span><span class="sc">{</span>task_id<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span><span class="st">'Completed in'</span> <span class="cf">if</span> task[<span class="st">'completed'</span>] <span class="cf">else</span> <span class="st">'Running for'</span><span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="ss">f"</span><span class="sc">{</span>task[<span class="st">'task'</span>][<span class="st">'running_time_in_nanos'</span>]<span class="op">/</span><span class="fl">6e+10</span><span class="sc">:.2f}</span><span class="ss"> minutes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[6_7-709IT3GjbUs9kfWYsA:222682] Completed in 3.29 minutes</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="544">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es.cat.segments(index<span class="op">=</span>INDEX_NAME, v<span class="op">=</span><span class="va">True</span>, h<span class="op">=</span>[<span class="st">"index"</span>, <span class="st">"shard"</span>, <span class="st">"docs.count"</span>, <span class="st">"size"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es.cat.segments(index<span class="op">=</span>INDEX_NAME, v<span class="op">=</span><span class="va">True</span>, h<span class="op">=</span>[<span class="st">"index"</span>, <span class="st">"shard"</span>, <span class="st">"docs.count"</span>, <span class="st">"size"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>index                 shard docs.count  size
 wikipedia-search-v999 0         413205 1.6gb
@@ -2106,10 +2083,10 @@ wikipedia-search-v999 0         413205 1.6gb
 <li>Performance: Inference on CPU</li>
 </ul>
 <div class="cell" data-execution_count="564">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>INDEX_ALIAS <span class="op">=</span> <span class="st">"wikipedia-search-base"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>INDEX_ALIAS <span class="op">=</span> <span class="st">"wikipedia-search-base"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="1121">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>MODEL_ID, model.device</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>MODEL_ID, model.device</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1121">
 <pre><code>('intfloat/multilingual-e5-base', device(type='mps', index=0))</code></pre>
 </div>
@@ -2121,26 +2098,26 @@ wikipedia-search-v999 0         413205 1.6gb
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="585">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_lexical(client, query, size<span class="op">=</span><span class="dv">100</span>):</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> client.search(</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>INDEX_ALIAS,</span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>{</span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"nested"</span>: {</span>
-<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
-<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"query"</span>: {</span>
-<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"match"</span>: {</span>
-<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"parts.chunk"</span>: query,</span>
-<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>          },</span>
-<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"inner_hits"</span>: {</span>
-<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">"_source"</span>: {<span class="st">"includes"</span>: <span class="st">"parts.chunk"</span>},</span>
-<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>          <span class="st">"size"</span>: <span class="dv">5</span>,</span>
-<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>size,</span>
-<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>    sort<span class="op">=</span>[<span class="st">"_score"</span>, <span class="st">"_doc"</span>],</span>
-<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>    _source_excludes<span class="op">=</span>[<span class="st">"parts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_lexical(client, query, size<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> client.search(</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>INDEX_ALIAS,</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    query<span class="op">=</span>{</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"nested"</span>: {</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"query"</span>: {</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"match"</span>: {</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"parts.chunk"</span>: query,</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>          },</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"inner_hits"</span>: {</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">"_source"</span>: {<span class="st">"includes"</span>: <span class="st">"parts.chunk"</span>},</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>          <span class="st">"size"</span>: <span class="dv">5</span>,</span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>size,</span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>    sort<span class="op">=</span>[<span class="st">"_score"</span>, <span class="st">"_doc"</span>],</span>
+<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a>    _source_excludes<span class="op">=</span>[<span class="st">"parts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code smaller">
@@ -2149,30 +2126,30 @@ wikipedia-search-v999 0         413205 1.6gb
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="1095">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_semantic(client, model, query, size<span class="op">=</span><span class="dv">100</span>):</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"e5"</span> <span class="kw">in</span> MODEL_ID: query <span class="op">=</span> <span class="ss">f"query: </span><span class="sc">{</span>query<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> client.search(</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span>INDEX_ALIAS,</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>        query<span class="op">=</span>{</span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"nested"</span>: {</span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"query"</span>: {</span>
-<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"knn"</span>: {</span>
-<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"field"</span>: <span class="st">"parts.embedding"</span>,</span>
-<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"query_vector"</span>: model.encode(query),</span>
-<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"num_candidates"</span>: <span class="dv">1000</span>,</span>
-<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>                }</span>
-<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>              },</span>
-<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">"inner_hits"</span>: {</span>
-<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"_source"</span>: {<span class="st">"includes"</span>: <span class="st">"parts.chunk"</span>},</span>
-<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"size"</span>: <span class="dv">5</span>, <span class="co"># Currently returns only 1 // https://github.com/elastic/elasticsearch/pull/104006</span></span>
-<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>              },</span>
-<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>           }</span>
-<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>size,</span>
-<span id="cb68-23"><a href="#cb68-23" aria-hidden="true" tabindex="-1"></a>        sort<span class="op">=</span>[<span class="st">"_score"</span>, <span class="st">"_doc"</span>],</span>
-<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a>        _source_excludes<span class="op">=</span>[<span class="st">"parts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_semantic(client, model, query, size<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"e5"</span> <span class="kw">in</span> MODEL_ID: query <span class="op">=</span> <span class="ss">f"query: </span><span class="sc">{</span>query<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> client.search(</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span>INDEX_ALIAS,</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>        query<span class="op">=</span>{</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"nested"</span>: {</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"query"</span>: {</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"knn"</span>: {</span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"field"</span>: <span class="st">"parts.embedding"</span>,</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"query_vector"</span>: model.encode(query),</span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"num_candidates"</span>: <span class="dv">1000</span>,</span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>              },</span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">"inner_hits"</span>: {</span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"_source"</span>: {<span class="st">"includes"</span>: <span class="st">"parts.chunk"</span>},</span>
+<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"size"</span>: <span class="dv">5</span>, <span class="co"># Currently returns only 1 // https://github.com/elastic/elasticsearch/pull/104006</span></span>
+<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a>              },</span>
+<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>           }</span>
+<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span>size,</span>
+<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>        sort<span class="op">=</span>[<span class="st">"_score"</span>, <span class="st">"_doc"</span>],</span>
+<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>        _source_excludes<span class="op">=</span>[<span class="st">"parts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code smaller">
@@ -2181,7 +2158,7 @@ wikipedia-search-v999 0         413205 1.6gb
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="1100">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"lexical"</span>, <span class="st">"Co je to staroměstský orloj?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"lexical"</span>, <span class="st">"Co je to staroměstský orloj?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 15 lexical results for «Co je to staroměstský orloj?» ﹙10ms﹚
@@ -2255,7 +2232,7 @@ S většími či menšími časovými odstupy pak následovaly další soutěže
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="1101">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"semantic"</span>, <span class="st">"Co je to staroměstský orloj?"</span>, model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"semantic"</span>, <span class="st">"Co je to staroměstský orloj?"</span>, model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 15 semantic results for «Co je to staroměstský orloj?» ﹙36ms﹚
@@ -2329,7 +2306,7 @@ Dům U Červeného orla je dům čp. 452 na Starém Městě v Praze mezi Jilskou
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="1102">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"lexical"</span>, <span class="st">"velké staré hodiny pro turisty v Praze"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"lexical"</span>, <span class="st">"velké staré hodiny pro turisty v Praze"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 15 lexical results for «velké staré hodiny pro turisty v Praze» ﹙44ms﹚
@@ -2403,7 +2380,7 @@ Na Ovocném trhu, náměstí ve Starém Městě Pražském, se nachází 14 hist
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="1103">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"semantic"</span>, <span class="st">"velké staré hodiny pro turisty v Praze"</span>, model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>search(<span class="st">"semantic"</span>, <span class="st">"velké staré hodiny pro turisty v Praze"</span>, model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 15 semantic results for «velké staré hodiny pro turisty v Praze» ﹙541ms﹚
@@ -2487,30 +2464,30 @@ Velikovský dům, také Šternberský či Lázeň, Malá Strana čp. 518, je his
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="1470">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> optimum.onnxruntime <span class="im">import</span> ORTModelForCustomTasks</span>
-<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_ID)</span>
-<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>model_op <span class="op">=</span> ORTModelForCustomTasks.from_pretrained(MODEL_ID, subfolder<span class="op">=</span><span class="st">"onnx"</span>).to(<span class="st">"cpu"</span>)</span>
-<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_pool(last_hidden_states, attention_mask):</span>
-<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>    last_hidden <span class="op">=</span> last_hidden_states.masked_fill(<span class="op">~</span>attention_mask[..., <span class="va">None</span>].<span class="bu">bool</span>(), <span class="fl">0.0</span>)</span>
-<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> last_hidden.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> attention_mask.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>)[..., <span class="va">None</span>]</span>
-<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encode(<span class="va">self</span>, query):</span>
-<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> tokenizer([query], max_length<span class="op">=</span><span class="dv">512</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>, return_tensors<span class="op">=</span><span class="st">'pt'</span>)</span>
-<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> <span class="va">self</span>(<span class="op">**</span>inputs)</span>
-<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (F.normalize(average_pool(outputs.last_hidden_state, inputs[<span class="st">'attention_mask'</span>]), p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)).detach().cpu().numpy()[<span class="dv">0</span>]</span>
-<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>model_op.encode <span class="op">=</span> partial(encode, model_op)</span>
-<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>model_st <span class="op">=</span> model</span>
-<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"model_st=[</span><span class="sc">{</span>model_st<span class="sc">.</span>_get_name()<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>MODEL_ID<span class="sc">}</span><span class="ss">], device=device=</span><span class="sc">{</span>model<span class="sc">.</span>device<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"model_op=[</span><span class="sc">{</span>model_op<span class="sc">.</span>model_name<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>MODEL_ID<span class="sc">}</span><span class="ss">], device=</span><span class="sc">{</span>model_op<span class="sc">.</span>device<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> optimum.onnxruntime <span class="im">import</span> ORTModelForCustomTasks</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(MODEL_ID)</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>model_op <span class="op">=</span> ORTModelForCustomTasks.from_pretrained(MODEL_ID, subfolder<span class="op">=</span><span class="st">"onnx"</span>).to(<span class="st">"cpu"</span>)</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_pool(last_hidden_states, attention_mask):</span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>    last_hidden <span class="op">=</span> last_hidden_states.masked_fill(<span class="op">~</span>attention_mask[..., <span class="va">None</span>].<span class="bu">bool</span>(), <span class="fl">0.0</span>)</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> last_hidden.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> attention_mask.<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>)[..., <span class="va">None</span>]</span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> encode(<span class="va">self</span>, query):</span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> tokenizer([query], max_length<span class="op">=</span><span class="dv">512</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>, return_tensors<span class="op">=</span><span class="st">'pt'</span>)</span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> <span class="va">self</span>(<span class="op">**</span>inputs)</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (F.normalize(average_pool(outputs.last_hidden_state, inputs[<span class="st">'attention_mask'</span>]), p<span class="op">=</span><span class="dv">2</span>, dim<span class="op">=</span><span class="dv">1</span>)).detach().cpu().numpy()[<span class="dv">0</span>]</span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a>model_op.encode <span class="op">=</span> partial(encode, model_op)</span>
+<span id="cb76-21"><a href="#cb76-21" aria-hidden="true" tabindex="-1"></a>model_st <span class="op">=</span> model</span>
+<span id="cb76-22"><a href="#cb76-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-23"><a href="#cb76-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"model_st=[</span><span class="sc">{</span>model_st<span class="sc">.</span>_get_name()<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>MODEL_ID<span class="sc">}</span><span class="ss">], device=device=</span><span class="sc">{</span>model<span class="sc">.</span>device<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb76-24"><a href="#cb76-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"model_op=[</span><span class="sc">{</span>model_op<span class="sc">.</span>model_name<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>MODEL_ID<span class="sc">}</span><span class="ss">], device=</span><span class="sc">{</span>model_op<span class="sc">.</span>device<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>model_st=[SentenceTransformer:intfloat/multilingual-e5-base], device=device=mps:0
 model_op=[model.onnx:intfloat/multilingual-e5-base], device=cpu</code></pre>
@@ -2523,27 +2500,27 @@ model_op=[model.onnx:intfloat/multilingual-e5-base], device=cpu</code></pre>
 <p>➍ Search the Data</p>
 </div>
 <div class="cell" data-execution_count="608">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10</span> model_st.encode(query)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10</span> model_op.encode(query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10</span> model_st.encode(query)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">100</span> <span class="op">-</span>n <span class="dv">10</span> model_op.encode(query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>17.3 ms ± 2.1 ms per loop (mean ± std. dev. of 100 runs, 10 loops each)
 3.94 ms ± 90.2 µs per loop (mean ± std. dev. of 100 runs, 10 loops each)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="805">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>embeddings_st <span class="op">=</span> model_st.encode(query)</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>embeddings_op <span class="op">=</span> model_op.encode(query)</span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> np.<span class="bu">abs</span>(embeddings_st <span class="op">-</span> embeddings_op)</span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.printoptions(linewidth<span class="op">=</span><span class="dv">120</span>, threshold<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(embeddings_st, embeddings_op, sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, end<span class="op">=</span><span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
-<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(</span>
-<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"equal (e-10): </span><span class="sc">{</span>np<span class="sc">.</span>allclose(embeddings_st, embeddings_op, atol<span class="op">=</span><span class="fl">1e-10</span>)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"equal (e-6):  </span><span class="sc">{</span>np<span class="sc">.</span>allclose(embeddings_st, embeddings_op, atol<span class="op">=</span><span class="fl">1e-6</span>)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"max diff:     </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(diff)<span class="sc">:.0e}</span><span class="ss"> (</span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(diff)<span class="sc">:.10f}</span><span class="ss">)"</span>,</span>
-<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"mean diff:    </span><span class="sc">{</span>np<span class="sc">.</span>mean(diff)<span class="sc">:.0e}</span><span class="ss"> (</span><span class="sc">{</span>np<span class="sc">.</span>mean(diff)<span class="sc">:.10f}</span><span class="ss">) ± </span><span class="sc">{</span>np<span class="sc">.</span>std(diff)<span class="sc">:.0e}</span><span class="ss">"</span>,</span>
-<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"mismatched:   </span><span class="sc">{</span>np<span class="sc">.</span>count_nonzero(diff)<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(diff)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>embeddings_st <span class="op">=</span> model_st.encode(query)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>embeddings_op <span class="op">=</span> model_op.encode(query)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> np.<span class="bu">abs</span>(embeddings_st <span class="op">-</span> embeddings_op)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> np.printoptions(linewidth<span class="op">=</span><span class="dv">120</span>, threshold<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(embeddings_st, embeddings_op, sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, end<span class="op">=</span><span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"equal (e-10): </span><span class="sc">{</span>np<span class="sc">.</span>allclose(embeddings_st, embeddings_op, atol<span class="op">=</span><span class="fl">1e-10</span>)<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"equal (e-6):  </span><span class="sc">{</span>np<span class="sc">.</span>allclose(embeddings_st, embeddings_op, atol<span class="op">=</span><span class="fl">1e-6</span>)<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"max diff:     </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(diff)<span class="sc">:.0e}</span><span class="ss"> (</span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(diff)<span class="sc">:.10f}</span><span class="ss">)"</span>,</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"mean diff:    </span><span class="sc">{</span>np<span class="sc">.</span>mean(diff)<span class="sc">:.0e}</span><span class="ss"> (</span><span class="sc">{</span>np<span class="sc">.</span>mean(diff)<span class="sc">:.10f}</span><span class="ss">) ± </span><span class="sc">{</span>np<span class="sc">.</span>std(diff)<span class="sc">:.0e}</span><span class="ss">"</span>,</span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"mismatched:   </span><span class="sc">{</span>np<span class="sc">.</span>count_nonzero(diff)<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(diff)<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ 0.00815539  0.02749375  0.00090191 ... -0.02684432 -0.03022929  0.02605095]
 [ 0.00815535  0.02749379  0.00090188 ... -0.02684436 -0.03022928  0.0260509 ]
@@ -2571,33 +2548,33 @@ mismatched:   746/768</code></pre>
 <p>➎ Evaluate Search Quality</p>
 </div>
 <div class="cell" data-execution_count="1432">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>index_name <span class="op">=</span> <span class="bu">list</span>(es.indices.get_alias(name<span class="op">=</span>INDEX_ALIAS).keys())[<span class="dv">0</span>]</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>eval_query <span class="op">=</span> <span class="st">"staroměstský orloj"</span></span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>ratings <span class="op">=</span> [</span>
-<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Staroměstský orloj"</span>,   <span class="st">"rating"</span>: <span class="dv">5</span>, <span class="st">"_id"</span>: <span class="st">"BIVvNo0BaFxnamZUNs28"</span>},</span>
-<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Orloj"</span>,                <span class="st">"rating"</span>: <span class="dv">4</span>, <span class="st">"_id"</span>: <span class="st">"PYVvNo0BaFxnamZUNsu8"</span>},</span>
-<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Mistr Hanuš"</span>,          <span class="st">"rating"</span>: <span class="dv">3</span>, <span class="st">"_id"</span>: <span class="st">"i4hvNo0BaFxnamZU4pVD"</span>},</span>
-<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Mikuláš z Kadaně"</span>,     <span class="st">"rating"</span>: <span class="dv">3</span>, <span class="st">"_id"</span>: <span class="st">"w4hvNo0BaFxnamZUxRxl"</span>},</span>
-<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Staroměstská radnice"</span>, <span class="st">"rating"</span>: <span class="dv">2</span>, <span class="st">"_id"</span>: <span class="st">"4IZvNo0BaFxnamZUW0bR"</span>},</span>
-<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Staroměstské náměstí"</span>, <span class="st">"rating"</span>: <span class="dv">2</span>, <span class="st">"_id"</span>: <span class="st">"w4VvNo0BaFxnamZURN6Z"</span>},</span>
-<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Hodinová věž"</span>,         <span class="st">"rating"</span>: <span class="dv">1</span>, <span class="st">"_id"</span>: <span class="st">"VodvNo0BaFxnamZUwP9w"</span>},</span>
-<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Jakub Čech (hodinář)"</span>, <span class="st">"rating"</span>: <span class="dv">1</span>, <span class="st">"_id"</span>: <span class="st">"94lwNo0BaFxnamZUJc8z"</span>},</span>
-<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Cisiojan"</span>,             <span class="st">"rating"</span>: <span class="dv">1</span>, <span class="st">"_id"</span>: <span class="st">"N4VvNo0BaFxnamZUL7sl"</span>},</span>
-<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Brněnský orloj"</span>,       <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"8ohvNo0BaFxnamZUxR1l"</span>},</span>
-<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Olomoucký orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"94VvNo0BaFxnamZUReYG"</span>},</span>
-<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Ostravský orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"PIlwNo0BaFxnamZUJdR3"</span>},</span>
-<span id="cb83-18"><a href="#cb83-18" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Pohádkový orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"1IdvNo0BaFxnamZUrK_h"</span>},</span>
-<span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Kadaňský orloj"</span>,       <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"I4pwNo0BaFxnamZUZNjB"</span>},</span>
-<span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Hospodský orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"yIlwNo0BaFxnamZUKeyd"</span>},</span>
-<span id="cb83-21"><a href="#cb83-21" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Chmelový orloj"</span>,       <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"JYxwNo0BaFxnamZUy2wx"</span>},</span>
-<span id="cb83-22"><a href="#cb83-22" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Ovocný trh (Praha)"</span>,   <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"5YdvNo0BaFxnamZUtdnl"</span>},</span>
-<span id="cb83-23"><a href="#cb83-23" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Nábřeží Maxipsa Fíka"</span>, <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"OIpwNo0BaFxnamZUWKow"</span>},</span>
-<span id="cb83-24"><a href="#cb83-24" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Očnice"</span>,               <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"oolwNo0BaFxnamZUHsQp"</span>},</span>
-<span id="cb83-25"><a href="#cb83-25" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Megalit"</span>,              <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"qYZvNo0BaFxnamZUSwfS"</span>}]</span>
-<span id="cb83-26"><a href="#cb83-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-27"><a href="#cb83-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(ratings)<span class="sc">}</span><span class="ss"> ratings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>index_name <span class="op">=</span> <span class="bu">list</span>(es.indices.get_alias(name<span class="op">=</span>INDEX_ALIAS).keys())[<span class="dv">0</span>]</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>eval_query <span class="op">=</span> <span class="st">"staroměstský orloj"</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>ratings <span class="op">=</span> [</span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Staroměstský orloj"</span>,   <span class="st">"rating"</span>: <span class="dv">5</span>, <span class="st">"_id"</span>: <span class="st">"BIVvNo0BaFxnamZUNs28"</span>},</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Orloj"</span>,                <span class="st">"rating"</span>: <span class="dv">4</span>, <span class="st">"_id"</span>: <span class="st">"PYVvNo0BaFxnamZUNsu8"</span>},</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Mistr Hanuš"</span>,          <span class="st">"rating"</span>: <span class="dv">3</span>, <span class="st">"_id"</span>: <span class="st">"i4hvNo0BaFxnamZU4pVD"</span>},</span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Mikuláš z Kadaně"</span>,     <span class="st">"rating"</span>: <span class="dv">3</span>, <span class="st">"_id"</span>: <span class="st">"w4hvNo0BaFxnamZUxRxl"</span>},</span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Staroměstská radnice"</span>, <span class="st">"rating"</span>: <span class="dv">2</span>, <span class="st">"_id"</span>: <span class="st">"4IZvNo0BaFxnamZUW0bR"</span>},</span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Staroměstské náměstí"</span>, <span class="st">"rating"</span>: <span class="dv">2</span>, <span class="st">"_id"</span>: <span class="st">"w4VvNo0BaFxnamZURN6Z"</span>},</span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Hodinová věž"</span>,         <span class="st">"rating"</span>: <span class="dv">1</span>, <span class="st">"_id"</span>: <span class="st">"VodvNo0BaFxnamZUwP9w"</span>},</span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Jakub Čech (hodinář)"</span>, <span class="st">"rating"</span>: <span class="dv">1</span>, <span class="st">"_id"</span>: <span class="st">"94lwNo0BaFxnamZUJc8z"</span>},</span>
+<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Cisiojan"</span>,             <span class="st">"rating"</span>: <span class="dv">1</span>, <span class="st">"_id"</span>: <span class="st">"N4VvNo0BaFxnamZUL7sl"</span>},</span>
+<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Brněnský orloj"</span>,       <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"8ohvNo0BaFxnamZUxR1l"</span>},</span>
+<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Olomoucký orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"94VvNo0BaFxnamZUReYG"</span>},</span>
+<span id="cb82-17"><a href="#cb82-17" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Ostravský orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"PIlwNo0BaFxnamZUJdR3"</span>},</span>
+<span id="cb82-18"><a href="#cb82-18" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Pohádkový orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"1IdvNo0BaFxnamZUrK_h"</span>},</span>
+<span id="cb82-19"><a href="#cb82-19" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Kadaňský orloj"</span>,       <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"I4pwNo0BaFxnamZUZNjB"</span>},</span>
+<span id="cb82-20"><a href="#cb82-20" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Hospodský orloj"</span>,      <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"yIlwNo0BaFxnamZUKeyd"</span>},</span>
+<span id="cb82-21"><a href="#cb82-21" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Chmelový orloj"</span>,       <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"JYxwNo0BaFxnamZUy2wx"</span>},</span>
+<span id="cb82-22"><a href="#cb82-22" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Ovocný trh (Praha)"</span>,   <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"5YdvNo0BaFxnamZUtdnl"</span>},</span>
+<span id="cb82-23"><a href="#cb82-23" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Nábřeží Maxipsa Fíka"</span>, <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"OIpwNo0BaFxnamZUWKow"</span>},</span>
+<span id="cb82-24"><a href="#cb82-24" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Očnice"</span>,               <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"oolwNo0BaFxnamZUHsQp"</span>},</span>
+<span id="cb82-25"><a href="#cb82-25" aria-hidden="true" tabindex="-1"></a>  {<span class="st">"title"</span>: <span class="st">"Megalit"</span>,              <span class="st">"rating"</span>: <span class="dv">0</span>, <span class="st">"_id"</span>: <span class="st">"qYZvNo0BaFxnamZUSwfS"</span>}]</span>
+<span id="cb82-26"><a href="#cb82-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-27"><a href="#cb82-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(ratings)<span class="sc">}</span><span class="ss"> ratings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>20 ratings</code></pre>
 </div>
@@ -2610,45 +2587,45 @@ mismatched:   746/768</code></pre>
 <p>➎ Evaluate Search Quality</p>
 </div>
 <div class="cell" data-execution_count="1427">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_evaluation(client, ratings, queries):</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  size <span class="op">=</span> <span class="dv">30</span></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>  requests <span class="op">=</span> []</span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="bu">id</span>, query <span class="kw">in</span> queries:</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>    query.update({<span class="st">"size"</span>: size})</span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>    req <span class="op">=</span> {</span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"id"</span>: <span class="bu">id</span>,</span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"request"</span>: query,</span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ratings"</span>: [ { <span class="st">"_index"</span>: index_name, <span class="st">"_id"</span>: item[<span class="st">"_id"</span>], <span class="st">"rating"</span>: item[<span class="st">"rating"</span>] } <span class="cf">for</span> item <span class="kw">in</span> ratings ],</span>
-<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a>    requests.append(req)</span>
-<span id="cb85-13"><a href="#cb85-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-14"><a href="#cb85-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> client.rank_eval(</span>
-<span id="cb85-15"><a href="#cb85-15" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>index_name,</span>
-<span id="cb85-16"><a href="#cb85-16" aria-hidden="true" tabindex="-1"></a>    metric<span class="op">=</span>{ <span class="st">"dcg"</span>: { <span class="st">"k"</span>: size, <span class="st">"normalize"</span>: <span class="va">True</span> } },</span>
-<span id="cb85-17"><a href="#cb85-17" aria-hidden="true" tabindex="-1"></a>    requests<span class="op">=</span>requests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_evaluation(client, ratings, queries):</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  size <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  requests <span class="op">=</span> []</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="bu">id</span>, query <span class="kw">in</span> queries:</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>    query.update({<span class="st">"size"</span>: size})</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>    req <span class="op">=</span> {</span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"id"</span>: <span class="bu">id</span>,</span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"request"</span>: query,</span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ratings"</span>: [ { <span class="st">"_index"</span>: index_name, <span class="st">"_id"</span>: item[<span class="st">"_id"</span>], <span class="st">"rating"</span>: item[<span class="st">"rating"</span>] } <span class="cf">for</span> item <span class="kw">in</span> ratings ],</span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>    requests.append(req)</span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> client.rank_eval(</span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>index_name,</span>
+<span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a>    metric<span class="op">=</span>{ <span class="st">"dcg"</span>: { <span class="st">"k"</span>: size, <span class="st">"normalize"</span>: <span class="va">True</span> } },</span>
+<span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a>    requests<span class="op">=</span>requests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="1428">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>query_lexical <span class="op">=</span> {</span>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>query_lexical <span class="op">=</span> {</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"query"</span>: {</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nested"</span>: {</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"query"</span>: {</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"match"</span>: {</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">"parts.chunk"</span>: eval_query,</span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>        }}}}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="1429">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>query_semantic <span class="op">=</span> {</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"query"</span>: {</span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nested"</span>: {</span>
 <span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
 <span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"query"</span>: {</span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"match"</span>: {</span>
-<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">"parts.chunk"</span>: eval_query,</span>
-<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>        }}}}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="1429">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>query_semantic <span class="op">=</span> {</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"query"</span>: {</span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nested"</span>: {</span>
-<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"path"</span>: <span class="st">"parts"</span>,</span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"query"</span>: {</span>
-<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"knn"</span>: {</span>
-<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">"field"</span>: <span class="st">"parts.embedding"</span>,</span>
-<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"query_vector"</span>: model.encode(<span class="st">"query: "</span> <span class="op">+</span> eval_query),</span>
-<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"num_candidates"</span>: <span class="dv">1000</span>,</span>
-<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>        }}}}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"knn"</span>: {</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">"field"</span>: <span class="st">"parts.embedding"</span>,</span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"query_vector"</span>: model.encode(<span class="st">"query: "</span> <span class="op">+</span> eval_query),</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"num_candidates"</span>: <span class="dv">1000</span>,</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>        }}}}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 slide-code smaller">
@@ -2803,8 +2780,8 @@ mismatched:   746/768</code></pre>
 <div class="footer">
 <p>➎ Evaluate Search Quality</p>
 </div>
-<div class="cell" data-execution_count="42">
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="45">
 <table class="dataframe eval_results eval_results_all" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header" style="text-align: right;">
