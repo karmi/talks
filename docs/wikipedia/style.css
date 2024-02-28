@@ -472,3 +472,33 @@ img.border {
   /* background-color: hsl(348, 100%, 61%); */
   background-color: hsl(0, 0%, 71%);
 }
+
+.slide table.eval_results_all {
+  font-family: var(--font-family-sans-serif);
+}
+
+.slide table.eval_results_all thead th {
+  font-size: 22px;
+  font-weight: bold;
+  text-wrap: nowrap;
+  text-align: left;
+  width: 50px;
+}
+
+.slide table.eval_results_all tbody td {
+  font-size: 14px;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  width: 50px;
+  max-width: 50px;
+  overflow: hidden;
+  padding: 0.5em 0.5em 0.5em 0.25em;
+}
+
+.slide table.eval_results_all th code {
+  color: #000;
+  background-color: hsl(0, 0%, 90%);
+  font-size: 14px !important;
+  position: relative;
+  bottom: 1px;
+}
