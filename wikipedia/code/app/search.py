@@ -26,14 +26,20 @@ class Search:
         with open("config.yml") as f:
             self.config = yaml.safe_load(f)
 
-    def _get_embeddings(self, model_name, inputs):
+    def _get_embeddings(self, model_name, query):
         api_url = self.config["models"][model_name]["endpoint"]
         api_token = os.getenv("INFERENCE_API_TOKEN")
+
+        if "e5-instruct" in model_name:
+            query = f'Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery: {query}'
+        elif "e5" in model_name:
+            query = f"query: {query}"
+
         response = requests.post(
             api_url,
             headers={"Authorization": f"Bearer {api_token}"} if api_token else {},
             params={"wait_for_model": True},
-            json={"inputs": inputs},
+            json={"inputs": query},
             timeout=300,
         )
 
