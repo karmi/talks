@@ -190,12 +190,8 @@
   {
     "metric": "e5-instruct",
     "metric_name": "nDCG@10",
-    "score": 0.539475046508732,
+    "score": 0.8067346399279625,
     "hits": [
-      {
-        "title": "Dům U Zlatého orla (Malé náměstí)",
-        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20Zlat%C3%A9ho%20orla%20%28Mal%C3%A9%20n%C3%A1m%C4%9Bst%C3%AD%29"
-      },
       {
         "title": "Staroměstský orloj",
         "url": "https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj"
@@ -205,32 +201,36 @@
         "url": "https://cs.wikipedia.org/wiki/Orloj"
       },
       {
-        "title": "Seznam gymnázií v Česku",
-        "url": "https://cs.wikipedia.org/wiki/Seznam%20gymn%C3%A1zi%C3%AD%20v%20%C4%8Cesku"
+        "title": "Slovenský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj"
       },
       {
-        "title": "Seznam středních škol v Česku",
-        "url": "https://cs.wikipedia.org/wiki/Seznam%20st%C5%99edn%C3%ADch%20%C5%A1kol%20v%20%C4%8Cesku"
-      },
-      {
-        "title": "Seznam ulic v Praze",
-        "url": "https://cs.wikipedia.org/wiki/Seznam%20ulic%20v%20Praze"
-      },
-      {
-        "title": "Dům čp. 100 (Štramberk)",
-        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20%C4%8Dp.%20100%20%28%C5%A0tramberk%29"
-      },
-      {
-        "title": "Náměstí Svobody (Zákupy)",
-        "url": "https://cs.wikipedia.org/wiki/N%C3%A1m%C4%9Bst%C3%AD%20Svobody%20%28Z%C3%A1kupy%29"
+        "title": "Dům U Červeného orla (Jilská)",
+        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20%C4%8Cerven%C3%A9ho%20orla%20%28Jilsk%C3%A1%29"
       },
       {
         "title": "Ostravský orloj",
         "url": "https://cs.wikipedia.org/wiki/Ostravsk%C3%BD%20orloj"
       },
       {
-        "title": "Produkční zahrady Pražského hradu",
-        "url": "https://cs.wikipedia.org/wiki/Produk%C4%8Dn%C3%AD%20zahrady%20Pra%C5%BEsk%C3%A9ho%20hradu"
+        "title": "Pohádkový orloj v Ostravě",
+        "url": "https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B"
+      },
+      {
+        "title": "Stará radnice (Prachatice)",
+        "url": "https://cs.wikipedia.org/wiki/Star%C3%A1%20radnice%20%28Prachatice%29"
+      },
+      {
+        "title": "Dům U Bílého orla (Rytířská)",
+        "url": "https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20B%C3%ADl%C3%A9ho%20orla%20%28Ryt%C3%AD%C5%99sk%C3%A1%29"
+      },
+      {
+        "title": "Jan Táborský z Klokotské Hory",
+        "url": "https://cs.wikipedia.org/wiki/Jan%20T%C3%A1borsk%C3%BD%20z%20Klokotsk%C3%A9%20Hory"
+      },
+      {
+        "title": "Kadaňský orloj",
+        "url": "https://cs.wikipedia.org/wiki/Kada%C5%88sk%C3%BD%20orloj"
       }
     ]
   },
