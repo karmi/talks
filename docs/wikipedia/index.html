@@ -414,8 +414,8 @@ Karel Minařík
 <p><img data-src="assets/qr-link-talk.svg" style="margin-top:-10px;"></p>
 </div><div class="column">
 <p>This Talk is a Jupyter Notebook</p>
-<h3><a href="https://github.com/karmi/talks/blob/main/wikipedia/wikipedia-semantic-search.ipynb" class="underline">github.com/karmi/talks</a></h3>
-<p><a href="https://karmi.cz" class="underline">https://karmi.cz</a></p>
+<h4><a href="https://github.com/karmi/talks/tree/main/wikipedia/" class="underline">github.com/karmi/talks</a><br><br><br><br></h4>
+<h3><a href="https://karmi.cz" class="underline">https://karmi.cz</a></h3>
 </div>
 </div>
 </section>
@@ -690,62 +690,63 @@ Karel Minařík
 <div class="column">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"cat"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>query_emb <span class="op">=</span> model.encode(QUERY_PREFIX <span class="op">+</span> query)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>similarities <span class="op">=</span> {}</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute similarities</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word, word_emb <span class="kw">in</span> df[<span class="st">"embeddings"</span>].items():</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    similarities[word] <span class="op">=</span> cosine_similarity(</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        [query_emb],</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        [word_emb]</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      )[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Original similarities</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> <span class="bu">list</span>(similarities.values())</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalized similarities</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>normalized_scores <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    scaler.fit_transform(</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        np.array(scores).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)).flatten()</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute similarities</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>similarities <span class="op">=</span> {}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word, word_emb <span class="kw">in</span> df[<span class="st">"embeddings"</span>].items():</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    similarities[word] <span class="op">=</span> cosine_similarity(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        [query_emb],</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        [word_emb]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      )[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Original similarities</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> <span class="bu">list</span>(similarities.values())</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalized similarities</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>normalized_scores <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    scaler.fit_transform(</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        np.array(scores).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)).flatten()</span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>display(</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    pd.DataFrame({</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Word"</span>: [<span class="ss">f"</span><span class="sc">{</span>query<span class="sc">}</span><span class="ss"> ⇔ </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> k <span class="kw">in</span> similarities.keys()],</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Similarity"</span>: similarities.values(),</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">"Similarity"</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  .style</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    .hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">format</span>(precision<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    .set_caption(<span class="st">"Original"</span>)</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    .set_table_attributes(<span class="st">'class="dataframe small"'</span>)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    .bar(subset<span class="op">=</span>[<span class="st">'Similarity'</span>], color<span class="op">=</span><span class="st">'#999'</span>)</span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>display(</span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  pd.DataFrame({</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Word"</span>: [<span class="ss">f"</span><span class="sc">{</span>query<span class="sc">}</span><span class="ss"> ⇔ </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> k <span class="kw">in</span> similarities.keys()],</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Similarity"</span>: normalized_scores,</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">"Similarity"</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  .style</span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    .hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">format</span>(precision<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    .set_caption(<span class="st">"Normalized"</span>)</span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    .set_table_attributes(<span class="st">'class="dataframe small"'</span>)</span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    .bar(subset<span class="op">=</span>[<span class="st">'Similarity'</span>], color<span class="op">=</span><span class="st">'#999'</span>)</span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>display(</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    pd.DataFrame({</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Word"</span>: [<span class="ss">f"</span><span class="sc">{</span>query<span class="sc">}</span><span class="ss"> ⇔ </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> k <span class="kw">in</span> similarities.keys()],</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Similarity"</span>: similarities.values(),</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">"Similarity"</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  .style</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    .hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">format</span>(precision<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    .set_caption(<span class="st">"Original"</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    .set_table_attributes(<span class="st">'class="dataframe small"'</span>)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    .bar(subset<span class="op">=</span>[<span class="st">'Similarity'</span>], color<span class="op">=</span><span class="st">'#999'</span>)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>display(</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>  pd.DataFrame({</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Word"</span>: [<span class="ss">f"</span><span class="sc">{</span>query<span class="sc">}</span><span class="ss"> ⇔ </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> k <span class="kw">in</span> similarities.keys()],</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Similarity"</span>: normalized_scores,</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  .sort_values(by<span class="op">=</span>[<span class="st">"Similarity"</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  .style</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    .hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">format</span>(precision<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    .set_caption(<span class="st">"Normalized"</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    .set_table_attributes(<span class="st">'class="dataframe small"'</span>)</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    .bar(subset<span class="op">=</span>[<span class="st">'Similarity'</span>], color<span class="op">=</span><span class="st">'#999'</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-display">
 <style type="text/css">
@@ -2558,13 +2559,13 @@ mismatched:   746/768</code></pre>
 <section class="slide level2">
 <h2>➎ Evaluate Search Quality</h2>
 <ul>
-<li>Standardized metrics: Precision and recall, MRR, (N)DCG, …</li>
+<li>Standardized metrics: precision/recall, MRR, (N)DCG, …</li>
 <li>Example: compare lexical and semantic search</li>
-<li>Ranking Evaluation API</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html">Ranking Evaluation API</a></li>
 </ul>
 </section>
 <section class="slide level2 slide-code smaller">
-<h2>Evaluation Data</h2>
+<h2>Evaluation Data (Manual Preparation)</h2>
 <p><a href="https://www.elastic.co/blog/made-to-measure-how-to-use-the-ranking-evaluation-api-in-elasticsearch">Made To Measure: How to Use the Ranking Evaluation API in Elasticsearch</a></p>
 <div class="footer">
 <p>➎ Evaluate Search Quality</p>
@@ -2802,99 +2803,99 @@ mismatched:   746/768</code></pre>
 <div class="footer">
 <p>➎ Evaluate Search Quality</p>
 </div>
-<div class="cell" data-execution_count="34">
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <table class="dataframe eval_results eval_results_all" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header" style="text-align: right;">
 <th data-quarto-table-cell-role="th">e5-small <code>0.877</code></th>
 <th data-quarto-table-cell-role="th">e5-large <code>0.853</code></th>
+<th data-quarto-table-cell-role="th">e5-instruct <code>0.807</code></th>
 <th data-quarto-table-cell-role="th">e5-base <code>0.580</code></th>
-<th data-quarto-table-cell-role="th">e5-instruct <code>0.539</code></th>
 <th data-quarto-table-cell-role="th">lexical <code>0.167</code></th>
 <th data-quarto-table-cell-role="th">minilm <code>0.000</code></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Staroměstský orloj</td>
-<td>Staroměstský orloj</td>
-<td>Ovocný trh (Praha)</td>
-<td>Dům U Zlatého orla (Malé náměstí)</td>
-<td>Kadaňský orloj</td>
-<td>Ruské kolo</td>
+<td><a href="https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj" target="_blank">Staroměstský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj" target="_blank">Staroměstský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj" target="_blank">Staroměstský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Ovocn%C3%BD%20trh%20%28Praha%29" target="_blank">Ovocný trh (Praha)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Kada%C5%88sk%C3%BD%20orloj" target="_blank">Kadaňský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Rusk%C3%A9%20kolo" target="_blank">Ruské kolo</a></td>
 </tr>
 <tr class="even">
-<td>Orloj</td>
-<td>Orloj</td>
-<td>Staroměstský orloj</td>
-<td>Staroměstský orloj</td>
-<td>Jakub Čech (hodinář)</td>
-<td>Dlask tlustozobý</td>
+<td><a href="https://cs.wikipedia.org/wiki/Orloj" target="_blank">Orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Orloj" target="_blank">Orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Orloj" target="_blank">Orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Starom%C4%9Bstsk%C3%BD%20orloj" target="_blank">Staroměstský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Jakub%20%C4%8Cech%20%28hodin%C3%A1%C5%99%29" target="_blank">Jakub Čech (hodinář)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Dlask%20tlustozob%C3%BD" target="_blank">Dlask tlustozobý</a></td>
 </tr>
 <tr class="odd">
-<td>Jakub Čech (hodinář)</td>
-<td>Ovocný trh (Praha)</td>
-<td>Orloj</td>
-<td>Orloj</td>
-<td>Pohádkový orloj v Ostravě</td>
-<td>Čečetka tmavá</td>
+<td><a href="https://cs.wikipedia.org/wiki/Jakub%20%C4%8Cech%20%28hodin%C3%A1%C5%99%29" target="_blank">Jakub Čech (hodinář)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Ovocn%C3%BD%20trh%20%28Praha%29" target="_blank">Ovocný trh (Praha)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj" target="_blank">Slovenský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Orloj" target="_blank">Orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B" target="_blank">Pohádkový orloj v Ostravě</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/%C4%8Ce%C4%8Detka%20tmav%C3%A1" target="_blank">Čečetka tmavá</a></td>
 </tr>
 <tr class="even">
-<td>Mistr Hanuš</td>
-<td>Dům U Bílého orla (Rytířská)</td>
-<td>Pohádkový orloj v Ostravě</td>
-<td>Seznam gymnázií v Česku</td>
-<td>Chmelový orloj</td>
-<td>Komerční aranžování květin</td>
+<td><a href="https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1" target="_blank">Mistr Hanuš</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20B%C3%ADl%C3%A9ho%20orla%20%28Ryt%C3%AD%C5%99sk%C3%A1%29" target="_blank">Dům U Bílého orla (Rytířská)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20%C4%8Cerven%C3%A9ho%20orla%20%28Jilsk%C3%A1%29" target="_blank">Dům U Červeného orla (Jilská)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B" target="_blank">Pohádkový orloj v Ostravě</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Chmelov%C3%BD%20orloj" target="_blank">Chmelový orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Komer%C4%8Dn%C3%AD%20aran%C5%BEov%C3%A1n%C3%AD%20kv%C4%9Btin" target="_blank">Komerční aranžování květin</a></td>
 </tr>
 <tr class="odd">
-<td>Pokojový orloj Jana Maška</td>
-<td>Dům U Červeného orla (Jilská)</td>
-<td>Chmelový orloj</td>
-<td>Seznam středních škol v Česku</td>
-<td>Jan Táborský z Klokotské Hory</td>
-<td>Helheim</td>
+<td><a href="https://cs.wikipedia.org/wiki/Pokojov%C3%BD%20orloj%20Jana%20Ma%C5%A1ka" target="_blank">Pokojový orloj Jana Maška</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20%C4%8Cerven%C3%A9ho%20orla%20%28Jilsk%C3%A1%29" target="_blank">Dům U Červeného orla (Jilská)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Ostravsk%C3%BD%20orloj" target="_blank">Ostravský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Chmelov%C3%BD%20orloj" target="_blank">Chmelový orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Jan%20T%C3%A1borsk%C3%BD%20z%20Klokotsk%C3%A9%20Hory" target="_blank">Jan Táborský z Klokotské Hory</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Helheim" target="_blank">Helheim</a></td>
 </tr>
 <tr class="even">
-<td>Slovenský orloj</td>
-<td>Kadaňský orloj</td>
-<td>Křižovnické náměstí</td>
-<td>Seznam ulic v Praze</td>
-<td>Orloj</td>
-<td>Křížová cesta (Žulová)</td>
+<td><a href="https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj" target="_blank">Slovenský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Kada%C5%88sk%C3%BD%20orloj" target="_blank">Kadaňský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B" target="_blank">Pohádkový orloj v Ostravě</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/K%C5%99i%C5%BEovnick%C3%A9%20n%C3%A1m%C4%9Bst%C3%AD" target="_blank">Křižovnické náměstí</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Orloj" target="_blank">Orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/K%C5%99%C3%AD%C5%BEov%C3%A1%20cesta%20%28%C5%BDulov%C3%A1%29" target="_blank">Křížová cesta (Žulová)</a></td>
 </tr>
 <tr class="odd">
-<td>Pohádkový orloj v Ostravě</td>
-<td>Mistr Hanuš</td>
-<td>Očnice</td>
-<td>Dům čp. 100 (Štramberk)</td>
-<td>Ludvík Hainz</td>
-<td>NGC 6752</td>
+<td><a href="https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B" target="_blank">Pohádkový orloj v Ostravě</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1" target="_blank">Mistr Hanuš</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Star%C3%A1%20radnice%20%28Prachatice%29" target="_blank">Stará radnice (Prachatice)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/O%C4%8Dnice" target="_blank">Očnice</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Ludv%C3%ADk%20Hainz" target="_blank">Ludvík Hainz</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/NGC%206752" target="_blank">NGC 6752</a></td>
 </tr>
 <tr class="even">
-<td>Jan Táborský z Klokotské Hory</td>
-<td>Slovenský orloj</td>
-<td>Slovenský orloj</td>
-<td>Náměstí Svobody (Zákupy)</td>
-<td>Seznam osobností Prahy</td>
-<td>Hyperbola</td>
+<td><a href="https://cs.wikipedia.org/wiki/Jan%20T%C3%A1borsk%C3%BD%20z%20Klokotsk%C3%A9%20Hory" target="_blank">Jan Táborský z Klokotské Hory</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj" target="_blank">Slovenský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/D%C5%AFm%20U%20B%C3%ADl%C3%A9ho%20orla%20%28Ryt%C3%AD%C5%99sk%C3%A1%29" target="_blank">Dům U Bílého orla (Rytířská)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Slovensk%C3%BD%20orloj" target="_blank">Slovenský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Seznam%20osobnost%C3%AD%20Prahy" target="_blank">Seznam osobností Prahy</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Hyperbola" target="_blank">Hyperbola</a></td>
 </tr>
 <tr class="odd">
-<td>Olomoucký orloj</td>
-<td>Pohádkový orloj v Ostravě</td>
-<td>Pokojový orloj Jana Maška</td>
-<td>Ostravský orloj</td>
-<td>Mistr Hanuš</td>
-<td>Vratislav Bělík</td>
+<td><a href="https://cs.wikipedia.org/wiki/Olomouck%C3%BD%20orloj" target="_blank">Olomoucký orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Poh%C3%A1dkov%C3%BD%20orloj%20v%20Ostrav%C4%9B" target="_blank">Pohádkový orloj v Ostravě</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Jan%20T%C3%A1borsk%C3%BD%20z%20Klokotsk%C3%A9%20Hory" target="_blank">Jan Táborský z Klokotské Hory</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Pokojov%C3%BD%20orloj%20Jana%20Ma%C5%A1ka" target="_blank">Pokojový orloj Jana Maška</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1" target="_blank">Mistr Hanuš</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Vratislav%20B%C4%9Bl%C3%ADk" target="_blank">Vratislav Bělík</a></td>
 </tr>
 <tr class="even">
-<td>Chronologie starověkého Blízkého východu</td>
-<td>Staré Město (Praha)</td>
-<td>Mistr Hanuš</td>
-<td>Produkční zahrady Pražského hradu</td>
-<td>Cisiojan</td>
-<td>Paježura Attenboroughova</td>
+<td><a href="https://cs.wikipedia.org/wiki/Chronologie%20starov%C4%9Bk%C3%A9ho%20Bl%C3%ADzk%C3%A9ho%20v%C3%BDchodu" target="_blank">Chronologie starověkého Blízkého východu</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Star%C3%A9%20M%C4%9Bsto%20%28Praha%29" target="_blank">Staré Město (Praha)</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Kada%C5%88sk%C3%BD%20orloj" target="_blank">Kadaňský orloj</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Mistr%20Hanu%C5%A1" target="_blank">Mistr Hanuš</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Cisiojan" target="_blank">Cisiojan</a></td>
+<td><a href="https://cs.wikipedia.org/wiki/Paje%C5%BEura%20Attenboroughova" target="_blank">Paježura Attenboroughova</a></td>
 </tr>
 </tbody>
 </table>
